@@ -9,6 +9,8 @@ android {
         applicationId "com.teuskim.sbrowser"
         minSdkVersion 15
         targetSdkVersion 26
+        versionCode 2
+        versionName "1.1"
     }
 
     buildTypes {
@@ -17,6 +19,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     useLibrary 'org.apache.http.legacy'
 }
 
