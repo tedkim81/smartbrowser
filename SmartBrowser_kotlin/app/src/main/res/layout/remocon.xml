@@ -1,0 +1,138 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="273dip"
+    android:layout_height="wrap_content"
+    android:id="@+id/remocon_layout"
+    android:background="@drawable/shadow_remote"
+    >
+    <!-- 리모콘 이동할때 터치 {{ -->
+    <RelativeLayout
+        android:id="@+id/ic_drag"
+        android:layout_width="45dip"
+		android:layout_height="45dip"
+		android:background="@drawable/bg_remote_mini"
+		>
+		<ImageView 
+		    android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:src="@drawable/ic_sb_remote"
+		    />
+	</RelativeLayout>
+    <!-- }} 리모콘 이동할때 터치 -->
+    
+    <!-- 리모콘 몸체 {{ -->
+    <LinearLayout
+        android:id="@+id/remocon_body"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    >
+	    
+	    <!-- 리모콘 몸체 상단 {{ -->
+	    <LinearLayout
+	        android:id="@+id/remocon_body_top"
+	        android:layout_width="match_parent"
+	        android:layout_height="45dip"
+	        >
+	        <!-- 리모콘 이동할때 터치 ( 영역만 차지 ) {{ -->
+	        <View
+	            android:id="@+id/ic_drag_area"
+	            android:layout_width="45dip"
+	    		android:layout_height="match_parent"
+	    		/>
+	        <!-- }} 리모콘 이동할때 터치 ( 영역만 차지 ) -->
+	        
+	       	<!-- 입력 및 이동버튼 레이아웃 {{ -->
+	       	<LinearLayout
+		        android:layout_width="0dip"
+		        android:layout_height="match_parent"
+		        android:layout_weight="1"
+		        android:gravity="center_vertical"
+		        android:background="@drawable/bg_remote_expand"
+		        >
+		        <!-- 입력영역(터치하면 실제입력영역으로 대치된다.) {{ -->
+		        <LinearLayout
+		            android:layout_width="0dip"
+			        android:layout_height="32dip"
+			        android:layout_weight="1"
+			        android:layout_marginLeft="5dip"
+			        android:layout_marginRight="5dip"
+			        android:gravity="center_vertical"
+			        android:background="@drawable/input_remote"
+			        >
+		            <!-- 이전페이지 버튼 {{ -->
+		            <ImageView
+		                android:id="@+id/btn_input_back"
+		                android:layout_width="30dip"
+			        	android:layout_height="30dip"
+			        	android:src="@drawable/btn_input_back_disable"
+			        	/>
+		            <!-- }} 이전페이지 버튼 -->
+		            
+		            <!-- 입력하세요 텍스트 {{ -->
+		            <TextView
+		                android:id="@+id/input_query_form"
+		                android:layout_width="0dip"
+			        	android:layout_height="wrap_content"
+			        	android:layout_weight="1"
+			        	android:layout_marginLeft="2dip"
+			        	android:text="@string/input_please" 
+			        	android:textSize="13sp"
+			        	android:textColor="#ee5128"
+		                />
+		            <!-- }} 입력하세요 텍스트 -->
+		            
+		            <!-- 다음페이지 버튼 {{ -->
+		            <ImageView
+		                android:id="@+id/btn_input_foward"
+		                android:layout_width="30dip"
+			        	android:layout_height="30dip"
+			        	android:src="@drawable/btn_input_foward_disable"
+			        	/>
+		            <!-- }} 다음페이지 버튼 -->
+		            
+		        </LinearLayout>
+		        <!-- }} 입력영역(터치하면 실제입력영역으로 대치된다.) -->
+		        
+		        <!-- 이동 버튼 {{ -->
+		        <RelativeLayout 
+		            android:id="@+id/btn_go"
+		       	    android:layout_width="wrap_content"
+		       	    android:layout_height="33dip"
+		       	    android:layout_marginRight="5dip"
+		       	    android:background="@drawable/btn_remote_go"
+		            >
+		            <TextView
+			       	    android:id="@+id/btn_go_text"
+			       	    android:layout_width="wrap_content"
+			       	    android:layout_height="wrap_content"
+			       	    android:paddingLeft="5dip"
+			       	    android:paddingRight="5dip"
+			       	    android:layout_centerInParent="true"
+			       	    android:textSize="12sp"
+			       	    android:textColor="#ffffff"
+			       	    android:textStyle="bold"
+			       	    />
+		            <ImageView
+		                android:id="@+id/btn_go_img"
+			       	    android:layout_width="wrap_content"
+			       	    android:layout_height="wrap_content"
+			       	    android:layout_centerInParent="true"
+			       	    android:src="@drawable/ic_remote_search"
+			       	    />
+		        </RelativeLayout>
+		       	<!-- }} 이동 버튼 -->
+		        
+		    </LinearLayout>
+	       	<!-- }} 입력 및 이동버튼 레이아웃 -->
+	       	
+	    </LinearLayout>
+	    <!-- }} 리모콘 몸체 상단 -->
+	    
+	    <!-- 리모톤 몸체 하단이 여기에 들어간다. {{ -->
+	    <!-- }} 리모톤 몸체 하단이 여기에 들어간다. -->
+	    
+	</LinearLayout>
+	<!-- }} 리모콘 몸체 -->
+	
+</RelativeLayout>

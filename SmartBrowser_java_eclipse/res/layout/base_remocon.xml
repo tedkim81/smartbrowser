@@ -1,0 +1,33 @@
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/base_layout"
+    >
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <!-- body 영역이 추가된다. -->
+    </LinearLayout>
+    
+    <!-- 설정화면 {{ -->
+    <com.teuskim.sbrowser.SettingsView
+        android:id="@+id/settings_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+    <!-- }} 설정화면 -->
+    
+    <!-- 리모콘뷰 {{ -->
+    <com.teuskim.sbrowser.RemoconView
+        android:id="@+id/remocon_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <!-- }} 리모콘뷰 -->
+    
+</RelativeLayout>

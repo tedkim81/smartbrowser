@@ -1,0 +1,80 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="#ffffff" 
+	>
+	<!-- 주소/검색어 입력 영역 {{ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dip"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_remote_expand"
+        >
+        <EditText
+	        android:id="@+id/input_query"
+	        android:layout_width="0dip"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:background="@drawable/input_remote"
+	        android:textSize="14sp"
+			android:textColor="#ee5128"
+			android:paddingLeft="10dip"
+			android:paddingRight="10dip"
+	        />
+       	<Button
+       	    android:id="@+id/btn_go"
+       	    android:layout_width="wrap_content"
+       	    android:layout_height="33dip"
+       	    android:layout_marginLeft="5dip"
+       	    android:paddingLeft="5dip"
+       	    android:paddingRight="5dip"
+       	    android:text="@string/go"
+       	    android:textSize="14sp"
+       	    android:textColor="#ffffff"
+       	    android:background="@drawable/btn_remote_go"
+       	    />
+    </LinearLayout>
+    <!-- }} 주소/검색어 입력 영역 -->
+
+    <!-- 최근/추천 입력내용 목록 {{ -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" 
+        >
+        <ListView
+            android:id="@+id/input_history" 
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:divider="#606261"
+	        android:dividerHeight="1dip"
+	        />
+        <TextView
+            android:id="@+id/no_input_history" 
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:gravity="center"
+	        android:text="@string/input_url_or_searchkey"
+	        android:textSize="14sp"
+	        android:textColor="#606261"
+	        />
+    </RelativeLayout>
+    <!-- }} 최근/추천 입력내용 목록 -->
+    
+    <!-- URL 완성도구바 {{ -->
+    <LinearLayout 
+        android:id="@+id/url_word_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dip"
+        android:background="#cccccc"
+        >
+        <!-- 여기에 입력버튼셋이 들어간다. -->
+    </LinearLayout>
+    <!-- }} URL 완성도구바 -->
+    
+</LinearLayout>

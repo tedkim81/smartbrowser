@@ -1,0 +1,244 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+	<!-- 본문+도움영역 {{ -->
+	<LinearLayout 
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
+		<!-- 본문 영역 {{ -->
+		<ScrollView
+		    android:id="@+id/layout_scroll" 
+			android:layout_width="match_parent"
+			android:layout_height="0dip"
+			android:layout_weight="1"
+			>
+			<LinearLayout
+			    android:id="@+id/layout_content_body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				>
+			    <TextView
+			        android:id="@+id/text_content"
+			        android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textSize="20dip"
+					android:bufferType="spannable"
+					/>
+			</LinearLayout>
+		</ScrollView>
+		<!-- }} 본문 영역 -->
+		
+		<!-- 도움 영역 {{ -->
+		<RelativeLayout
+		    android:id="@+id/layout_bottom"
+		    android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+		    >
+			<!-- 경계선 {{ -->
+			<View
+			    android:layout_width="match_parent"
+				android:layout_height="2dip"
+				android:background="#333333"
+				/>
+			<!-- }} 경계선 -->
+			
+			<!-- 닫기 버튼 {{ -->
+			<Button
+			    android:id="@+id/btn_close_layout_bottom" 
+			    android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:text="X"
+				android:textSize="20sp"
+			    />
+			<!-- }} 닫기 버튼 -->
+			
+		    <!-- 번역 내용 {{ -->
+		    <TextView
+		        android:id="@+id/text_translate"
+		        android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="20dip"
+				android:textSize="20dip"
+		        />
+		    <!-- }} 번역 내용 -->
+		    
+		</RelativeLayout>
+		<!-- }} 도움 영역 -->
+		
+	</LinearLayout>
+	<!-- }} 본문+도움영역 -->
+	
+	<!-- 단어 선택시 레이어 {{ -->
+    <RelativeLayout
+        android:id="@+id/layout_word"
+        android:layout_width="187dip"
+		android:layout_height="87dip"
+		android:background="@drawable/bg_tooltip"
+		android:visibility="invisible"
+		>
+	    <!-- 검색 버튼 {{ -->
+        <com.teuskim.sbrowser.TextButton
+            android:id="@+id/btn_search"
+            android:layout_width="93dip"
+			android:layout_height="34dip"
+			android:layout_marginTop="7dip"
+			android:paddingLeft="30dip"
+			android:gravity="center_vertical"
+			android:text="@string/search"
+			android:textSize="11sp"
+			android:textColor="#000000"
+			android:textStyle="bold"
+			/>
+        <!-- }} 검색 버튼 -->
+        
+        <!-- 번역 버튼 {{ -->
+        <com.teuskim.sbrowser.TextButton
+            android:id="@+id/btn_translate"
+            android:layout_width="93dip"
+			android:layout_height="34dip"
+			android:layout_marginTop="7dip"
+			android:layout_marginLeft="94dip"
+			android:paddingLeft="22dip"
+			android:gravity="center_vertical"
+			android:text="@string/translate"
+			android:textSize="11sp"
+			android:textColor="#000000"
+			android:textStyle="bold"
+			/>
+        <!-- }} 번역 버튼 -->
+        
+        <!-- 영역선택 타이틀 {{ -->
+        <TextView
+            android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="39dip"
+			android:layout_marginLeft="7dip"
+			android:gravity="center_vertical"
+			android:text="@string/select_area"
+			android:textSize="8sp"
+			android:textColor="#717171"
+			android:textStyle="bold"
+			/>
+        <!-- }} 영역선택 타이틀 -->
+        
+        <!-- 왼쪽으로 {{ -->
+        <com.teuskim.sbrowser.TextButton
+            android:id="@+id/btn_span_left"
+            android:layout_width="46dip"
+			android:layout_height="34dip"
+			android:layout_marginTop="51dip"
+			android:gravity="center"
+			android:text="@string/left_side"
+			android:textSize="9sp"
+			android:textColor="#000000"
+			android:textStyle="bold"
+			/>
+        <!-- }} 왼쪽으로 -->
+        
+        <!-- 아래쪽으로 {{ -->
+        <com.teuskim.sbrowser.TextButton
+            android:id="@+id/btn_span_below"
+            android:layout_width="46dip"
+			android:layout_height="34dip"
+			android:layout_marginTop="51dip"
+			android:layout_marginLeft="47dip"
+			android:gravity="center"
+			android:text="@string/bottom_side"
+			android:textSize="9sp"
+			android:textColor="#000000"
+			android:textStyle="bold"
+			/>
+        <!-- }} 아래쪽으로 -->
+        
+        <!-- 오른쪽으로 {{ -->
+        <com.teuskim.sbrowser.TextButton
+            android:id="@+id/btn_span_right"
+            android:layout_width="46dip"
+			android:layout_height="34dip"
+			android:layout_marginTop="51dip"
+			android:layout_marginLeft="94dip"
+			android:gravity="center"
+			android:text="@string/right_side"
+			android:textSize="9sp"
+			android:textColor="#000000"
+			android:textStyle="bold"
+			/>
+        <!-- }} 오른쪽으로 -->
+        
+        <!-- 전체선택 {{ -->
+        <com.teuskim.sbrowser.TextButton
+            android:id="@+id/btn_span_all"
+            android:layout_width="46dip"
+			android:layout_height="34dip"
+			android:layout_marginTop="51dip"
+			android:layout_marginLeft="141dip"
+			android:gravity="center"
+			android:text="@string/all"
+			android:textSize="9sp"
+			android:textColor="#000000"
+			android:textStyle="bold"
+			/>
+        <!-- }} 전체선택 -->
+	    
+    </RelativeLayout>
+	<!-- }} 단어 선택시 레이어 -->
+	
+	<!-- 검색 웹뷰 레이아웃 {{ -->
+	<LinearLayout
+	    android:id="@+id/layout_webview_search"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_margin="19dip"
+		android:orientation="vertical"
+		android:background="#99999999"
+		android:padding="1dip"
+		android:visibility="gone"
+		>
+        <!-- 검색 웹뷰 타이틀바 {{ -->
+		<LinearLayout
+		    android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:background="#d05031"
+			>
+			<TextView
+			    android:id="@+id/text_webview_search_title"
+			    android:layout_width="0dip"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:layout_marginLeft="12dip"
+				android:singleLine="true"
+				android:text="@string/search"
+				android:textColor="#ffffff"
+				android:textSize="18sp"
+				/>
+			<ImageView
+			    android:id="@+id/btn_close_webview_search"
+			    android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/btn_settings_close"
+			    />
+		</LinearLayout>
+        <!-- }} 검색 웹뷰 타이틀바 -->
+        
+		<!-- 웹뷰 {{ -->
+		<com.teuskim.sbrowser.SbWebView
+			android:id="@+id/webview_search"
+			android:layout_width="match_parent"
+			android:layout_height="0dip"
+			android:layout_weight="1"
+			/>
+		<!-- }} 웹뷰 -->
+		
+	</LinearLayout>
+	<!-- }} 검색 웹뷰 레이아웃 -->
+	
+</RelativeLayout>

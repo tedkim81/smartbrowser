@@ -1,0 +1,17 @@
+.DS_Store
+
+/SmartBrowser_kotlin/.gradle
+/SmartBrowser_kotlin/local.properties
+/SmartBrowser_kotlin/.idea/workspace.xml
+/SmartBrowser_kotlin/.idea/libraries
+/SmartBrowser_kotlin/.DS_Store
+/SmartBrowser_kotlin/build
+/SmartBrowser_kotlin/app/build
+/SmartBrowser_kotlin/import-summary.txt
+
+/SmartBrowser_java_eclipse/.settings
+/SmartBrowser_java_eclipse/bin
+/SmartBrowser_java_eclipse/gen
+/SmartBrowser_java_eclipse/.classpath
+/SmartBrowser_java_eclipse/.project
+/SmartBrowser_java_eclipse/local.properties

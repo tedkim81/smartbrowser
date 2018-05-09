@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" 
+	android:layout_height="40dip"
+	>
+	<!-- 푸른배경 {{ -->
+	<RelativeLayout
+	    android:id="@+id/progressbar" 
+		android:layout_width="wrap_content" 
+		android:layout_height="40dip"
+		android:background="@drawable/bar_loading_progress_repeat"
+		>
+		<!-- 푸쉬맨 {{ -->
+		<ImageView
+		    android:id="@+id/pushman"
+			android:layout_width="31dip" 
+			android:layout_height="40dip"
+			android:src="@drawable/img_loading_pushman01"
+			android:scaleType="fitXY"
+			/>
+		<!-- }} 푸쉬맨 -->
+		
+	</RelativeLayout>
+	<!-- }} 푸른배경 -->
+	
+	<!-- 닫기 버튼 {{ -->
+	<ImageView
+	    android:id="@+id/btn_close_progress"
+		android:layout_width="30dip" 
+		android:layout_height="40dip"
+		android:layout_toRightOf="@id/progressbar"
+		android:src="@drawable/bar_loading_close"
+		android:scaleType="fitXY"
+		/>
+	<!-- }} 닫기 버튼 -->
+	
+</RelativeLayout>

@@ -1,0 +1,444 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="#ffffff" 
+	>
+	<!-- 타이틀바 {{ -->
+	<LinearLayout
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:background="#d05031"
+		>
+		<ImageView
+		    android:id="@+id/logo"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/logo"
+			/>
+		<TextView 
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/instructions"
+			android:textSize="21dip"
+			android:textColor="#ffffff"
+			android:textStyle="bold"
+		    />
+	    <View
+	        android:layout_width="0dip"
+			android:layout_height="1dip"
+			android:layout_weight="1"
+			/>
+	    <ImageView
+		    android:id="@+id/btn_close_instructions"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/btn_settings_close"
+		    />
+	</LinearLayout>
+	<!-- }} 타이틀바 -->
+	
+	<!-- 내용영역 {{ -->
+	<ScrollView
+	    android:layout_width="match_parent"
+		android:layout_height="0dip"
+		android:layout_weight="1" 
+	    >
+	    <LinearLayout
+	        android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:padding="10dip"
+			android:background="@drawable/bg_content_repeat_0"
+	        >
+	        <!-- main1.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:src="@drawable/main1"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main1_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_2" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main1_2" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_3" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main1_3" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_4" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main1_4" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_5" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main1_5" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_6" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main1_6" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} main1.png 이미지 및 설명 -->
+	        
+	        <!-- main2.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/main2"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main2_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_2" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main2_2" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_3" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_main2_3" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} main2.png 이미지 및 설명 -->
+	        
+	        <!-- input.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/input"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_input_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_2" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_input_2" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_3" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_input_3" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} input.png 이미지 및 설명 -->
+	        
+	        <!-- web1.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/web1"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web1_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_2" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web1_2" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_3" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web1_3" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_4" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web1_4" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_5" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web1_5" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_6" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web1_6" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_7" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web1_7" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} web1.png 이미지 및 설명 -->
+	        
+	        <!-- web2.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/web2"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web2_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_2" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web2_2" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_3" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web2_3" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_4" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web2_4" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} web2.png 이미지 및 설명 -->
+	        
+	        <!-- web3.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/web3"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web3_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_2" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web3_2" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_3" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web3_3" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_4" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web3_4" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} web3.png 이미지 및 설명 -->
+	        
+	        <!-- web4.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/web4"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_web4_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} web4.png 이미지 및 설명 -->
+	        
+	        <!-- lockscreen1.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/lockscreen1"
+				android:scaleType="fitXY"
+				/>
+	        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip">
+				<TextView
+				    android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dip"
+					android:text="@string/inst_num_1" android:textColor="#606261" android:textSize="14sp" android:textStyle="bold"
+					/>
+	            <TextView
+				    android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="@string/inst_lockscreen1_1" android:textColor="#606261" android:textSize="14sp"
+					/>
+	        </LinearLayout>
+	        <!-- }} lockscreen1.png 이미지 및 설명 -->
+	        
+	        <!-- lockscreen1.png 이미지 및 설명 {{ -->
+	        <ImageView
+	            android:layout_width="300dip"
+				android:layout_height="480dip"
+				android:layout_marginTop="20dip"
+				android:src="@drawable/main3"
+				android:scaleType="fitXY"
+				/>
+	        <TextView
+			    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="7dip"
+				android:text="@string/inst_main3_1" android:textColor="#606261" android:textSize="14sp"
+				/>
+	        <!-- }} lockscreen1.png 이미지 및 설명 -->
+	        
+	    </LinearLayout>
+	</ScrollView>
+	<!-- }} 내용영역 -->
+	
+</LinearLayout>

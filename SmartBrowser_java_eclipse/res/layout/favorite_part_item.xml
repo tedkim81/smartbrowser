@@ -1,0 +1,99 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favorite_body"
+    android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="#ffffff"
+	android:orientation="vertical"
+	>
+	<!-- 웹조각 상단 ( 제목+삭제버튼 ) {{ -->
+	<LinearLayout
+	    android:layout_width="match_parent"
+		android:layout_height="35dip"
+		android:layout_marginTop="8dip"
+		android:layout_marginLeft="7dip"
+		android:layout_marginRight="7dip"
+		android:background="@drawable/btn_article"
+		>
+		<!-- 순서변경 버튼 영역 {{ -->
+		<ImageView
+		    android:id="@+id/btn_change_order"
+		    android:layout_width="35dip"
+			android:layout_height="35dip"
+			android:background="@drawable/btn_move_normal"
+			/>
+		<!-- }} 순서변경 버튼 영역 -->
+		
+		<LinearLayout 
+		    android:id="@+id/btn_article"
+		    android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			android:background="@drawable/btn_article"
+		    >
+		    <!-- 파비콘 영역 {{ -->
+			<ImageView
+			    android:id="@+id/favicon"
+			    android:layout_width="25dip"
+				android:layout_height="25dip"
+				android:layout_margin="5dip"
+				/>
+			<!-- }} 파비콘 영역 -->
+			
+			<!-- 즐찾 타이틀 {{ -->
+			<TextView
+			    android:id="@+id/favorite_part_title"
+			    android:layout_width="0dip"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+				android:layout_marginLeft="5dip"
+				android:gravity="center_vertical"
+				android:textSize="17sp"
+				android:textColor="#606261"
+				android:singleLine="true"
+				/>
+			<!-- }} 즐찾 타이틀 -->
+		</LinearLayout>
+		
+		<!-- 삭제 버튼 {{ -->
+		<Button
+		    android:id="@+id/btn_delete_favorite"
+		    android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:background="@drawable/btn_delete"
+			/>
+		<!-- }} 삭제 버튼 -->
+		
+	</LinearLayout>
+	<!-- }} 웹조각 상단 ( 제목+삭제버튼 ) -->
+	
+	<!-- 웹뷰 {{ -->
+	<RelativeLayout
+	    android:id="@+id/layout_webview"
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="2dip"
+		android:layout_marginLeft="7dip"
+		android:layout_marginRight="7dip"
+		>
+	    <com.teuskim.sbrowser.SbWebView
+			android:id="@+id/webview"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" 
+			/>
+	    <TextView 
+	        android:id="@+id/loading_webview"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:text="@string/loading"
+			android:textSize="20dip"
+			android:textColor="#ffffff"
+			android:background="#999999"
+			android:visibility="gone"
+	        />
+	</RelativeLayout>
+	<!-- }} 웹뷰 -->
+	
+</LinearLayout>

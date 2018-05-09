@@ -1,0 +1,2466 @@
+android.support.v4.app.BackStackRecord -> android.support.v4.app.a:
+    android.support.v4.app.FragmentManagerImpl mManager -> a
+    android.support.v4.app.BackStackRecord$Op mHead -> b
+    android.support.v4.app.BackStackRecord$Op mTail -> c
+    int mNumOp -> d
+    int mEnterAnim -> e
+    int mExitAnim -> f
+    int mPopEnterAnim -> g
+    int mPopExitAnim -> h
+    int mTransition -> i
+    int mTransitionStyle -> j
+    boolean mAddToBackStack -> k
+    boolean mAllowAddToBackStack -> l
+    java.lang.String mName -> m
+    boolean mCommitted -> n
+    int mIndex -> o
+    int mBreadCrumbTitleRes -> p
+    java.lang.CharSequence mBreadCrumbTitleText -> q
+    int mBreadCrumbShortTitleRes -> r
+    java.lang.CharSequence mBreadCrumbShortTitleText -> s
+    void dump$ec96877(java.lang.String,java.io.PrintWriter) -> a
+    void addOp(android.support.v4.app.BackStackRecord$Op) -> a
+    void bumpBackStackNesting(int) -> a
+    void run() -> run
+    void popFromBackStack(boolean) -> a
+android.support.v4.app.BackStackRecord$Op -> android.support.v4.app.b:
+    android.support.v4.app.BackStackRecord$Op next -> a
+    android.support.v4.app.BackStackRecord$Op prev -> b
+    int cmd -> c
+    android.support.v4.app.Fragment fragment -> d
+    int enterAnim -> e
+    int exitAnim -> f
+    int popEnterAnim -> g
+    int popExitAnim -> h
+    java.util.ArrayList removed -> i
+android.support.v4.app.BackStackState -> android.support.v4.app.BackStackState:
+    int[] mOps -> a
+    int mTransition -> b
+    int mTransitionStyle -> c
+    java.lang.String mName -> d
+    int mIndex -> e
+    int mBreadCrumbTitleRes -> f
+    java.lang.CharSequence mBreadCrumbTitleText -> g
+    int mBreadCrumbShortTitleRes -> h
+    java.lang.CharSequence mBreadCrumbShortTitleText -> i
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    android.support.v4.app.BackStackRecord instantiate(android.support.v4.app.FragmentManagerImpl) -> a
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.BackStackState$1 -> android.support.v4.app.c:
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.Fragment -> android.support.v4.app.Fragment:
+    java.util.HashMap sClassMap -> N
+    int mState -> a
+    android.view.View mAnimatingAway -> b
+    int mStateAfterAnimating -> c
+    android.os.Bundle mSavedFragmentState -> d
+    android.util.SparseArray mSavedViewState -> e
+    int mIndex -> f
+    java.lang.String mWho -> g
+    android.os.Bundle mArguments -> h
+    android.support.v4.app.Fragment mTarget -> i
+    int mTargetIndex -> j
+    int mTargetRequestCode -> k
+    boolean mAdded -> l
+    boolean mRemoving -> m
+    boolean mResumed -> n
+    boolean mFromLayout -> o
+    boolean mInLayout -> p
+    boolean mRestored -> q
+    int mBackStackNesting -> r
+    android.support.v4.app.FragmentManagerImpl mFragmentManager -> s
+    android.support.v4.app.FragmentActivity mActivity -> t
+    int mFragmentId -> u
+    int mContainerId -> v
+    java.lang.String mTag -> w
+    boolean mHidden -> x
+    boolean mDetached -> y
+    boolean mRetainInstance -> z
+    boolean mRetaining -> A
+    boolean mHasMenu -> B
+    boolean mMenuVisible -> C
+    boolean mCalled -> D
+    int mNextAnim -> E
+    android.view.ViewGroup mContainer -> F
+    android.view.View mView -> G
+    android.view.View mInnerView -> H
+    boolean mDeferStart -> I
+    boolean mUserVisibleHint -> J
+    android.support.v4.app.LoaderManagerImpl mLoaderManager -> K
+    boolean mLoadersStarted -> L
+    boolean mCheckedForLoaderManager -> M
+    android.support.v4.app.Fragment instantiate(android.content.Context,java.lang.String) -> a
+    android.support.v4.app.Fragment instantiate(android.content.Context,java.lang.String,android.os.Bundle) -> a
+    void restoreViewState() -> a
+    void setIndex(int) -> a
+    boolean isInBackStack() -> b
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    void onHiddenChanged$1385ff() -> c
+    void onActivityResult$6eb84b52() -> d
+    android.view.LayoutInflater getLayoutInflater$2ee30c11() -> e
+    void onInflate$423a76cd() -> f
+    void onAttach$63a22f9() -> g
+    android.view.animation.Animation onCreateAnimation$24236ca7() -> h
+    void onCreate$79e5e33f() -> i
+    android.view.View onCreateView$469ccb8a() -> j
+    void onViewCreated$65f1d89() -> k
+    void onActivityCreated$79e5e33f() -> l
+    void onResume() -> m
+    void onSaveInstanceState$79e5e33f() -> n
+    void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    void onPause() -> o
+    void onLowMemory() -> onLowMemory
+    void onDestroy() -> p
+    void initState() -> q
+    void onDetach() -> r
+    void onCreateOptionsMenu$761f6f96() -> s
+    void onPrepareOptionsMenu$1eec55bd() -> t
+    void onDestroyOptionsMenu() -> u
+    boolean onOptionsItemSelected$1b88ab4c() -> v
+    void onOptionsMenuClosed$1eec55bd() -> w
+    void onCreateContextMenu(android.view.ContextMenu,android.view.View,android.view.ContextMenu$ContextMenuInfo) -> onCreateContextMenu
+    boolean onContextItemSelected$1b88ab4c() -> x
+    void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+    void performStart() -> y
+    void performStop() -> z
+    void performReallyStop() -> A
+    void performDestroyView() -> B
+android.support.v4.app.Fragment$InstantiationException -> android.support.v4.app.d:
+android.support.v4.app.Fragment$SavedState -> android.support.v4.app.Fragment$SavedState:
+    android.os.Bundle mState -> a
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.Fragment$SavedState$1 -> android.support.v4.app.e:
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.FragmentActivity -> android.support.v4.app.FragmentActivity:
+    android.os.Handler mHandler -> a
+    android.support.v4.app.FragmentManagerImpl mFragments -> b
+    boolean mCreated -> c
+    boolean mResumed -> d
+    boolean mStopped -> e
+    boolean mReallyStopped -> f
+    boolean mRetaining -> g
+    boolean mOptionsMenuInvalidated -> h
+    boolean mCheckedForLoaderManager -> i
+    boolean mLoadersStarted -> j
+    android.support.v4.util.SparseArrayCompat mAllLoaderManagers -> k
+    android.support.v4.app.LoaderManagerImpl mLoaderManager -> l
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void onBackPressed() -> onBackPressed
+    void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    void onCreate(android.os.Bundle) -> onCreate
+    boolean onCreatePanelMenu(int,android.view.Menu) -> onCreatePanelMenu
+    android.view.View onCreateView(java.lang.String,android.content.Context,android.util.AttributeSet) -> onCreateView
+    void onDestroy() -> onDestroy
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    void onLowMemory() -> onLowMemory
+    boolean onMenuItemSelected(int,android.view.MenuItem) -> onMenuItemSelected
+    void onPanelClosed(int,android.view.Menu) -> onPanelClosed
+    void onPause() -> onPause
+    void onResume() -> onResume
+    void onPostResume() -> onPostResume
+    void onResumeFragments() -> a
+    boolean onPreparePanel(int,android.view.View,android.view.Menu) -> onPreparePanel
+    java.lang.Object onRetainNonConfigurationInstance() -> onRetainNonConfigurationInstance
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void onStart() -> onStart
+    void onStop() -> onStop
+    void supportInvalidateOptionsMenu() -> b
+    void doReallyStop(boolean) -> a
+    void onAttachFragment$65850823() -> c
+    void startActivityForResult(android.content.Intent,int) -> startActivityForResult
+    void invalidateSupportFragmentIndex(int) -> a
+    android.support.v4.app.LoaderManagerImpl getLoaderManager(int,boolean,boolean) -> a
+android.support.v4.app.FragmentActivity$1 -> android.support.v4.app.f:
+    android.support.v4.app.FragmentActivity this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+android.support.v4.app.FragmentActivity$FragmentTag -> android.support.v4.app.g:
+    int[] Fragment -> a
+android.support.v4.app.FragmentActivity$NonConfigurationInstances -> android.support.v4.app.h:
+    java.lang.Object activity -> a
+    java.lang.Object custom -> b
+    java.util.HashMap children -> c
+    java.util.ArrayList fragments -> d
+    android.support.v4.util.SparseArrayCompat loaders -> e
+android.support.v4.app.FragmentManager -> android.support.v4.app.i:
+android.support.v4.app.FragmentManagerImpl -> android.support.v4.app.j:
+    boolean DEBUG -> a
+    boolean HONEYCOMB -> b
+    java.util.ArrayList mPendingActions -> c
+    java.lang.Runnable[] mTmpActions -> d
+    boolean mExecutingActions -> e
+    java.util.ArrayList mActive -> f
+    java.util.ArrayList mAdded -> g
+    java.util.ArrayList mAvailIndices -> h
+    java.util.ArrayList mBackStack -> i
+    java.util.ArrayList mCreatedMenus -> j
+    java.util.ArrayList mBackStackIndices -> k
+    java.util.ArrayList mAvailBackStackIndices -> l
+    java.util.ArrayList mBackStackChangeListeners -> m
+    int mCurState -> n
+    android.support.v4.app.FragmentActivity mActivity -> o
+    boolean mNeedMenuInvalidate -> p
+    boolean mStateSaved -> q
+    boolean mDestroyed -> r
+    java.lang.String mNoTransactionsBecause -> s
+    boolean mHavePendingDeferredStart -> t
+    android.os.Bundle mStateBundle -> u
+    android.util.SparseArray mStateArray -> v
+    java.lang.Runnable mExecCommit -> w
+    android.view.animation.Interpolator DECELERATE_QUINT -> x
+    android.view.animation.Interpolator DECELERATE_CUBIC -> y
+    android.view.animation.Interpolator ACCELERATE_QUINT -> z
+    android.view.animation.Interpolator ACCELERATE_CUBIC -> A
+    boolean popBackStackImmediate() -> a
+    java.lang.String toString() -> toString
+    void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+    android.view.animation.Animation makeOpenCloseAnimation$376f30fd(float,float,float,float) -> a
+    android.view.animation.Animation makeFadeAnimation$424ea1bd(float,float) -> a
+    android.view.animation.Animation loadAnimation(android.support.v4.app.Fragment,int,boolean,int) -> a
+    void moveToState(android.support.v4.app.Fragment,int,int,int,boolean) -> a
+    void moveToState(android.support.v4.app.Fragment) -> a
+    void moveToState(int,boolean) -> a
+    void moveToState(int,int,int,boolean) -> a
+    void startPendingDeferredFragments() -> o
+    void addFragment(android.support.v4.app.Fragment,boolean) -> a
+    void removeFragment(android.support.v4.app.Fragment,int,int) -> a
+    void hideFragment(android.support.v4.app.Fragment,int,int) -> b
+    void showFragment(android.support.v4.app.Fragment,int,int) -> c
+    void detachFragment(android.support.v4.app.Fragment,int,int) -> d
+    void attachFragment(android.support.v4.app.Fragment,int,int) -> e
+    android.support.v4.app.Fragment findFragmentById(int) -> a
+    android.support.v4.app.Fragment findFragmentByTag(java.lang.String) -> a
+    void setBackStackIndex(int,android.support.v4.app.BackStackRecord) -> a
+    void freeBackStackIndex(int) -> b
+    boolean execPendingActions() -> b
+    void reportBackStackChanged() -> p
+    void addBackStackState(android.support.v4.app.BackStackRecord) -> a
+    java.util.ArrayList retainNonConfig() -> c
+    void saveFragmentViewState(android.support.v4.app.Fragment) -> b
+    android.os.Parcelable saveAllState() -> d
+    void restoreAllState(android.os.Parcelable,java.util.ArrayList) -> a
+    void attachActivity(android.support.v4.app.FragmentActivity) -> a
+    void noteStateNotSaved() -> e
+    void dispatchCreate() -> f
+    void dispatchActivityCreated() -> g
+    void dispatchStart() -> h
+    void dispatchResume() -> i
+    void dispatchPause() -> j
+    void dispatchStop() -> k
+    void dispatchReallyStop() -> l
+    void dispatchDestroy() -> m
+    void dispatchConfigurationChanged(android.content.res.Configuration) -> a
+    void dispatchLowMemory() -> n
+    boolean dispatchCreateOptionsMenu(android.view.Menu,android.view.MenuInflater) -> a
+    boolean dispatchPrepareOptionsMenu(android.view.Menu) -> a
+    boolean dispatchOptionsItemSelected(android.view.MenuItem) -> a
+    boolean dispatchContextItemSelected(android.view.MenuItem) -> b
+    void dispatchOptionsMenuClosed(android.view.Menu) -> b
+    int reverseTransit(int) -> c
+android.support.v4.app.FragmentManagerImpl$1 -> android.support.v4.app.k:
+    android.support.v4.app.FragmentManagerImpl this$0 -> a
+    void run() -> run
+android.support.v4.app.FragmentManagerImpl$5 -> android.support.v4.app.l:
+    android.support.v4.app.Fragment val$fragment -> a
+    android.support.v4.app.FragmentManagerImpl this$0 -> b
+    void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
+    void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+    void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+android.support.v4.app.FragmentManagerState -> android.support.v4.app.FragmentManagerState:
+    android.support.v4.app.FragmentState[] mActive -> a
+    int[] mAdded -> b
+    android.support.v4.app.BackStackState[] mBackStack -> c
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.FragmentManagerState$1 -> android.support.v4.app.m:
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.FragmentState -> android.support.v4.app.FragmentState:
+    java.lang.String mClassName -> a
+    int mIndex -> b
+    boolean mFromLayout -> c
+    int mFragmentId -> d
+    int mContainerId -> e
+    java.lang.String mTag -> f
+    boolean mRetainInstance -> g
+    boolean mDetached -> h
+    android.os.Bundle mArguments -> i
+    android.os.Bundle mSavedFragmentState -> j
+    android.support.v4.app.Fragment mInstance -> k
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    android.support.v4.app.Fragment instantiate(android.support.v4.app.FragmentActivity) -> a
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+android.support.v4.app.FragmentState$1 -> android.support.v4.app.n:
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+android.support.v4.app.FragmentTransaction -> android.support.v4.app.o:
+android.support.v4.app.LoaderManager -> android.support.v4.app.p:
+    boolean hasRunningLoaders() -> a
+android.support.v4.app.LoaderManager$LoaderCallbacks -> android.support.v4.app.q:
+    android.support.v4.content.Loader onCreateLoader$e57f803() -> a
+android.support.v4.app.LoaderManagerImpl -> android.support.v4.app.r:
+    boolean DEBUG -> a
+    android.support.v4.util.SparseArrayCompat mLoaders -> b
+    android.support.v4.util.SparseArrayCompat mInactiveLoaders -> c
+    android.support.v4.app.FragmentActivity mActivity -> d
+    boolean mStarted -> e
+    boolean mRetaining -> f
+    void updateActivity(android.support.v4.app.FragmentActivity) -> a
+    void doStart() -> b
+    void doStop() -> c
+    void doRetain() -> d
+    void finishRetain() -> e
+    void doReportNextStart() -> f
+    void doReportStart() -> g
+    void doDestroy() -> h
+    java.lang.String toString() -> toString
+    void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+    boolean hasRunningLoaders() -> a
+android.support.v4.app.LoaderManagerImpl$LoaderInfo -> android.support.v4.app.s:
+    int mId -> a
+    android.os.Bundle mArgs -> b
+    android.support.v4.app.LoaderManager$LoaderCallbacks mCallbacks -> c
+    android.support.v4.content.Loader mLoader -> d
+    boolean mHaveData -> e
+    boolean mDeliveredData -> f
+    java.lang.Object mData -> g
+    boolean mStarted -> h
+    boolean mRetaining -> i
+    boolean mRetainingStarted -> j
+    boolean mReportNextStart -> k
+    boolean mDestroyed -> l
+    boolean mListenerRegistered -> m
+    android.support.v4.app.LoaderManagerImpl$LoaderInfo mPendingLoader -> n
+    android.support.v4.app.LoaderManagerImpl this$0 -> o
+    void stop() -> a
+    void destroy() -> b
+    void callOnLoadFinished(android.support.v4.content.Loader,java.lang.Object) -> a
+    java.lang.String toString() -> toString
+    void dump(java.lang.String,java.io.FileDescriptor,java.io.PrintWriter,java.lang.String[]) -> a
+android.support.v4.app.NoSaveStateFrameLayout -> android.support.v4.app.t:
+    android.view.ViewGroup wrap(android.view.View) -> a
+    void dispatchSaveInstanceState(android.util.SparseArray) -> dispatchSaveInstanceState
+    void dispatchRestoreInstanceState(android.util.SparseArray) -> dispatchRestoreInstanceState
+android.support.v4.app.SuperNotCalledException -> android.support.v4.app.u:
+android.support.v4.content.Loader -> android.support.v4.a.a:
+    int mId -> a
+    android.support.v4.content.Loader$OnLoadCompleteListener mListener -> b
+    boolean mStarted -> c
+    boolean mAbandoned -> d
+    boolean mReset -> e
+    boolean mContentChanged -> f
+    void registerListener(int,android.support.v4.content.Loader$OnLoadCompleteListener) -> a
+    void unregisterListener(android.support.v4.content.Loader$OnLoadCompleteListener) -> a
+    void startLoading() -> a
+    void stopLoading() -> b
+    void reset() -> c
+    java.lang.String toString() -> toString
+    void dump$ec96877(java.lang.String,java.io.PrintWriter) -> a
+android.support.v4.content.Loader$OnLoadCompleteListener -> android.support.v4.a.b:
+android.support.v4.os.ParcelableCompat -> android.support.v4.b.a:
+    android.os.Parcelable$Creator newCreator(android.support.v4.os.ParcelableCompatCreatorCallbacks) -> a
+android.support.v4.os.ParcelableCompat$CompatCreator -> android.support.v4.b.b:
+    android.support.v4.os.ParcelableCompatCreatorCallbacks mCallbacks -> a
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    java.lang.Object[] newArray(int) -> newArray
+android.support.v4.os.ParcelableCompatCreatorCallbacks -> android.support.v4.b.c:
+    java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> a
+    java.lang.Object[] newArray(int) -> a
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2 -> android.support.v4.b.d:
+    android.support.v4.os.ParcelableCompatCreatorCallbacks mCallbacks -> a
+android.support.v4.util.DebugUtils -> android.support.v4.c.a:
+    void buildShortClassTag(java.lang.Object,java.lang.StringBuilder) -> a
+android.support.v4.util.LogWriter -> android.support.v4.c.b:
+    java.lang.String mTag -> a
+    java.lang.StringBuilder mBuilder -> b
+    void close() -> close
+    void flush() -> flush
+    void write(char[],int,int) -> write
+    void flushBuilder() -> a
+android.support.v4.util.SparseArrayCompat -> android.support.v4.c.c:
+    java.lang.Object DELETED -> a
+    boolean mGarbage -> b
+    int[] mKeys -> c
+    java.lang.Object[] mValues -> d
+    int mSize -> e
+    java.lang.Object get(int) -> a
+    void remove(int) -> b
+    void removeAt(int) -> c
+    void gc() -> c
+    int size() -> a
+    int keyAt(int) -> d
+    java.lang.Object valueAt(int) -> e
+    void clear() -> b
+    int binarySearch(int[],int,int,int) -> a
+    int idealIntArraySize(int) -> f
+android.support.v4.view.KeyEventCompat -> android.support.v4.view.a:
+    android.support.v4.view.KeyEventCompat$KeyEventVersionImpl IMPL -> a
+    boolean hasModifiers(android.view.KeyEvent,int) -> a
+    boolean hasNoModifiers(android.view.KeyEvent) -> a
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl -> android.support.v4.view.b:
+    int metaStateFilterDirectionalModifiers(int,int,int,int,int) -> a
+    int normalizeMetaState(int) -> b
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> a
+android.support.v4.view.KeyEventCompat$HoneycombKeyEventVersionImpl -> android.support.v4.view.c:
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> a
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl -> android.support.v4.view.d:
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> a
+android.support.v4.view.MotionEventCompat -> android.support.v4.view.e:
+    android.support.v4.view.MotionEventCompat$MotionEventVersionImpl IMPL -> a
+    int getActionIndex(android.view.MotionEvent) -> a
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$BaseMotionEventVersionImpl -> android.support.v4.view.f:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$EclairMotionEventVersionImpl -> android.support.v4.view.g:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$MotionEventVersionImpl -> android.support.v4.view.h:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.PagerAdapter -> android.support.v4.view.i:
+    int getCount() -> a
+    void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> a
+    boolean isViewFromObject$171eb1dd() -> b
+android.support.v4.view.VelocityTrackerCompat -> android.support.v4.view.j:
+    android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl IMPL -> a
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$BaseVelocityTrackerVersionImpl -> android.support.v4.view.k:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl -> android.support.v4.view.l:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl -> android.support.v4.view.m:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.ViewCompat -> android.support.v4.view.n:
+    android.support.v4.view.ViewCompat$ViewCompatImpl IMPL -> a
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    int getOverScrollMode(android.view.View) -> a
+    void postInvalidateOnAnimation(android.view.View) -> b
+android.support.v4.view.ViewCompat$BaseViewCompatImpl -> android.support.v4.view.o:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    int getOverScrollMode(android.view.View) -> a
+    void postInvalidateOnAnimation(android.view.View) -> b
+    long getFrameTime() -> a
+android.support.v4.view.ViewCompat$GBViewCompatImpl -> android.support.v4.view.p:
+    int getOverScrollMode(android.view.View) -> a
+android.support.v4.view.ViewCompat$HCViewCompatImpl -> android.support.v4.view.q:
+    long getFrameTime() -> a
+android.support.v4.view.ViewCompat$ICSViewCompatImpl -> android.support.v4.view.r:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+android.support.v4.view.ViewCompat$JBViewCompatImpl -> android.support.v4.view.s:
+    void postInvalidateOnAnimation(android.view.View) -> b
+android.support.v4.view.ViewCompat$ViewCompatImpl -> android.support.v4.view.t:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    int getOverScrollMode(android.view.View) -> a
+    void postInvalidateOnAnimation(android.view.View) -> b
+android.support.v4.view.ViewPager -> android.support.v4.view.ViewPager:
+    int[] LAYOUT_ATTRS -> a
+    java.util.Comparator COMPARATOR -> b
+    android.view.animation.Interpolator sInterpolator -> c
+    java.util.ArrayList mItems -> d
+    android.support.v4.view.ViewPager$ItemInfo mTempItem -> e
+    android.graphics.Rect mTempRect -> f
+    android.support.v4.view.PagerAdapter mAdapter -> g
+    int mCurItem -> h
+    int mRestoredCurItem -> i
+    android.os.Parcelable mRestoredAdapterState -> j
+    java.lang.ClassLoader mRestoredClassLoader -> k
+    android.widget.Scroller mScroller -> l
+    int mPageMargin -> m
+    android.graphics.drawable.Drawable mMarginDrawable -> n
+    int mTopPageBounds -> o
+    int mBottomPageBounds -> p
+    float mFirstOffset -> q
+    float mLastOffset -> r
+    int mChildWidthMeasureSpec -> s
+    int mChildHeightMeasureSpec -> t
+    boolean mInLayout -> u
+    boolean mScrollingCacheEnabled -> v
+    boolean mPopulatePending -> w
+    int mOffscreenPageLimit -> x
+    boolean mIsBeingDragged -> y
+    boolean mIsUnableToDrag -> z
+    int mDefaultGutterSize -> A
+    int mGutterSize -> B
+    int mTouchSlop -> C
+    float mInitialMotionX -> D
+    float mLastMotionX -> E
+    float mLastMotionY -> F
+    int mActivePointerId -> G
+    android.view.VelocityTracker mVelocityTracker -> H
+    int mMinimumVelocity -> I
+    int mMaximumVelocity -> J
+    int mFlingDistance -> K
+    int mCloseEnough -> L
+    boolean mFakeDragging -> M
+    android.support.v4.widget.EdgeEffectCompat mLeftEdge -> N
+    android.support.v4.widget.EdgeEffectCompat mRightEdge -> O
+    boolean mFirstLayout -> P
+    boolean mNeedCalculatePageOffsets -> Q
+    boolean mCalledSuper -> R
+    int mDecorChildCount -> S
+    android.support.v4.view.ViewPager$OnPageChangeListener mOnPageChangeListener -> T
+    android.support.v4.view.ViewPager$OnPageChangeListener mInternalPageChangeListener -> U
+    int mScrollState -> V
+    void setScrollState(int) -> a
+    void setCurrentItem(int,boolean) -> a
+    void setCurrentItemInternal(int,boolean,boolean) -> a
+    void setCurrentItemInternal(int,boolean,boolean,int) -> a
+    boolean verifyDrawable(android.graphics.drawable.Drawable) -> verifyDrawable
+    void drawableStateChanged() -> drawableStateChanged
+    android.support.v4.view.ViewPager$ItemInfo addNewItem(int,int) -> a
+    void populate() -> b
+    void populate(int) -> b
+    android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
+    void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
+    void addView(android.view.View,int,android.view.ViewGroup$LayoutParams) -> addView
+    android.support.v4.view.ViewPager$ItemInfo infoForChild(android.view.View) -> a
+    android.support.v4.view.ViewPager$ItemInfo infoForPosition(int) -> c
+    void onAttachedToWindow() -> onAttachedToWindow
+    void onMeasure(int,int) -> onMeasure
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void computeScroll() -> computeScroll
+    boolean pageScrolled(int) -> d
+    void onPageScrolled(int,float,int) -> a
+    void completeScroll() -> c
+    boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    boolean performDrag(float) -> a
+    android.support.v4.view.ViewPager$ItemInfo infoForCurrentScrollPosition() -> d
+    void draw(android.graphics.Canvas) -> draw
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onSecondaryPointerUp(android.view.MotionEvent) -> a
+    void endDrag() -> e
+    void setScrollingCacheEnabled(boolean) -> a
+    boolean canScroll(android.view.View,boolean,int,int,int) -> a
+    boolean dispatchKeyEvent(android.view.KeyEvent) -> dispatchKeyEvent
+    boolean arrowScroll(int) -> e
+    android.graphics.Rect getChildRectInPagerCoordinates(android.graphics.Rect,android.view.View) -> a
+    boolean pageLeft() -> f
+    boolean pageRight() -> g
+    void addFocusables(java.util.ArrayList,int,int) -> addFocusables
+    void addTouchables(java.util.ArrayList) -> addTouchables
+    boolean onRequestFocusInDescendants(int,android.graphics.Rect) -> onRequestFocusInDescendants
+    boolean dispatchPopulateAccessibilityEvent(android.view.accessibility.AccessibilityEvent) -> dispatchPopulateAccessibilityEvent
+    android.view.ViewGroup$LayoutParams generateDefaultLayoutParams() -> generateDefaultLayoutParams
+    android.view.ViewGroup$LayoutParams generateLayoutParams(android.view.ViewGroup$LayoutParams) -> generateLayoutParams
+    boolean checkLayoutParams(android.view.ViewGroup$LayoutParams) -> checkLayoutParams
+    android.view.ViewGroup$LayoutParams generateLayoutParams(android.util.AttributeSet) -> generateLayoutParams
+    int[] access$300() -> a
+android.support.v4.view.ViewPager$1 -> android.support.v4.view.u:
+    int compare(java.lang.Object,java.lang.Object) -> compare
+android.support.v4.view.ViewPager$2 -> android.support.v4.view.v:
+    float getInterpolation(float) -> getInterpolation
+android.support.v4.view.ViewPager$Decor -> android.support.v4.view.w:
+android.support.v4.view.ViewPager$ItemInfo -> android.support.v4.view.x:
+    java.lang.Object object -> a
+    int position -> b
+    boolean scrolling -> c
+    float widthFactor -> d
+    float offset -> e
+android.support.v4.view.ViewPager$LayoutParams -> android.support.v4.view.ViewPager$LayoutParams:
+    boolean isDecor -> a
+    int gravity -> b
+    float widthFactor -> c
+    boolean needsMeasure -> d
+android.support.v4.view.ViewPager$OnPageChangeListener -> android.support.v4.view.y:
+android.support.v4.view.ViewPager$SavedState -> android.support.v4.view.ViewPager$SavedState:
+    int position -> a
+    android.os.Parcelable adapterState -> b
+    java.lang.ClassLoader loader -> c
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    java.lang.String toString() -> toString
+android.support.v4.view.ViewPager$SavedState$1 -> android.support.v4.view.z:
+    java.lang.Object[] newArray(int) -> a
+    java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> a
+android.support.v4.widget.CursorAdapter -> android.support.v4.d.a:
+    boolean mDataValid -> a
+    boolean mAutoRequery -> b
+    android.database.Cursor mCursor -> c
+    android.content.Context mContext -> d
+    int mRowIDColumn -> e
+    android.support.v4.widget.CursorAdapter$ChangeObserver mChangeObserver -> f
+    android.database.DataSetObserver mDataSetObserver -> g
+    android.support.v4.widget.CursorFilter mCursorFilter -> h
+    android.widget.FilterQueryProvider mFilterQueryProvider -> i
+    android.database.Cursor getCursor() -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    boolean hasStableIds() -> hasStableIds
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    android.view.View getDropDownView(int,android.view.View,android.view.ViewGroup) -> getDropDownView
+    android.view.View newView$4b8874c5(android.view.ViewGroup) -> a
+    android.view.View newDropDownView(android.content.Context,android.database.Cursor,android.view.ViewGroup) -> a
+    void bindView$4693bf34(android.view.View,android.database.Cursor) -> a
+    void changeCursor(android.database.Cursor) -> a
+    android.database.Cursor swapCursor(android.database.Cursor) -> b
+    java.lang.CharSequence convertToString(android.database.Cursor) -> c
+    android.database.Cursor runQueryOnBackgroundThread(java.lang.CharSequence) -> a
+    android.widget.Filter getFilter() -> getFilter
+    void onContentChanged() -> b
+android.support.v4.widget.CursorAdapter$ChangeObserver -> android.support.v4.d.b:
+    android.support.v4.widget.CursorAdapter this$0 -> a
+    boolean deliverSelfNotifications() -> deliverSelfNotifications
+    void onChange(boolean) -> onChange
+android.support.v4.widget.CursorAdapter$MyDataSetObserver -> android.support.v4.d.c:
+    android.support.v4.widget.CursorAdapter this$0 -> a
+    void onChanged() -> onChanged
+    void onInvalidated() -> onInvalidated
+android.support.v4.widget.CursorFilter -> android.support.v4.d.d:
+    android.support.v4.widget.CursorFilter$CursorFilterClient mClient -> a
+    java.lang.CharSequence convertResultToString(java.lang.Object) -> convertResultToString
+    android.widget.Filter$FilterResults performFiltering(java.lang.CharSequence) -> performFiltering
+    void publishResults(java.lang.CharSequence,android.widget.Filter$FilterResults) -> publishResults
+android.support.v4.widget.CursorFilter$CursorFilterClient -> android.support.v4.d.e:
+    java.lang.CharSequence convertToString(android.database.Cursor) -> c
+    android.database.Cursor runQueryOnBackgroundThread(java.lang.CharSequence) -> a
+    android.database.Cursor getCursor() -> a
+    void changeCursor(android.database.Cursor) -> a
+android.support.v4.widget.EdgeEffectCompat -> android.support.v4.d.f:
+    java.lang.Object mEdgeEffect -> a
+    android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl IMPL -> b
+    void setSize(int,int) -> a
+    boolean isFinished() -> a
+    void finish() -> b
+    boolean onPull(float) -> a
+    boolean onRelease() -> c
+    boolean draw(android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl -> android.support.v4.d.g:
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl -> android.support.v4.d.h:
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl -> android.support.v4.d.i:
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.ResourceCursorAdapter -> android.support.v4.d.j:
+    int mLayout -> j
+    int mDropDownLayout -> k
+    android.view.LayoutInflater mInflater -> l
+    android.view.View newView$4b8874c5(android.view.ViewGroup) -> a
+    android.view.View newDropDownView(android.content.Context,android.database.Cursor,android.view.ViewGroup) -> a
+android.support.v4.widget.SimpleCursorAdapter -> android.support.v4.d.k:
+    int[] mFrom -> j
+    int[] mTo -> k
+    int mStringConversionColumn -> m
+    android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter mCursorToStringConverter -> n
+    android.support.v4.widget.SimpleCursorAdapter$ViewBinder mViewBinder -> o
+    java.lang.String[] mOriginalFrom -> l
+    void bindView$4693bf34(android.view.View,android.database.Cursor) -> a
+    java.lang.CharSequence convertToString(android.database.Cursor) -> c
+    void findColumns(java.lang.String[]) -> a
+    android.database.Cursor swapCursor(android.database.Cursor) -> b
+android.support.v4.widget.SimpleCursorAdapter$CursorToStringConverter -> android.support.v4.d.l:
+    java.lang.CharSequence convertToString$57f82248() -> a
+android.support.v4.widget.SimpleCursorAdapter$ViewBinder -> android.support.v4.d.m:
+    boolean setViewValue$2e05ad4d() -> a
+com.facebook.android.api.AsyncFacebookRunner -> com.a.a.a.a:
+    com.facebook.android.api.Facebook fb -> a
+    void request(java.lang.String,com.facebook.android.api.AsyncFacebookRunner$RequestListener) -> a
+    void request(java.lang.String,android.os.Bundle,java.lang.String,com.facebook.android.api.AsyncFacebookRunner$RequestListener,java.lang.Object) -> a
+com.facebook.android.api.AsyncFacebookRunner$2 -> com.a.a.a.b:
+    com.facebook.android.api.AsyncFacebookRunner this$0 -> a
+    java.lang.String val$graphPath -> b
+    android.os.Bundle val$parameters -> c
+    java.lang.String val$httpMethod -> d
+    com.facebook.android.api.AsyncFacebookRunner$RequestListener val$listener -> e
+    java.lang.Object val$state -> f
+    void run() -> run
+com.facebook.android.api.AsyncFacebookRunner$RequestListener -> com.a.a.a.c:
+    void onComplete(java.lang.String,java.lang.Object) -> a
+    void onIOException$7e5565fb(java.io.IOException) -> a
+    void onFileNotFoundException$64f06040(java.io.FileNotFoundException) -> a
+    void onMalformedURLException$11b5f444(java.net.MalformedURLException) -> a
+com.facebook.android.api.AsyncRequestListener -> com.a.a.a.d:
+    void onComplete(java.lang.String,java.lang.Object) -> a
+    void onComplete$3f6876fb() -> a
+    void onError() -> b
+    void onFileNotFoundException$64f06040(java.io.FileNotFoundException) -> a
+    void onIOException$7e5565fb(java.io.IOException) -> a
+    void onMalformedURLException$11b5f444(java.net.MalformedURLException) -> a
+com.facebook.android.api.BaseRequestListener -> com.a.a.a.e:
+    void onFileNotFoundException$64f06040(java.io.FileNotFoundException) -> a
+    void onIOException$7e5565fb(java.io.IOException) -> a
+    void onMalformedURLException$11b5f444(java.net.MalformedURLException) -> a
+com.facebook.android.api.DialogError -> com.a.a.a.f:
+    int mErrorCode -> a
+    java.lang.String mFailingUrl -> b
+com.facebook.android.api.Facebook -> com.a.a.a.g:
+    java.lang.String DIALOG_BASE_URL -> a
+    java.lang.String GRAPH_BASE_URL -> b
+    java.lang.String RESTSERVER_URL -> c
+    java.lang.String mAccessToken -> d
+    long mAccessExpires -> e
+    java.lang.String mAppId -> f
+    android.app.Activity mAuthActivity -> g
+    java.lang.String[] mAuthPermissions -> h
+    int mAuthActivityCode -> i
+    com.facebook.android.api.Facebook$DialogListener mAuthDialogListener -> j
+    void authorize(android.app.Activity,java.lang.String[],com.facebook.android.api.Facebook$DialogListener) -> a
+    boolean startSingleSignOn(android.app.Activity,java.lang.String,java.lang.String[],int) -> a
+    boolean validateAppSignatureForIntent(android.app.Activity,android.content.Intent) -> a
+    void startDialogAuth(android.app.Activity,java.lang.String[]) -> a
+    void authorizeCallback(int,int,android.content.Intent) -> a
+    java.lang.String request(java.lang.String,android.os.Bundle,java.lang.String) -> a
+    boolean isSessionValid() -> a
+    java.lang.String getAccessToken() -> b
+    long getAccessExpires() -> c
+    void setAccessToken(java.lang.String) -> a
+    void setAccessExpires(long) -> a
+    void setAccessExpiresIn(java.lang.String) -> b
+    com.facebook.android.api.Facebook$DialogListener access$0(com.facebook.android.api.Facebook) -> a
+com.facebook.android.api.Facebook$1 -> com.a.a.a.h:
+    com.facebook.android.api.Facebook this$0 -> a
+    void onComplete(android.os.Bundle) -> a
+    void onError(com.facebook.android.api.DialogError) -> a
+    void onFacebookError(com.facebook.android.api.FacebookError) -> a
+    void onCancel() -> a
+com.facebook.android.api.Facebook$DialogListener -> com.a.a.a.i:
+    void onComplete(android.os.Bundle) -> a
+    void onFacebookError(com.facebook.android.api.FacebookError) -> a
+    void onError(com.facebook.android.api.DialogError) -> a
+    void onCancel() -> a
+com.facebook.android.api.FacebookError -> com.a.a.a.j:
+    int mErrorCode -> a
+    java.lang.String mErrorType -> b
+com.facebook.android.api.FbDialog -> com.a.a.a.k:
+    float[] DIMENSIONS_DIFF_LANDSCAPE -> a
+    float[] DIMENSIONS_DIFF_PORTRAIT -> b
+    android.widget.FrameLayout$LayoutParams FILL -> c
+    java.lang.String mUrl -> d
+    com.facebook.android.api.Facebook$DialogListener mListener -> e
+    android.app.ProgressDialog mSpinner -> f
+    android.widget.ImageView mCrossImage -> g
+    android.webkit.WebView mWebView -> h
+    android.widget.FrameLayout mContent -> i
+    void onCreate(android.os.Bundle) -> onCreate
+    com.facebook.android.api.Facebook$DialogListener access$0(com.facebook.android.api.FbDialog) -> a
+    android.app.ProgressDialog access$1(com.facebook.android.api.FbDialog) -> b
+    android.widget.FrameLayout access$2(com.facebook.android.api.FbDialog) -> c
+    android.webkit.WebView access$3(com.facebook.android.api.FbDialog) -> d
+    android.widget.ImageView access$4(com.facebook.android.api.FbDialog) -> e
+com.facebook.android.api.FbDialog$1 -> com.a.a.a.l:
+    com.facebook.android.api.FbDialog this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.facebook.android.api.FbDialog$FbWebViewClient -> com.a.a.a.m:
+    com.facebook.android.api.FbDialog this$0 -> a
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+com.facebook.android.api.SessionEvents -> com.a.a.a.n:
+    java.util.LinkedList mAuthListeners -> a
+    java.util.LinkedList mLogoutListeners -> b
+    void addAuthListener(com.facebook.android.api.SessionEvents$AuthListener) -> a
+    void addLogoutListener(com.facebook.android.api.SessionEvents$LogoutListener) -> a
+    void onLoginSuccess() -> a
+    void onLoginError(java.lang.String) -> a
+com.facebook.android.api.SessionEvents$AuthListener -> com.a.a.a.o:
+    void onAuthSucceed() -> a
+com.facebook.android.api.SessionEvents$LogoutListener -> com.a.a.a.p:
+com.facebook.android.api.Util -> com.a.a.a.q:
+    java.lang.String encodePostBody(android.os.Bundle,java.lang.String) -> a
+    java.lang.String encodeUrl(android.os.Bundle) -> a
+    android.os.Bundle decodeUrl(java.lang.String) -> c
+    android.os.Bundle parseUrl(java.lang.String) -> a
+    java.lang.String openUrl(java.lang.String,java.lang.String,android.os.Bundle) -> a
+    java.lang.String read(java.io.InputStream) -> a
+    org.json.JSONObject parseJson(java.lang.String) -> b
+    void showAlert(android.content.Context,java.lang.String,java.lang.String) -> a
+com.teuskim.sbrowser.BaseRemoconActivity -> com.teuskim.sbrowser.BaseRemoconActivity:
+    com.teuskim.sbrowser.RemoconView mRemocon -> mRemocon
+    com.teuskim.sbrowser.SettingsView mSettingsView -> mSettingsView
+    android.widget.TextView mBtnGoText -> mBtnGoText
+    android.widget.ImageView mBtnGoImg -> mBtnGoImg
+    android.util.DisplayMetrics mDisplayMetrics -> mDisplayMetrics
+    com.teuskim.sbrowser.MiscPref mPref -> mPref
+    com.teuskim.sbrowser.FacebookApi mFacebookApi -> mFacebookApi
+    android.view.View$OnClickListener mListener -> mListener
+    void btnGo() -> btnGo
+    java.lang.String getShareUrl() -> getShareUrl
+    void onCreate(android.os.Bundle) -> onCreate
+    void setContentView(int) -> setContentView
+    void onBackPressed() -> onBackPressed
+    void setRemoconBottomView(android.view.View) -> setRemoconBottomView
+    void setBoundary() -> setBoundary
+    void setBtnGoImage(int) -> setBtnGoImage
+    void setBtnGoText(java.lang.String) -> setBtnGoText
+    void onStart() -> onStart
+    void btnInputQueryForm() -> btnInputQueryForm
+    void setOnBackClickListener(android.view.View$OnClickListener) -> setOnBackClickListener
+    void setOnFowardClickListener(android.view.View$OnClickListener) -> setOnFowardClickListener
+    void btnSettings() -> btnSettings
+    void initSettingsView(com.teuskim.sbrowser.SettingsView) -> initSettingsView
+    void showRemocon() -> showRemocon
+    void hideRemocon() -> hideRemocon
+    int getRemoconWidth() -> getRemoconWidth
+    boolean isShowSettingsView() -> isShowSettingsView
+    void hideSettingsView() -> hideSettingsView
+    void showSettingsView() -> showSettingsView
+    void setSettingsPageUrl(java.lang.String) -> setSettingsPageUrl
+    int getWindowWidth() -> getWindowWidth
+    int getWindowHeight() -> getWindowHeight
+    int getPixelFromDip(int) -> getPixelFromDip
+    void showCVMSettings(boolean) -> showCVMSettings
+    com.teuskim.sbrowser.SettingsView getSettingsView() -> getSettingsView
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    void setShareInfo() -> setShareInfo
+    void shareKakao() -> shareKakao
+    boolean hasKakao() -> hasKakao
+    com.teuskim.sbrowser.RemoconView access$0(com.teuskim.sbrowser.BaseRemoconActivity) -> access$0
+    com.teuskim.sbrowser.MiscPref access$1(com.teuskim.sbrowser.BaseRemoconActivity) -> access$1
+    com.teuskim.sbrowser.FacebookApi access$2(com.teuskim.sbrowser.BaseRemoconActivity) -> access$2
+    void access$3(com.teuskim.sbrowser.BaseRemoconActivity) -> access$3
+com.teuskim.sbrowser.BaseRemoconActivity$1 -> com.teuskim.sbrowser.a:
+    com.teuskim.sbrowser.BaseRemoconActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.BaseRemoconActivity$2 -> com.teuskim.sbrowser.b:
+    com.teuskim.sbrowser.BaseRemoconActivity this$0 -> a
+    void onAlphaChanged(int) -> a
+com.teuskim.sbrowser.BaseRemoconActivity$3 -> com.teuskim.sbrowser.c:
+    com.teuskim.sbrowser.BaseRemoconActivity this$0 -> a
+    void OnSessionChange(boolean) -> a
+com.teuskim.sbrowser.BaseRemoconActivity$4 -> com.teuskim.sbrowser.d:
+    com.teuskim.sbrowser.BaseRemoconActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.BaseRemoconActivity$5 -> com.teuskim.sbrowser.e:
+    com.teuskim.sbrowser.BaseRemoconActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.ColorPickerView -> com.teuskim.sbrowser.ColorPickerView:
+    android.graphics.Paint mPaint -> mPaint
+    float mCurrentHue -> mCurrentHue
+    int mCurrentX -> mCurrentX
+    int mCurrentY -> mCurrentY
+    int mCurrentColor -> mCurrentColor
+    int mDefaultColor -> mDefaultColor
+    int[] mHueBarColors -> mHueBarColors
+    int[] mMainColors -> mMainColors
+    com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener mListener -> mListener
+    int mWidth -> mWidth
+    int mHeight -> mHeight
+    void init(int,com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener) -> init
+    int getCurrentMainColor() -> getCurrentMainColor
+    void updateMainColors() -> updateMainColors
+    void onDraw(android.graphics.Canvas) -> onDraw
+    boolean isDark(int) -> isDark
+    void onMeasure(int,int) -> onMeasure
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+com.teuskim.sbrowser.ColorPickerView$ColorChange -> com.teuskim.sbrowser.f:
+    com.teuskim.sbrowser.ColorPickerView$ColorChange CHANGE -> a
+    com.teuskim.sbrowser.ColorPickerView$ColorChange OK -> b
+    com.teuskim.sbrowser.ColorPickerView$ColorChange CANCEL -> c
+    com.teuskim.sbrowser.ColorPickerView$ColorChange[] ENUM$VALUES -> d
+    com.teuskim.sbrowser.ColorPickerView$ColorChange[] values() -> values
+    com.teuskim.sbrowser.ColorPickerView$ColorChange valueOf(java.lang.String) -> valueOf
+com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener -> com.teuskim.sbrowser.g:
+    void colorChanged(com.teuskim.sbrowser.ColorPickerView$ColorChange,int) -> a
+com.teuskim.sbrowser.ContentView -> com.teuskim.sbrowser.ContentView:
+    android.widget.ScrollView mLayoutScroll -> mLayoutScroll
+    android.view.View mLayoutContent -> mLayoutContent
+    android.widget.TextView mTextContent -> mTextContent
+    android.view.View mLayoutBottom -> mLayoutBottom
+    android.widget.Button mBtnCloseLayoutBottom -> mBtnCloseLayoutBottom
+    android.view.View mLayoutWord -> mLayoutWord
+    com.teuskim.sbrowser.TextButton mBtnSearch -> mBtnSearch
+    com.teuskim.sbrowser.TextButton mBtnTranslate -> mBtnTranslate
+    android.view.View mLayoutWebViewSearch -> mLayoutWebViewSearch
+    android.widget.TextView mTextWebViewSearchTitle -> mTextWebViewSearchTitle
+    android.view.View mBtnCloseWebViewSearch -> mBtnCloseWebViewSearch
+    com.teuskim.sbrowser.SbWebView mWebView -> mWebView
+    int mSelectedX -> mSelectedX
+    int mSelectedY -> mSelectedY
+    java.lang.String mSelectedWord -> mSelectedWord
+    android.text.Spannable mSpannable -> mSpannable
+    android.text.style.BackgroundColorSpan mBackgroundColorSpan -> mBackgroundColorSpan
+    android.os.Handler mHandler -> mHandler
+    java.lang.Runnable mTranslateRunnable -> mTranslateRunnable
+    void adjustPref(android.content.Context,com.teuskim.sbrowser.ContentView) -> adjustPref
+    void init(android.content.Context) -> init
+    void setContent(java.lang.String) -> setContent
+    java.lang.String getContent() -> getContent
+    void setFontColor(int) -> setFontColor
+    void setFontSize(int) -> setFontSize
+    void setLineSpace(int) -> setLineSpace
+    void showLayoutWord(android.view.MotionEvent) -> showLayoutWord
+    boolean isChar(char) -> isChar
+    void hideLayoutWord() -> hideLayoutWord
+    void hideWebViewSearch() -> hideWebViewSearch
+    boolean isShowWebViewSearch() -> isShowWebViewSearch
+    void hideLayoutBottom() -> hideLayoutBottom
+    void btnSearch() -> btnSearch
+    void btnTranslate() -> btnTranslate
+    void btnSpanLeft() -> btnSpanLeft
+    void btnSpanBelow() -> btnSpanBelow
+    void btnSpanRight() -> btnSpanRight
+    void btnSpanAll() -> btnSpanAll
+    void setBackground(int) -> setBackground
+    void setPadding(int,int,int,int) -> setPadding
+    com.teuskim.sbrowser.SbWebView access$0(com.teuskim.sbrowser.ContentView) -> access$0
+    java.lang.String access$1(com.teuskim.sbrowser.ContentView) -> access$1
+    android.os.Handler access$2(com.teuskim.sbrowser.ContentView) -> access$2
+    java.lang.Runnable access$3(com.teuskim.sbrowser.ContentView) -> access$3
+    void access$4(com.teuskim.sbrowser.ContentView,android.view.MotionEvent) -> access$4
+    void access$5(com.teuskim.sbrowser.ContentView) -> access$5
+    void access$6(com.teuskim.sbrowser.ContentView) -> access$6
+    void access$7(com.teuskim.sbrowser.ContentView) -> access$7
+    void access$8(com.teuskim.sbrowser.ContentView) -> access$8
+    void access$9(com.teuskim.sbrowser.ContentView) -> access$9
+    void access$10(com.teuskim.sbrowser.ContentView) -> access$10
+com.teuskim.sbrowser.ContentView$1 -> com.teuskim.sbrowser.h:
+    com.teuskim.sbrowser.ContentView this$0 -> a
+    void run() -> run
+com.teuskim.sbrowser.ContentView$2 -> com.teuskim.sbrowser.i:
+    com.teuskim.sbrowser.ContentView this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.teuskim.sbrowser.ContentView$3 -> com.teuskim.sbrowser.j:
+    com.teuskim.sbrowser.ContentView this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.Downloader -> com.teuskim.sbrowser.k:
+    com.teuskim.sbrowser.Downloader$DownloadListener mListener -> a
+    boolean mIsStop -> b
+    long mTTL -> c
+    boolean get(java.lang.String,java.io.File) -> a
+    boolean download(org.apache.http.client.methods.HttpUriRequest,java.io.File,boolean) -> a
+com.teuskim.sbrowser.Downloader$DownloadListener -> com.teuskim.sbrowser.l:
+com.teuskim.sbrowser.FacebookApi -> com.teuskim.sbrowser.m:
+    java.lang.String[] PERMISSIONS -> a
+    com.facebook.android.api.Facebook mFb -> b
+    android.app.Activity mActivity -> c
+    com.teuskim.sbrowser.MiscPref mPref -> d
+    android.os.Handler mHandler -> e
+    com.teuskim.sbrowser.FacebookApi$OnSessionChangeListener mSessionChangeListener -> f
+    com.facebook.android.api.AsyncRequestListener mAsyncRequestListener -> g
+    com.facebook.android.api.AsyncFacebookRunner mAsyncRunner -> h
+    android.app.ProgressDialog mProgressDialog -> i
+    void init(android.app.Activity) -> a
+    void facebookAuthorizeCallback(int,int,android.content.Intent) -> a
+    boolean isLogged() -> a
+    void login() -> b
+    void write(java.lang.String,java.lang.String) -> a
+    com.teuskim.sbrowser.FacebookApi$OnSessionChangeListener access$0(com.teuskim.sbrowser.FacebookApi) -> a
+    com.facebook.android.api.Facebook access$1(com.teuskim.sbrowser.FacebookApi) -> b
+    android.app.Activity access$2(com.teuskim.sbrowser.FacebookApi) -> c
+    com.facebook.android.api.AsyncFacebookRunner access$3(com.teuskim.sbrowser.FacebookApi) -> d
+    void access$4(com.teuskim.sbrowser.FacebookApi,android.app.ProgressDialog) -> a
+    android.app.ProgressDialog access$5(com.teuskim.sbrowser.FacebookApi) -> e
+    com.teuskim.sbrowser.MiscPref access$7(com.teuskim.sbrowser.FacebookApi) -> f
+com.teuskim.sbrowser.FacebookApi$FbAuthListener -> com.teuskim.sbrowser.n:
+    com.teuskim.sbrowser.FacebookApi this$0 -> a
+    void onAuthSucceed() -> a
+com.teuskim.sbrowser.FacebookApi$FbLogoutListener -> com.teuskim.sbrowser.o:
+    com.teuskim.sbrowser.FacebookApi this$0 -> a
+com.teuskim.sbrowser.FacebookApi$LoginDialogListener -> com.teuskim.sbrowser.p:
+    com.teuskim.sbrowser.FacebookApi this$0 -> a
+    void onComplete(android.os.Bundle) -> a
+    void onFacebookError(com.facebook.android.api.FacebookError) -> a
+    void onError(com.facebook.android.api.DialogError) -> a
+    void onCancel() -> a
+com.teuskim.sbrowser.FacebookApi$NameRequestListener -> com.teuskim.sbrowser.q:
+    com.teuskim.sbrowser.FacebookApi this$0 -> a
+    void onComplete(java.lang.String,java.lang.Object) -> a
+com.teuskim.sbrowser.FacebookApi$NameRequestListener$1 -> com.teuskim.sbrowser.r:
+    com.teuskim.sbrowser.FacebookApi$NameRequestListener this$1 -> a
+    void run() -> run
+com.teuskim.sbrowser.FacebookApi$OnSessionChangeListener -> com.teuskim.sbrowser.s:
+    void OnSessionChange(boolean) -> a
+com.teuskim.sbrowser.FavoritePartView -> com.teuskim.sbrowser.FavoritePartView:
+    java.lang.String TAG -> TAG
+    android.widget.TextView mTitleView -> mTitleView
+    android.view.View mBtnArticle -> mBtnArticle
+    com.teuskim.sbrowser.SbWebView mWebView -> mWebView
+    android.widget.TextView mLoadingWebView -> mLoadingWebView
+    java.lang.Runnable mOnLoadRunnable -> mOnLoadRunnable
+    android.os.Handler mHandler -> mHandler
+    void init(android.content.Context) -> init
+    void setTitle(java.lang.String) -> setTitle
+    com.teuskim.sbrowser.SbWebView getWebView() -> getWebView
+    void setWebViewLayoutParams(android.widget.RelativeLayout$LayoutParams) -> setWebViewLayoutParams
+    void setOnLoadRunnable(java.lang.Runnable) -> setOnLoadRunnable
+    void setOnClickListener(android.view.View$OnClickListener) -> setOnClickListener
+    android.widget.TextView access$0(com.teuskim.sbrowser.FavoritePartView) -> access$0
+    java.lang.Runnable access$1(com.teuskim.sbrowser.FavoritePartView) -> access$1
+    android.os.Handler access$2(com.teuskim.sbrowser.FavoritePartView) -> access$2
+com.teuskim.sbrowser.FavoritePartView$1 -> com.teuskim.sbrowser.t:
+    com.teuskim.sbrowser.FavoritePartView this$0 -> a
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    com.teuskim.sbrowser.FavoritePartView access$0(com.teuskim.sbrowser.FavoritePartView$1) -> a
+com.teuskim.sbrowser.FavoritePartView$1$1 -> com.teuskim.sbrowser.u:
+    com.teuskim.sbrowser.FavoritePartView$1 this$1 -> a
+    void run() -> run
+com.teuskim.sbrowser.HangulUtil -> com.teuskim.sbrowser.v:
+    int[] JASO_ARR -> a
+    int[] JUNGSUNG_ARR -> b
+    int[] JONGSUNG_ARR -> c
+    java.lang.String separateJaso(java.lang.String) -> a
+    int jongToCho(int) -> a
+com.teuskim.sbrowser.HttpManager -> com.teuskim.sbrowser.w:
+    org.apache.http.impl.client.DefaultHttpClient sClient -> a
+    void init() -> a
+    org.apache.http.HttpResponse execute(org.apache.http.client.methods.HttpUriRequest) -> a
+    java.lang.Object execute(org.apache.http.client.methods.HttpUriRequest,org.apache.http.client.ResponseHandler) -> a
+com.teuskim.sbrowser.HumanProgressBar -> com.teuskim.sbrowser.HumanProgressBar:
+    int MAX_PROGRESS -> MAX_PROGRESS
+    android.widget.ImageView mPushman -> mPushman
+    android.view.View mBtnCloseProgress -> mBtnCloseProgress
+    boolean mIsHurry -> mIsHurry
+    void init(android.content.Context) -> init
+    void setProgress(int) -> setProgress
+    void setStopListener(android.view.View$OnTouchListener) -> setStopListener
+com.teuskim.sbrowser.IOUtils -> com.teuskim.sbrowser.x:
+    void closeStream(java.io.Closeable) -> a
+com.teuskim.sbrowser.InputActivity -> com.teuskim.sbrowser.InputActivity:
+    android.widget.EditText mInputQuery -> a
+    android.widget.ListView mInputHistoryListView -> b
+    android.widget.TextView mNoListView -> c
+    android.view.inputmethod.InputMethodManager mImm -> d
+    com.teuskim.sbrowser.InputActivity$InputHistoryAdapter mAdapter -> e
+    com.teuskim.sbrowser.SbDb mDb -> f
+    void onCreate(android.os.Bundle) -> onCreate
+    void saveInputHistory(boolean,java.lang.String) -> a
+    void loadList() -> a
+    void onPause() -> onPause
+    void onStop() -> onStop
+    com.teuskim.sbrowser.SbDb access$0(com.teuskim.sbrowser.InputActivity) -> a
+    void access$1(com.teuskim.sbrowser.InputActivity) -> b
+    android.widget.EditText access$2(com.teuskim.sbrowser.InputActivity) -> c
+    void access$3(com.teuskim.sbrowser.InputActivity,java.lang.String) -> a
+com.teuskim.sbrowser.InputActivity$1 -> com.teuskim.sbrowser.y:
+    com.teuskim.sbrowser.InputActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.InputActivity$2 -> com.teuskim.sbrowser.z:
+    com.teuskim.sbrowser.InputActivity this$0 -> a
+    java.lang.String val$word -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.InputActivity$3 -> com.teuskim.sbrowser.aa:
+    com.teuskim.sbrowser.InputActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.teuskim.sbrowser.InputActivity$4 -> com.teuskim.sbrowser.ab:
+    com.teuskim.sbrowser.InputActivity this$0 -> a
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+com.teuskim.sbrowser.InputActivity$5 -> com.teuskim.sbrowser.ac:
+    com.teuskim.sbrowser.InputActivity this$0 -> a
+    void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
+    void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
+    void afterTextChanged(android.text.Editable) -> afterTextChanged
+com.teuskim.sbrowser.InputActivity$InputHistoryAdapter -> com.teuskim.sbrowser.ad:
+    android.view.LayoutInflater mInflater -> n
+    android.view.View$OnClickListener mDeleteListener -> o
+    com.teuskim.sbrowser.InputActivity this$0 -> m
+    void bindView$4693bf34(android.view.View,android.database.Cursor) -> a
+    android.view.View newView$4b8874c5(android.view.ViewGroup) -> a
+    com.teuskim.sbrowser.InputActivity access$0(com.teuskim.sbrowser.InputActivity$InputHistoryAdapter) -> a
+com.teuskim.sbrowser.InputActivity$InputHistoryAdapter$1 -> com.teuskim.sbrowser.ae:
+    com.teuskim.sbrowser.InputActivity$InputHistoryAdapter this$1 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.InstructionsActivity -> com.teuskim.sbrowser.InstructionsActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+com.teuskim.sbrowser.InstructionsActivity$1 -> com.teuskim.sbrowser.af:
+    com.teuskim.sbrowser.InstructionsActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.KakaoLink -> com.teuskim.sbrowser.ag:
+    java.nio.charset.Charset kakaoLinkCharset -> a
+    java.lang.String kakaoLinkEncoding -> b
+    android.content.Context context -> c
+    android.content.Intent intent -> d
+    java.lang.String appId -> e
+    java.lang.String version -> f
+    java.lang.String url -> g
+    java.lang.String msg -> h
+    java.lang.String encoding -> i
+    java.lang.String type -> j
+    java.lang.String apiVer -> k
+    java.lang.String appName -> l
+    java.util.ArrayList arrMetaInfo -> m
+    android.net.Uri data -> n
+    java.lang.String makeJsonMetaInfo() -> c
+    boolean isAvailable() -> a
+    android.content.Intent getIntent() -> b
+    boolean isEmptyString(java.lang.String) -> a
+com.teuskim.sbrowser.LockscreenActivity -> com.teuskim.sbrowser.LockscreenActivity:
+    android.os.Handler mHandler -> a
+    android.widget.Button mBtnUnlockLeft -> b
+    android.widget.Button mBtnUnlockRight -> c
+    boolean mIsTouchedLeft -> d
+    boolean mIsTouchedRight -> e
+    java.util.Locale mLocale -> f
+    android.widget.TextView mCurrentTime -> g
+    android.widget.TextView mCurrentDate -> h
+    com.teuskim.sbrowser.SbWebView mWebView -> i
+    com.teuskim.sbrowser.ContentView mContentView -> j
+    com.teuskim.sbrowser.SourceView mSourceView -> k
+    android.view.View$OnTouchListener mOnTouchListener -> l
+    java.lang.Runnable mTimeRunnable -> m
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onPause() -> onPause
+    boolean access$0(com.teuskim.sbrowser.LockscreenActivity) -> a
+    void access$1(com.teuskim.sbrowser.LockscreenActivity) -> b
+    void access$2(com.teuskim.sbrowser.LockscreenActivity,boolean) -> a
+    android.widget.Button access$3(com.teuskim.sbrowser.LockscreenActivity) -> c
+    android.os.Handler access$4(com.teuskim.sbrowser.LockscreenActivity) -> d
+    boolean access$5(com.teuskim.sbrowser.LockscreenActivity) -> e
+    void access$6(com.teuskim.sbrowser.LockscreenActivity,boolean) -> b
+    android.widget.Button access$7(com.teuskim.sbrowser.LockscreenActivity) -> f
+    java.util.Locale access$8(com.teuskim.sbrowser.LockscreenActivity) -> g
+    android.widget.TextView access$9(com.teuskim.sbrowser.LockscreenActivity) -> h
+    java.lang.Runnable access$10(com.teuskim.sbrowser.LockscreenActivity) -> i
+    com.teuskim.sbrowser.SbWebView access$11(com.teuskim.sbrowser.LockscreenActivity) -> j
+com.teuskim.sbrowser.LockscreenActivity$1 -> com.teuskim.sbrowser.ah:
+    com.teuskim.sbrowser.LockscreenActivity this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    com.teuskim.sbrowser.LockscreenActivity access$0(com.teuskim.sbrowser.LockscreenActivity$1) -> a
+com.teuskim.sbrowser.LockscreenActivity$1$1 -> com.teuskim.sbrowser.ai:
+    com.teuskim.sbrowser.LockscreenActivity$1 this$1 -> a
+    void run() -> run
+com.teuskim.sbrowser.LockscreenActivity$1$2 -> com.teuskim.sbrowser.aj:
+    com.teuskim.sbrowser.LockscreenActivity$1 this$1 -> a
+    void run() -> run
+com.teuskim.sbrowser.LockscreenActivity$2 -> com.teuskim.sbrowser.ak:
+    com.teuskim.sbrowser.LockscreenActivity this$0 -> a
+    void run() -> run
+    java.lang.String get2Digit(int) -> a
+com.teuskim.sbrowser.LockscreenActivity$3 -> com.teuskim.sbrowser.al:
+    com.teuskim.sbrowser.LockscreenActivity this$0 -> a
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+com.teuskim.sbrowser.LockscreenActivity$4 -> com.teuskim.sbrowser.am:
+    com.teuskim.sbrowser.LockscreenActivity this$0 -> a
+    void run() -> run
+com.teuskim.sbrowser.MainActivity -> com.teuskim.sbrowser.MainActivity:
+    int mMainMode -> a
+    android.widget.ImageView mIconDefault -> b
+    android.widget.TextView mTitleMain1 -> c
+    android.widget.TextView mTitleMain2 -> d
+    com.teuskim.sbrowser.MoveableListView mListViewHome -> e
+    com.teuskim.sbrowser.MoveableListView mListViewSaved -> f
+    com.teuskim.sbrowser.RemoconMenuView mBtnSettings -> g
+    com.teuskim.sbrowser.RemoconMenuView mBtnMainMode -> h
+    android.view.View mLogo -> i
+    java.util.List mListFavorite -> j
+    com.teuskim.sbrowser.MainActivity$HomeAdapter mAdapterHome -> k
+    java.util.List mListSavedCont -> l
+    com.teuskim.sbrowser.MainActivity$SavedAdapter mAdapterSaved -> m
+    android.view.LayoutInflater mInflater -> n
+    com.teuskim.sbrowser.SbDb mDb -> o
+    boolean mIsDnd -> p
+    com.teuskim.sbrowser.MiscPref mPref -> q
+    void onCreate(android.os.Bundle) -> onCreate
+    void onWindowFocusChanged(boolean) -> onWindowFocusChanged
+    void refreshList() -> c
+    void onNewIntent(android.content.Intent) -> onNewIntent
+    void onStart() -> onStart
+    void btnGo() -> btnGo
+    void btnSettings() -> btnSettings
+    void btnMainMode() -> a
+    void setMainModeHome() -> d
+    void setMainModeSaved() -> e
+    void initSettingsView(com.teuskim.sbrowser.SettingsView) -> initSettingsView
+    void drag$255f295() -> b
+    void drop(int,int) -> a
+    java.lang.String getShareUrl() -> getShareUrl
+    java.lang.String callApi(java.lang.String,java.lang.String) -> a
+    java.util.List access$0(com.teuskim.sbrowser.MainActivity) -> a
+    android.view.LayoutInflater access$1(com.teuskim.sbrowser.MainActivity) -> b
+    com.teuskim.sbrowser.MoveableListView access$2(com.teuskim.sbrowser.MainActivity) -> c
+    void access$3(com.teuskim.sbrowser.MainActivity,int) -> a
+    android.widget.ImageView access$4(com.teuskim.sbrowser.MainActivity) -> d
+    java.util.List access$5(com.teuskim.sbrowser.MainActivity) -> e
+    com.teuskim.sbrowser.MoveableListView access$6(com.teuskim.sbrowser.MainActivity) -> f
+    java.lang.String access$7(com.teuskim.sbrowser.MainActivity,long) -> a
+    void access$8(com.teuskim.sbrowser.MainActivity,int) -> b
+    java.lang.String access$9(com.teuskim.sbrowser.MainActivity) -> g
+    java.lang.String access$10(com.teuskim.sbrowser.MainActivity,java.lang.String,java.lang.String) -> a
+    com.teuskim.sbrowser.MiscPref access$11(com.teuskim.sbrowser.MainActivity) -> h
+    com.teuskim.sbrowser.SbDb access$12(com.teuskim.sbrowser.MainActivity) -> i
+    void access$13(com.teuskim.sbrowser.MainActivity,java.util.List) -> a
+    com.teuskim.sbrowser.MainActivity$HomeAdapter access$14(com.teuskim.sbrowser.MainActivity) -> j
+    void access$15(com.teuskim.sbrowser.MainActivity,java.util.List) -> b
+    com.teuskim.sbrowser.MainActivity$SavedAdapter access$16(com.teuskim.sbrowser.MainActivity) -> k
+    com.teuskim.sbrowser.RemoconMenuView access$17(com.teuskim.sbrowser.MainActivity) -> l
+com.teuskim.sbrowser.MainActivity$1 -> com.teuskim.sbrowser.an:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$10 -> com.teuskim.sbrowser.ao:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$2 -> com.teuskim.sbrowser.ap:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    java.lang.String val$prevUrl -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$3 -> com.teuskim.sbrowser.aq:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    java.lang.String val$nextUrl -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$4 -> com.teuskim.sbrowser.ar:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    java.lang.String val$lastUrl -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$5 -> com.teuskim.sbrowser.as:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    int val$id -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.teuskim.sbrowser.MainActivity$6 -> com.teuskim.sbrowser.at:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    int val$id -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.teuskim.sbrowser.MainActivity$7 -> com.teuskim.sbrowser.au:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$8 -> com.teuskim.sbrowser.av:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$9 -> com.teuskim.sbrowser.aw:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$FavoriteTask -> com.teuskim.sbrowser.ax:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    java.lang.String doInBackground(java.lang.String[]) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.teuskim.sbrowser.MainActivity$HomeAdapter -> com.teuskim.sbrowser.ay:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    int getCount() -> getCount
+    com.teuskim.sbrowser.SbDb$Favorite getItem(int) -> a
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void notifyDataSetChanged() -> notifyDataSetChanged
+    java.lang.Object getItem(int) -> getItem
+    void access$1(com.teuskim.sbrowser.MainActivity$HomeAdapter,java.lang.String) -> a
+    com.teuskim.sbrowser.MainActivity access$3(com.teuskim.sbrowser.MainActivity$HomeAdapter) -> a
+com.teuskim.sbrowser.MainActivity$HomeAdapter$1 -> com.teuskim.sbrowser.az:
+    com.teuskim.sbrowser.MainActivity$HomeAdapter this$1 -> a
+    com.teuskim.sbrowser.SbDb$Favorite val$favorite -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$HomeAdapter$2 -> com.teuskim.sbrowser.ba:
+    com.teuskim.sbrowser.MainActivity$HomeAdapter this$1 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.teuskim.sbrowser.MainActivity$HomeAdapter$3 -> com.teuskim.sbrowser.bb:
+    com.teuskim.sbrowser.MainActivity$HomeAdapter this$1 -> a
+    com.teuskim.sbrowser.SbDb$Favorite val$favorite -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$HomeAdapter$4 -> com.teuskim.sbrowser.bc:
+    com.teuskim.sbrowser.MainActivity$HomeAdapter this$1 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.teuskim.sbrowser.MainActivity$HomeAdapter$5 -> com.teuskim.sbrowser.bd:
+    com.teuskim.sbrowser.MainActivity$HomeAdapter this$1 -> a
+    com.teuskim.sbrowser.SbDb$Favorite val$favorite -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$HomeAdapter$6 -> com.teuskim.sbrowser.be:
+    com.teuskim.sbrowser.MainActivity$HomeAdapter this$1 -> a
+    com.teuskim.sbrowser.SbWebView val$wv -> b
+    com.teuskim.sbrowser.SbDb$Favorite val$favorite -> c
+    void run() -> run
+com.teuskim.sbrowser.MainActivity$HomeAdapter$7 -> com.teuskim.sbrowser.bf:
+    com.teuskim.sbrowser.MainActivity$HomeAdapter this$1 -> a
+    com.teuskim.sbrowser.SbDb$Favorite val$favorite -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$MyidTask -> com.teuskim.sbrowser.bg:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.teuskim.sbrowser.MainActivity$SavedAdapter -> com.teuskim.sbrowser.bh:
+    com.teuskim.sbrowser.MainActivity this$0 -> a
+    int getCount() -> getCount
+    com.teuskim.sbrowser.SbDb$SavedCont getItem(int) -> a
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    void notifyDataSetChanged() -> notifyDataSetChanged
+    java.lang.Object getItem(int) -> getItem
+    com.teuskim.sbrowser.MainActivity access$2(com.teuskim.sbrowser.MainActivity$SavedAdapter) -> a
+com.teuskim.sbrowser.MainActivity$SavedAdapter$1 -> com.teuskim.sbrowser.bi:
+    com.teuskim.sbrowser.MainActivity$SavedAdapter this$1 -> a
+    com.teuskim.sbrowser.SbDb$SavedCont val$saved -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MainActivity$SavedAdapter$2 -> com.teuskim.sbrowser.bj:
+    com.teuskim.sbrowser.MainActivity$SavedAdapter this$1 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.teuskim.sbrowser.MainActivity$SavedAdapter$3 -> com.teuskim.sbrowser.bk:
+    com.teuskim.sbrowser.MainActivity$SavedAdapter this$1 -> a
+    com.teuskim.sbrowser.SbDb$SavedCont val$saved -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.MiscPref -> com.teuskim.sbrowser.bl:
+    com.teuskim.sbrowser.MiscPref sInstance -> a
+    android.content.SharedPreferences mPref -> b
+    android.content.SharedPreferences$Editor mEditor -> c
+    com.teuskim.sbrowser.MiscPref getInstance(android.content.Context) -> a
+    void setMypage(java.lang.String) -> a
+    java.lang.String getMypage() -> a
+    void setRemoconLeft(int) -> a
+    int getRemoconLeft() -> b
+    void setRemoconBottom(int) -> b
+    int getRemoconBottom() -> c
+    void setRemoconAlpha(int) -> c
+    int getRemoconAlpha() -> d
+    void setContBgColor(int) -> d
+    int getContBgColor() -> e
+    void setContFontColor(int) -> e
+    int getContFontColor() -> f
+    void setContFontSize(int) -> f
+    int getContFontSize() -> g
+    void setContLineSpace(int) -> g
+    int getContLineSpace() -> h
+    void setContPadding(int) -> h
+    int getContPadding() -> i
+    void setLastUrl(java.lang.String) -> b
+    java.lang.String getLastUrl() -> j
+    boolean setFacebookId(java.lang.String) -> c
+    java.lang.String getFacebookId() -> k
+    void saveTwitter(java.lang.String,java.lang.String,twitter4j.auth.AccessToken) -> a
+    java.lang.String getTwitterId() -> l
+    java.lang.String getTwitterToken() -> m
+    java.lang.String getTwitterTokenSecret() -> n
+com.teuskim.sbrowser.MoveableListView -> com.teuskim.sbrowser.MoveableListView:
+    android.content.Context mContext -> mContext
+    android.widget.ImageView mDragView -> mDragView
+    android.view.WindowManager mWindowManager -> mWindowManager
+    android.view.WindowManager$LayoutParams mWindowParams -> mWindowParams
+    int mDragPos -> mDragPos
+    int mFirstDragPos -> mFirstDragPos
+    int mDragPoint -> mDragPoint
+    int mCoordOffset -> mCoordOffset
+    com.teuskim.sbrowser.MoveableListView$DragListener mDragListener -> mDragListener
+    com.teuskim.sbrowser.MoveableListView$DropListener mDropListener -> mDropListener
+    int mUpperBound -> mUpperBound
+    int mLowerBound -> mLowerBound
+    int mHeight -> mHeight
+    android.graphics.Rect mTempRect -> mTempRect
+    android.graphics.Bitmap mDragBitmap -> mDragBitmap
+    int mTouchSlop -> mTouchSlop
+    int mItemHeightNormal -> mItemHeightNormal
+    int mItemHeightExpanded -> mItemHeightExpanded
+    int mDndViewId -> mDndViewId
+    int mDragImageX -> mDragImageX
+    android.graphics.Bitmap mBitmap -> mBitmap
+    int mTouchedY -> mTouchedY
+    int mCurrentY -> mCurrentY
+    int mForcedItemHeight -> mForcedItemHeight
+    int mIconWidth -> mIconWidth
+    android.os.Handler mHandler -> mHandler
+    java.lang.Runnable mScrollRunnable -> mScrollRunnable
+    void setIconWidth(int) -> setIconWidth
+    boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
+    void setForcedHeights(int) -> setForcedHeights
+    void startDragging() -> startDragging
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    int getItemForPosition(int) -> getItemForPosition
+    void scroll(int) -> scroll
+    boolean doScroll() -> doScroll
+    void doExpansion() -> doExpansion
+    void unExpandViews() -> unExpandViews
+    void startDragging(android.graphics.Bitmap,int) -> startDragging
+    void dragView(int,int) -> dragView
+    void stopDragging() -> stopDragging
+    void setDragListener(com.teuskim.sbrowser.MoveableListView$DragListener) -> setDragListener
+    void setDropListener(com.teuskim.sbrowser.MoveableListView$DropListener) -> setDropListener
+    void setDndView(int) -> setDndView
+    void setDragImageX(int) -> setDragImageX
+    boolean access$0(com.teuskim.sbrowser.MoveableListView) -> access$0
+    int access$1(com.teuskim.sbrowser.MoveableListView) -> access$1
+    void access$2(com.teuskim.sbrowser.MoveableListView,int) -> access$2
+com.teuskim.sbrowser.MoveableListView$1 -> com.teuskim.sbrowser.bm:
+    com.teuskim.sbrowser.MoveableListView this$0 -> a
+    void run() -> run
+com.teuskim.sbrowser.MoveableListView$DragListener -> com.teuskim.sbrowser.bn:
+    void drag$255f295() -> b
+com.teuskim.sbrowser.MoveableListView$DropListener -> com.teuskim.sbrowser.bo:
+    void drop(int,int) -> a
+com.teuskim.sbrowser.RemoconMenuView -> com.teuskim.sbrowser.RemoconMenuView:
+    android.widget.ImageView mImage -> mImage
+    android.widget.TextView mTitle -> mTitle
+    void init(android.content.Context) -> init
+    void setIconAndTitle(int,java.lang.String) -> setIconAndTitle
+    void setTitle(java.lang.String) -> setTitle
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void setSelected(boolean) -> setSelected
+com.teuskim.sbrowser.RemoconView -> com.teuskim.sbrowser.RemoconView:
+    android.view.View mBaseLayout -> mBaseLayout
+    android.view.View mRemoconView -> mRemoconView
+    android.view.View mIcDrag -> mIcDrag
+    android.view.View mRemoconBody -> mRemoconBody
+    android.view.View mRemoconBottom -> mRemoconBottom
+    android.widget.ImageView mBtnInputBack -> mBtnInputBack
+    android.widget.ImageView mBtnInputFoward -> mBtnInputFoward
+    boolean mIsRemoconBodyTouchable -> mIsRemoconBodyTouchable
+    int mRemoconAlpha -> mRemoconAlpha
+    int mMinLeft -> mMinLeft
+    int mMaxLeft -> mMaxLeft
+    int mMinBottom -> mMinBottom
+    int mMaxBottom -> mMaxBottom
+    com.teuskim.sbrowser.MiscPref mPref -> mPref
+    int ANIMATION_DURATION -> ANIMATION_DURATION
+    android.view.animation.AnimationSet mShowAnimation -> mShowAnimation
+    android.view.animation.AnimationSet mHideAnimation -> mHideAnimation
+    android.os.Handler mShowShadowHandler -> mShowShadowHandler
+    void init(android.content.Context) -> init
+    void setBottomView(android.view.View) -> setBottomView
+    void setBoundary() -> setBoundary
+    void setBaseLayout(android.view.View) -> setBaseLayout
+    void initAlphaAndPosition() -> initAlphaAndPosition
+    void showRemocon() -> showRemocon
+    void hideRemocon() -> hideRemocon
+    void setRemoconPosition(int,int) -> setRemoconPosition
+    void setRemoconAlpha(int) -> setRemoconAlpha
+    boolean setRemoconAlpha(int,android.view.View) -> setRemoconAlpha
+    void setOnBackClickListener(android.view.View$OnClickListener) -> setOnBackClickListener
+    void setOnFowardClickListener(android.view.View$OnClickListener) -> setOnFowardClickListener
+    int getRemoconWidth() -> getRemoconWidth
+    void createAnimations() -> createAnimations
+    android.view.View access$0(com.teuskim.sbrowser.RemoconView) -> access$0
+    android.view.View access$1(com.teuskim.sbrowser.RemoconView) -> access$1
+    android.view.View access$2(com.teuskim.sbrowser.RemoconView) -> access$2
+    android.view.animation.AnimationSet access$3(com.teuskim.sbrowser.RemoconView) -> access$3
+    void access$4(com.teuskim.sbrowser.RemoconView,int,int) -> access$4
+    com.teuskim.sbrowser.MiscPref access$5(com.teuskim.sbrowser.RemoconView) -> access$5
+    android.view.animation.AnimationSet access$6(com.teuskim.sbrowser.RemoconView) -> access$6
+    boolean access$7(com.teuskim.sbrowser.RemoconView) -> access$7
+com.teuskim.sbrowser.RemoconView$1 -> com.teuskim.sbrowser.bp:
+    com.teuskim.sbrowser.RemoconView this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.teuskim.sbrowser.RemoconView$2 -> com.teuskim.sbrowser.bq:
+    int mTouchedX -> b
+    int mTouchedY -> c
+    int mTouchedLeft -> d
+    int mTouchedBottom -> e
+    boolean mDidShow -> f
+    com.teuskim.sbrowser.RemoconView this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.teuskim.sbrowser.RemoconView$3 -> com.teuskim.sbrowser.br:
+    com.teuskim.sbrowser.RemoconView this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.teuskim.sbrowser.RemoteImageView -> com.teuskim.sbrowser.RemoteImageView:
+    android.content.Context mContext -> mContext
+    android.os.Handler mHandler -> mHandler
+    com.teuskim.sbrowser.RemoteImageView$ImageListener defaultListener -> defaultListener
+    com.teuskim.sbrowser.RemoteImageView$ImageListener listener -> listener
+    void setImageListener(com.teuskim.sbrowser.RemoteImageView$ImageListener) -> setImageListener
+    void setImageFromURL(java.lang.String) -> setImageFromURL
+    void _init(android.content.Context) -> _init
+com.teuskim.sbrowser.RemoteImageView$1 -> com.teuskim.sbrowser.bs:
+    void onImageLoaded(com.teuskim.sbrowser.RemoteImageView,android.graphics.Bitmap) -> a
+com.teuskim.sbrowser.RemoteImageView$2 -> com.teuskim.sbrowser.bt:
+    com.teuskim.sbrowser.RemoteImageView this$0 -> a
+    java.lang.String val$imageUrl -> b
+    void run() -> run
+com.teuskim.sbrowser.RemoteImageView$ImageListener -> com.teuskim.sbrowser.bu:
+    void onImageLoaded(com.teuskim.sbrowser.RemoteImageView,android.graphics.Bitmap) -> a
+com.teuskim.sbrowser.RemoteImageView$ImageRunnable -> com.teuskim.sbrowser.bv:
+    android.graphics.Bitmap bm -> a
+    com.teuskim.sbrowser.RemoteImageView this$0 -> b
+    void run() -> run
+com.teuskim.sbrowser.SbDb -> com.teuskim.sbrowser.bw:
+    com.teuskim.sbrowser.SbDb sInstance -> a
+    android.database.sqlite.SQLiteDatabase mDb -> b
+    com.teuskim.sbrowser.SbDb getInstance(android.content.Context) -> a
+    boolean insertFavoriteUrl(java.lang.String,java.lang.String,byte[]) -> a
+    boolean insertFavoritePart(java.lang.String,java.lang.String,java.lang.String,int,int,byte[]) -> a
+    int getFavoriteNextOrderNum() -> c
+    boolean updateFavoriteOrderNum(int,int) -> a
+    boolean deleteFavorite(int) -> a
+    java.util.List getFavoriteList() -> a
+    boolean updateSavedContOrderNum(int,int) -> b
+    boolean deleteSavedCont(int) -> b
+    java.util.List getSavedContList() -> b
+    com.teuskim.sbrowser.SbDb$SavedCont getSavedCont(int) -> c
+    boolean insertOrUpdateInputHistory(java.lang.String,com.teuskim.sbrowser.SbDb$InputType,java.lang.String,java.lang.String) -> a
+    boolean insertOrUpdateInputUrl(java.lang.String,java.lang.String,java.lang.String) -> a
+    boolean insertOrUpdateInputWord(java.lang.String,java.lang.String,java.lang.String) -> b
+    com.teuskim.sbrowser.SbDb$InputHistory getInputHistory(java.lang.String) -> b
+    android.database.Cursor getInputHistoryList(java.lang.String) -> a
+    boolean deleteInputHistory(int) -> d
+com.teuskim.sbrowser.SbDb$DbOpenHelper -> com.teuskim.sbrowser.bx:
+    void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+com.teuskim.sbrowser.SbDb$Favorite -> com.teuskim.sbrowser.by:
+    int mId -> a
+    java.lang.String mUrl -> b
+    java.lang.String mTitle -> c
+    int mType -> d
+    byte[] mThumb -> e
+    java.lang.String mIndexSet -> f
+    int mPartWidth -> g
+    int mPartHeight -> h
+    java.lang.String mCrtDt -> i
+    int mOrderNum -> j
+com.teuskim.sbrowser.SbDb$InputHistory -> com.teuskim.sbrowser.bz:
+    int mId -> a
+    java.lang.String mInput -> b
+    com.teuskim.sbrowser.SbDb$InputType mInputType -> c
+    java.lang.String mTitle -> d
+    java.lang.String mDirectYN -> e
+    java.lang.String mCrtDt -> f
+    java.lang.String mUpdDt -> g
+    int mUseCnt -> h
+com.teuskim.sbrowser.SbDb$InputType -> com.teuskim.sbrowser.ca:
+    com.teuskim.sbrowser.SbDb$InputType URL -> a
+    com.teuskim.sbrowser.SbDb$InputType WORD -> b
+    com.teuskim.sbrowser.SbDb$InputType[] ENUM$VALUES -> c
+    com.teuskim.sbrowser.SbDb$InputType[] values() -> values
+    com.teuskim.sbrowser.SbDb$InputType valueOf(java.lang.String) -> valueOf
+com.teuskim.sbrowser.SbDb$SavedCont -> com.teuskim.sbrowser.cb:
+    int mId -> a
+    java.lang.String mTitle -> b
+    java.lang.String mHtml -> c
+    int mSize -> d
+    byte[] mThumb -> e
+    java.lang.String mCrtDt -> f
+    int mOrderNum -> g
+com.teuskim.sbrowser.SbWebView -> com.teuskim.sbrowser.SbWebView:
+    java.lang.String TAG -> TAG
+    android.content.Context mContext -> mContext
+    boolean mIsFunctionInjected -> mIsFunctionInjected
+    boolean sIsPageFinished -> sIsPageFinished
+    void init(android.content.Context) -> init
+    void pageInit() -> pageInit
+    void setClients(android.webkit.WebChromeClient,android.webkit.WebViewClient) -> setClients
+    void setDefaultClients() -> setDefaultClients
+    void setAndroidBridge(com.teuskim.sbrowser.SbWebView$AndroidBridge) -> setAndroidBridge
+    boolean isPageFinished() -> isPageFinished
+    void loadUrl(java.lang.String) -> loadUrl
+    void loadLocalfile(java.lang.String) -> loadLocalfile
+    void injectJsFunctions() -> injectJsFunctions
+    void injectJs(java.lang.String) -> injectJs
+    void reload() -> reload
+    void injectRedo(java.lang.String) -> injectRedo
+    void injectResetClick() -> injectResetClick
+    void injectExpand() -> injectExpand
+    void injectClip() -> injectClip
+    void injectExtractSource() -> injectExtractSource
+    void injectSaveSource() -> injectSaveSource
+    void injectExtractMainCont() -> injectExtractMainCont
+    void access$0(boolean) -> access$0
+com.teuskim.sbrowser.SbWebView$AndroidBridge -> com.teuskim.sbrowser.cc:
+    android.content.Context mContext -> a
+    android.os.Handler mHandler -> b
+com.teuskim.sbrowser.SbWebView$SbWebChromeClient -> com.teuskim.sbrowser.cd:
+    android.content.Context mContext -> a
+    boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
+com.teuskim.sbrowser.SbWebView$SbWebChromeClient$1 -> com.teuskim.sbrowser.ce:
+    com.teuskim.sbrowser.SbWebView$SbWebChromeClient this$1 -> a
+    android.webkit.JsResult val$result -> b
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.teuskim.sbrowser.SbWebView$SbWebViewClient -> com.teuskim.sbrowser.cf:
+    android.content.Context mContext -> b
+    void onReceivedError(android.webkit.WebView,int,java.lang.String,java.lang.String) -> onReceivedError
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+com.teuskim.sbrowser.SettingsView -> com.teuskim.sbrowser.SettingsView:
+    int MAX_REMOCON_ALPHA -> MAX_REMOCON_ALPHA
+    int MIN_REMOCON_ALPHA -> MIN_REMOCON_ALPHA
+    android.content.Context mContext -> mContext
+    android.view.ViewGroup mColorPickerLayout -> mColorPickerLayout
+    com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener mOnBgColorChangedListener -> mOnBgColorChangedListener
+    com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener mOnFontColor1ChangedListener -> mOnFontColor1ChangedListener
+    com.teuskim.sbrowser.SettingsView$OnAlphaChangedListener mOnAlphaChangedListener -> mOnAlphaChangedListener
+    com.teuskim.sbrowser.SettingsView$OnFontSizeChangedListener mOnFontSizeChangedListener -> mOnFontSizeChangedListener
+    com.teuskim.sbrowser.SettingsView$OnLineSpaceChangedListener mOnLineSpaceChangedListener -> mOnLineSpaceChangedListener
+    com.teuskim.sbrowser.SettingsView$OnPaddingChangedListener mOnPaddingChangedListener -> mOnPaddingChangedListener
+    int mRemoconAlpha -> mRemoconAlpha
+    android.widget.SeekBar mSeekBar -> mSeekBar
+    android.view.View mBtnColorBg -> mBtnColorBg
+    android.view.View mBtnColorFont -> mBtnColorFont
+    int mBgColor -> mBgColor
+    int mFontColor -> mFontColor
+    android.widget.TextView mTextFontSize -> mTextFontSize
+    int mFontSize -> mFontSize
+    android.widget.TextView mTextLineSpace -> mTextLineSpace
+    int mLineSpace -> mLineSpace
+    android.widget.TextView mTextPadding -> mTextPadding
+    int mPadding -> mPadding
+    android.view.View mViewCVMSettings -> mViewCVMSettings
+    android.view.View mViewNoCVM -> mViewNoCVM
+    android.widget.TextView mTextPageUrl -> mTextPageUrl
+    android.view.View mBtnFacebook -> mBtnFacebook
+    android.view.View mBtnTwitter -> mBtnTwitter
+    android.view.View mBtnKakao -> mBtnKakao
+    android.view.View mMypageBtnLayout -> mMypageBtnLayout
+    android.view.ViewGroup mSettingsMainLayout -> mSettingsMainLayout
+    android.view.ViewGroup mSelectBgLayout -> mSelectBgLayout
+    android.view.View$OnClickListener mOnCloseClickListener -> mOnCloseClickListener
+    int ANIMATION_DURATION -> ANIMATION_DURATION
+    android.view.animation.AnimationSet mInAnimation -> mInAnimation
+    android.view.animation.AnimationSet mOutAnimation -> mOutAnimation
+    int PATTERN_0 -> PATTERN_0
+    int PATTERN_1 -> PATTERN_1
+    int PATTERN_2 -> PATTERN_2
+    int PATTERN_3 -> PATTERN_3
+    int PATTERN_4 -> PATTERN_4
+    int PATTERN_5 -> PATTERN_5
+    int PATTERN_6 -> PATTERN_6
+    int PATTERN_7 -> PATTERN_7
+    int PATTERN_8 -> PATTERN_8
+    int PATTERN_9 -> PATTERN_9
+    int PATTERN_10 -> PATTERN_10
+    int PATTERN_11 -> PATTERN_11
+    int PATTERN_12 -> PATTERN_12
+    int PATTERN_13 -> PATTERN_13
+    int PATTERN_14 -> PATTERN_14
+    int PATTERN_15 -> PATTERN_15
+    int PATTERN_16 -> PATTERN_16
+    int PATTERN_17 -> PATTERN_17
+    int PATTERN_18 -> PATTERN_18
+    int PATTERN_19 -> PATTERN_19
+    java.util.Map sPatternMap -> sPatternMap
+    java.util.Map sRepeatMap -> sRepeatMap
+    void init(android.content.Context) -> init
+    void open() -> open
+    void close() -> close
+    void setOnCloseClickListener(android.view.View$OnClickListener) -> setOnCloseClickListener
+    void setFacebookClickListener(android.view.View$OnClickListener) -> setFacebookClickListener
+    void setTwitterClickListener(android.view.View$OnClickListener) -> setTwitterClickListener
+    void setKakaoClickListener(android.view.View$OnClickListener) -> setKakaoClickListener
+    void showColorPickerView(int,com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener) -> showColorPickerView
+    void hideColorPickerView() -> hideColorPickerView
+    void hideSelectBgView() -> hideSelectBgView
+    void setOnAlphaChangedListener(com.teuskim.sbrowser.SettingsView$OnAlphaChangedListener) -> setOnAlphaChangedListener
+    void setRemoconAlpha(int) -> setRemoconAlpha
+    void setOnColorChangedListener(com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener,com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener) -> setOnColorChangedListener
+    void setContBg(int) -> setContBg
+    void setFontColor(int) -> setFontColor
+    void setFontSize(int) -> setFontSize
+    void setOnFontSizeChangedListener(com.teuskim.sbrowser.SettingsView$OnFontSizeChangedListener) -> setOnFontSizeChangedListener
+    void setLineSpace(int) -> setLineSpace
+    void setOnLineSpaceChangedListener(com.teuskim.sbrowser.SettingsView$OnLineSpaceChangedListener) -> setOnLineSpaceChangedListener
+    void setContPadding(int) -> setContPadding
+    void setOnPaddingChangedListener(com.teuskim.sbrowser.SettingsView$OnPaddingChangedListener) -> setOnPaddingChangedListener
+    void showCVMSettings(boolean) -> showCVMSettings
+    void setPageUrl(java.lang.String) -> setPageUrl
+    void showMypageBtnLayout(android.view.View$OnClickListener,android.view.View$OnClickListener,android.view.View$OnClickListener) -> showMypageBtnLayout
+    void createAnimations() -> createAnimations
+    void showSelectBgView(com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener) -> showSelectBgView
+    android.content.Context access$0(com.teuskim.sbrowser.SettingsView) -> access$0
+    com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener access$1(com.teuskim.sbrowser.SettingsView) -> access$1
+    int access$2(com.teuskim.sbrowser.SettingsView) -> access$2
+    com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener access$3(com.teuskim.sbrowser.SettingsView) -> access$3
+    int access$4(com.teuskim.sbrowser.SettingsView) -> access$4
+    int access$5(com.teuskim.sbrowser.SettingsView) -> access$5
+    int access$6(com.teuskim.sbrowser.SettingsView) -> access$6
+    int access$7(com.teuskim.sbrowser.SettingsView) -> access$7
+    void access$8(com.teuskim.sbrowser.SettingsView,int) -> access$8
+    com.teuskim.sbrowser.SettingsView$OnAlphaChangedListener access$9(com.teuskim.sbrowser.SettingsView) -> access$9
+    void access$10(com.teuskim.sbrowser.SettingsView,int) -> access$10
+    int access$11(com.teuskim.sbrowser.SettingsView) -> access$11
+com.teuskim.sbrowser.SettingsView$1 -> com.teuskim.sbrowser.cg:
+    com.teuskim.sbrowser.SettingsView this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.SettingsView$2 -> com.teuskim.sbrowser.ch:
+    com.teuskim.sbrowser.SettingsView this$0 -> a
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+com.teuskim.sbrowser.SettingsView$3 -> com.teuskim.sbrowser.ci:
+    com.teuskim.sbrowser.SettingsView this$0 -> a
+    android.widget.GridView val$recommendBgGrid -> b
+    com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener val$listener -> c
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.teuskim.sbrowser.SettingsView$4 -> com.teuskim.sbrowser.cj:
+    com.teuskim.sbrowser.SettingsView this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.SettingsView$5 -> com.teuskim.sbrowser.ck:
+    com.teuskim.sbrowser.SettingsView this$0 -> a
+    com.teuskim.sbrowser.ColorPickerView$OnColorChangedListener val$listener -> b
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.SettingsView$OnAlphaChangedListener -> com.teuskim.sbrowser.cl:
+    void onAlphaChanged(int) -> a
+com.teuskim.sbrowser.SettingsView$OnFontSizeChangedListener -> com.teuskim.sbrowser.cm:
+    void onFontSizeChanged(int) -> a
+com.teuskim.sbrowser.SettingsView$OnLineSpaceChangedListener -> com.teuskim.sbrowser.cn:
+    void onLineSpaceChanged(int) -> a
+com.teuskim.sbrowser.SettingsView$OnPaddingChangedListener -> com.teuskim.sbrowser.co:
+    void onPaddingChanged(int) -> a
+com.teuskim.sbrowser.SettingsView$RecommendBgAdapter -> com.teuskim.sbrowser.cp:
+    java.util.List patternKeys -> b
+    android.view.LayoutInflater mInflater -> c
+    com.teuskim.sbrowser.SettingsView this$0 -> a
+    int getCount() -> getCount
+    java.lang.Integer getItem(int) -> a
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    java.lang.Object getItem(int) -> getItem
+com.teuskim.sbrowser.ShareSNSActivity -> com.teuskim.sbrowser.ShareSNSActivity:
+    int mSns -> a
+    android.widget.EditText mShareContent -> b
+    android.widget.TextView mShareInfo -> c
+    android.widget.TextView mShareUrl -> d
+    android.widget.TextView mShareContentCount -> e
+    android.widget.TextView mBtnSend -> f
+    android.os.Handler mHandler -> g
+    com.teuskim.sbrowser.MiscPref mPref -> h
+    android.app.ProgressDialog mProgressDialog -> i
+    android.view.inputmethod.InputMethodManager mImm -> j
+    java.lang.String mUrl -> k
+    void onCreate(android.os.Bundle) -> onCreate
+    void onRestart() -> onRestart
+    void onPause() -> onPause
+    void onStop() -> onStop
+    boolean finishIfNotLogged() -> a
+    void onClick(android.view.View) -> onClick
+    void send() -> b
+    android.app.ProgressDialog access$0(com.teuskim.sbrowser.ShareSNSActivity) -> a
+    void access$1(com.teuskim.sbrowser.ShareSNSActivity,java.lang.String) -> a
+    java.lang.String access$2(com.teuskim.sbrowser.ShareSNSActivity) -> b
+    void access$3(com.teuskim.sbrowser.ShareSNSActivity) -> c
+    android.widget.TextView access$4(com.teuskim.sbrowser.ShareSNSActivity) -> d
+    android.widget.EditText access$5(com.teuskim.sbrowser.ShareSNSActivity) -> e
+com.teuskim.sbrowser.ShareSNSActivity$1 -> com.teuskim.sbrowser.cq:
+    com.teuskim.sbrowser.ShareSNSActivity this$0 -> a
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+com.teuskim.sbrowser.ShareSNSActivity$2 -> com.teuskim.sbrowser.cr:
+    com.teuskim.sbrowser.ShareSNSActivity this$0 -> a
+    void onFocusChange(android.view.View,boolean) -> onFocusChange
+com.teuskim.sbrowser.ShareSNSActivity$3 -> com.teuskim.sbrowser.cs:
+    com.teuskim.sbrowser.ShareSNSActivity this$0 -> a
+    void afterTextChanged(android.text.Editable) -> afterTextChanged
+    void beforeTextChanged(java.lang.CharSequence,int,int,int) -> beforeTextChanged
+    void onTextChanged(java.lang.CharSequence,int,int,int) -> onTextChanged
+com.teuskim.sbrowser.ShareSNSActivity$4 -> com.teuskim.sbrowser.ct:
+    com.teuskim.sbrowser.ShareSNSActivity this$0 -> a
+    java.lang.String val$msg -> b
+    void run() -> run
+com.teuskim.sbrowser.ShareSNSActivity$5 -> com.teuskim.sbrowser.cu:
+    com.teuskim.sbrowser.ShareSNSActivity this$0 -> a
+    void onComplete$3f6876fb() -> a
+    void onError() -> b
+com.teuskim.sbrowser.ShareSNSActivity$KakaoTask -> com.teuskim.sbrowser.cv:
+    com.teuskim.sbrowser.ShareSNSActivity this$0 -> a
+    java.lang.Boolean doInBackground(java.lang.String[]) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.teuskim.sbrowser.ShareSNSActivity$TweetTask -> com.teuskim.sbrowser.cw:
+    com.teuskim.sbrowser.ShareSNSActivity this$0 -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.teuskim.sbrowser.SourceView -> com.teuskim.sbrowser.SourceView:
+    android.widget.TextView mTextSource -> mTextSource
+    void init(android.content.Context) -> init
+    void setSource(java.lang.String) -> setSource
+    java.lang.String getSource() -> getSource
+com.teuskim.sbrowser.TextButton -> com.teuskim.sbrowser.TextButton:
+    int sNormal -> sNormal
+    int sPressed -> sPressed
+    void setTextColor(int,int) -> setTextColor
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+com.teuskim.sbrowser.TwitterApi -> com.teuskim.sbrowser.cx:
+    java.lang.String consumerKey -> a
+    java.lang.String consumerSecret -> b
+    twitter4j.conf.Configuration config -> c
+    java.lang.String mShortenApi -> d
+    twitter4j.auth.AccessToken auth(java.lang.String,java.lang.String) -> a
+com.teuskim.sbrowser.TwitterLoginActivity -> com.teuskim.sbrowser.TwitterLoginActivity:
+    android.widget.EditText mLoginIdEditText -> a
+    android.widget.EditText mLoginPasswordEditTextFirst -> b
+    android.widget.EditText mLoginPasswordEditTextSecond -> c
+    android.widget.Button mLoginButton -> d
+    android.widget.CheckBox mPassCheck -> e
+    com.teuskim.sbrowser.MiscPref mPref -> f
+    boolean isInputModePass -> g
+    java.lang.String mId -> h
+    java.lang.String mPass -> i
+    android.app.ProgressDialog mProgressDialog -> j
+    void onCreate(android.os.Bundle) -> onCreate
+    void login() -> a
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent) -> onEditorAction
+    android.app.ProgressDialog access$0(com.teuskim.sbrowser.TwitterLoginActivity) -> a
+    com.teuskim.sbrowser.MiscPref access$1(com.teuskim.sbrowser.TwitterLoginActivity) -> b
+    java.lang.String access$2(com.teuskim.sbrowser.TwitterLoginActivity) -> c
+    java.lang.String access$3(com.teuskim.sbrowser.TwitterLoginActivity) -> d
+    android.widget.EditText access$4(com.teuskim.sbrowser.TwitterLoginActivity) -> e
+    android.widget.EditText access$5(com.teuskim.sbrowser.TwitterLoginActivity) -> f
+    void access$6(com.teuskim.sbrowser.TwitterLoginActivity) -> g
+    android.widget.CheckBox access$7(com.teuskim.sbrowser.TwitterLoginActivity) -> h
+    void access$8(com.teuskim.sbrowser.TwitterLoginActivity,boolean) -> a
+com.teuskim.sbrowser.TwitterLoginActivity$1 -> com.teuskim.sbrowser.cy:
+    com.teuskim.sbrowser.TwitterLoginActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.TwitterLoginActivity$2 -> com.teuskim.sbrowser.cz:
+    com.teuskim.sbrowser.TwitterLoginActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.TwitterLoginActivity$LoginTwitterTask -> com.teuskim.sbrowser.da:
+    com.teuskim.sbrowser.TwitterApi mTwitterApi -> b
+    com.teuskim.sbrowser.TwitterLoginActivity this$0 -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.teuskim.sbrowser.WebActivity -> com.teuskim.sbrowser.WebActivity:
+    java.lang.String TAG -> TAG
+    int VIEW_MODE_WEBVIEW -> VIEW_MODE_WEBVIEW
+    int VIEW_MODE_CONTENT -> VIEW_MODE_CONTENT
+    int VIEW_MODE_SOURCE -> VIEW_MODE_SOURCE
+    int mViewMode -> mViewMode
+    int ADD_TYPE_FAVOR -> ADD_TYPE_FAVOR
+    int ADD_TYPE_PART -> ADD_TYPE_PART
+    int ADD_TYPE_SAVED_CONT -> ADD_TYPE_SAVED_CONT
+    int mAddType -> mAddType
+    android.widget.RelativeLayout mWebLayout -> mWebLayout
+    android.widget.LinearLayout mScreenPageLayout -> mScreenPageLayout
+    com.teuskim.sbrowser.RemoconMenuView mBtnSettings -> mBtnSettings
+    com.teuskim.sbrowser.RemoconMenuView mBtnHome -> mBtnHome
+    com.teuskim.sbrowser.RemoconMenuView mBtnAdd -> mBtnAdd
+    com.teuskim.sbrowser.RemoconMenuView mBtnViewMode -> mBtnViewMode
+    com.teuskim.sbrowser.RemoconMenuView mBtnScreen -> mBtnScreen
+    android.view.View mBtnsetWebview1 -> mBtnsetWebview1
+    android.widget.ImageView mArrowRemocon -> mArrowRemocon
+    android.view.View mBtnsetWebview2Add -> mBtnsetWebview2Add
+    android.view.View mBtnsetWebview2Add1 -> mBtnsetWebview2Add1
+    android.view.View mBtnAddFavor -> mBtnAddFavor
+    android.view.View mBtnAddPart -> mBtnAddPart
+    android.view.View mBtnAddSavedCont -> mBtnAddSavedCont
+    android.view.View mBtnsetWebview2Add2 -> mBtnsetWebview2Add2
+    android.view.View mBtnsetWebview2Add3 -> mBtnsetWebview2Add3
+    android.view.View mBtnExpandPart -> mBtnExpandPart
+    android.view.View mBtnAddPartComplete -> mBtnAddPartComplete
+    android.view.View mBtnAddPartReset1 -> mBtnAddPartReset1
+    android.view.View mBtnAddPartReset2 -> mBtnAddPartReset2
+    android.view.View mBtnsetWebview2Add4 -> mBtnsetWebview2Add4
+    android.widget.EditText mInputAddTitle -> mInputAddTitle
+    android.view.View mBtnAddComplete -> mBtnAddComplete
+    android.view.View mBtnAddCancel -> mBtnAddCancel
+    android.view.View mBtnsetWebview2ViewMode -> mBtnsetWebview2ViewMode
+    android.widget.Button mBtnViewModeWeb -> mBtnViewModeWeb
+    android.widget.Button mBtnViewModeCont -> mBtnViewModeCont
+    android.widget.Button mBtnViewModeSource -> mBtnViewModeSource
+    android.view.View mBtnsetWebview2Screen -> mBtnsetWebview2Screen
+    java.util.List mWebWrapList -> mWebWrapList
+    int mCurrentWebIndex -> mCurrentWebIndex
+    boolean mIsDeletePage -> mIsDeletePage
+    android.view.LayoutInflater mInflater -> mInflater
+    com.teuskim.sbrowser.MiscPref mPref -> mPref
+    boolean mIsPageLoading -> mIsPageLoading
+    android.content.BroadcastReceiver mScreenReceiver -> mScreenReceiver
+    int[] $SWITCH_TABLE$com$teuskim$sbrowser$ColorPickerView$ColorChange -> $SWITCH_TABLE$com$teuskim$sbrowser$ColorPickerView$ColorChange
+    void onCreate(android.os.Bundle) -> onCreate
+    void findViews() -> findViews
+    void initSettingsView(com.teuskim.sbrowser.SettingsView) -> initSettingsView
+    void addWebView() -> addWebView
+    void showWebView(int) -> showWebView
+    void deleteWebView(int) -> deleteWebView
+    com.teuskim.sbrowser.WebActivity$WebWrap getCurrentWeb() -> getCurrentWeb
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void onStart() -> onStart
+    void onStop() -> onStop
+    void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
+    void onNewIntent(android.content.Intent) -> onNewIntent
+    void onBackPressed() -> onBackPressed
+    void btnReset() -> btnReset
+    void btnSettings() -> btnSettings
+    void btnGo() -> btnGo
+    void goHome() -> goHome
+    void btnAdd() -> btnAdd
+    void btnAddFavor() -> btnAddFavor
+    void showBtnsetWebview2Add3() -> showBtnsetWebview2Add3
+    java.lang.String getAddTitle() -> getAddTitle
+    void showArrowRemocon(int,int) -> showArrowRemocon
+    void btnAddComplete(int) -> btnAddComplete
+    void btnAddCancel() -> btnAddCancel
+    void btnAddPart() -> btnAddPart
+    void btnAddPartReset() -> btnAddPartReset
+    void btnExpandPart() -> btnExpandPart
+    void btnAddPartComplete() -> btnAddPartComplete
+    void btnViewMode() -> btnViewMode
+    void btnViewModeWeb() -> btnViewModeWeb
+    void btnViewModeCont() -> btnViewModeCont
+    void btnViewModeSource() -> btnViewModeSource
+    void btnScreen() -> btnScreen
+    void extractSource() -> extractSource
+    void onContentViewBgChanged(com.teuskim.sbrowser.ColorPickerView$ColorChange,int) -> onContentViewBgChanged
+    void hideColorPickerView(com.teuskim.sbrowser.ColorPickerView$ColorChange) -> hideColorPickerView
+    void onContentViewFontChanged(int) -> onContentViewFontChanged
+    void onContentViewFontSizeChanged(int) -> onContentViewFontSizeChanged
+    void onContentViewLineSpaceChanged(int) -> onContentViewLineSpaceChanged
+    void onContentViewPaddingChanged(int) -> onContentViewPaddingChanged
+    java.lang.String getShareUrl() -> getShareUrl
+    com.teuskim.sbrowser.WebActivity$WebWrap access$0(com.teuskim.sbrowser.WebActivity) -> access$0
+    void access$1(com.teuskim.sbrowser.WebActivity,boolean) -> access$1
+    void access$2(com.teuskim.sbrowser.WebActivity) -> access$2
+    void access$3(com.teuskim.sbrowser.WebActivity) -> access$3
+    void access$4(com.teuskim.sbrowser.WebActivity) -> access$4
+    android.widget.Button access$5(com.teuskim.sbrowser.WebActivity) -> access$5
+    android.widget.Button access$6(com.teuskim.sbrowser.WebActivity) -> access$6
+    android.widget.Button access$7(com.teuskim.sbrowser.WebActivity) -> access$7
+    void access$8(com.teuskim.sbrowser.WebActivity) -> access$8
+    void access$9(com.teuskim.sbrowser.WebActivity) -> access$9
+    void access$10(com.teuskim.sbrowser.WebActivity) -> access$10
+    void access$11(com.teuskim.sbrowser.WebActivity) -> access$11
+    void access$12(com.teuskim.sbrowser.WebActivity,int) -> access$12
+    void access$13(com.teuskim.sbrowser.WebActivity) -> access$13
+    void access$14(com.teuskim.sbrowser.WebActivity) -> access$14
+    void access$15(com.teuskim.sbrowser.WebActivity) -> access$15
+    void access$16(com.teuskim.sbrowser.WebActivity) -> access$16
+    void access$17(com.teuskim.sbrowser.WebActivity) -> access$17
+    int access$18(com.teuskim.sbrowser.WebActivity) -> access$18
+    void access$19(com.teuskim.sbrowser.WebActivity,int) -> access$19
+    void access$20(com.teuskim.sbrowser.WebActivity) -> access$20
+    void access$21(com.teuskim.sbrowser.WebActivity) -> access$21
+    void access$22(com.teuskim.sbrowser.WebActivity) -> access$22
+    void access$23(com.teuskim.sbrowser.WebActivity) -> access$23
+    void access$24(com.teuskim.sbrowser.WebActivity) -> access$24
+    void access$25(com.teuskim.sbrowser.WebActivity,com.teuskim.sbrowser.ColorPickerView$ColorChange,int) -> access$25
+    void access$26(com.teuskim.sbrowser.WebActivity,int) -> access$26
+    com.teuskim.sbrowser.MiscPref access$27(com.teuskim.sbrowser.WebActivity) -> access$27
+    void access$28(com.teuskim.sbrowser.WebActivity,com.teuskim.sbrowser.ColorPickerView$ColorChange) -> access$28
+    void access$29(com.teuskim.sbrowser.WebActivity,int) -> access$29
+    void access$30(com.teuskim.sbrowser.WebActivity,int) -> access$30
+    void access$31(com.teuskim.sbrowser.WebActivity,int) -> access$31
+    com.teuskim.sbrowser.RemoconMenuView access$32(com.teuskim.sbrowser.WebActivity) -> access$32
+    int access$33(com.teuskim.sbrowser.WebActivity) -> access$33
+    boolean access$34(com.teuskim.sbrowser.WebActivity) -> access$34
+    void access$35(com.teuskim.sbrowser.WebActivity,int) -> access$35
+    void access$36(com.teuskim.sbrowser.WebActivity,boolean) -> access$36
+    void access$37(com.teuskim.sbrowser.WebActivity,int) -> access$37
+    int[] $SWITCH_TABLE$com$teuskim$sbrowser$ColorPickerView$ColorChange() -> $SWITCH_TABLE$com$teuskim$sbrowser$ColorPickerView$ColorChange
+com.teuskim.sbrowser.WebActivity$1 -> com.teuskim.sbrowser.db:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.teuskim.sbrowser.WebActivity$10 -> com.teuskim.sbrowser.dc:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.WebActivity$11 -> com.teuskim.sbrowser.dd:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.WebActivity$2 -> com.teuskim.sbrowser.de:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.WebActivity$3 -> com.teuskim.sbrowser.df:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void colorChanged(com.teuskim.sbrowser.ColorPickerView$ColorChange,int) -> a
+com.teuskim.sbrowser.WebActivity$4 -> com.teuskim.sbrowser.dg:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    com.teuskim.sbrowser.SettingsView val$settingsView -> b
+    void colorChanged(com.teuskim.sbrowser.ColorPickerView$ColorChange,int) -> a
+com.teuskim.sbrowser.WebActivity$5 -> com.teuskim.sbrowser.dh:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onFontSizeChanged(int) -> a
+com.teuskim.sbrowser.WebActivity$6 -> com.teuskim.sbrowser.di:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onLineSpaceChanged(int) -> a
+com.teuskim.sbrowser.WebActivity$7 -> com.teuskim.sbrowser.dj:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onPaddingChanged(int) -> a
+com.teuskim.sbrowser.WebActivity$8 -> com.teuskim.sbrowser.dk:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.WebActivity$9 -> com.teuskim.sbrowser.dl:
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.teuskim.sbrowser.WebActivity$WebWrap -> com.teuskim.sbrowser.dm:
+    com.teuskim.sbrowser.SbWebView mWebView -> b
+    com.teuskim.sbrowser.ContentView mContentView -> c
+    com.teuskim.sbrowser.SourceView mSourceView -> d
+    com.teuskim.sbrowser.HumanProgressBar mProgressBar -> e
+    android.widget.RelativeLayout mLayout -> f
+    android.view.View mCustomView -> g
+    android.webkit.WebChromeClient$CustomViewCallback mCustomViewCallback -> h
+    android.webkit.WebChromeClient mWebChromeClient -> i
+    android.os.Handler mHandler -> j
+    java.lang.String mIndexSet -> k
+    int mWindowWidth -> l
+    int mWindowHeight -> m
+    int mSelectedWidth -> n
+    int mSelectedHeight -> o
+    com.teuskim.sbrowser.WebActivity this$0 -> a
+    com.teuskim.sbrowser.SbWebView getWebView() -> a
+    com.teuskim.sbrowser.ContentView getContentView() -> b
+    void loadByIntent(android.content.Intent) -> a
+    void hideLayoutWord() -> c
+    boolean onBackPressed() -> d
+    void btnAddComplete(int) -> a
+    void btnViewModeWeb() -> e
+    void btnViewModeCont() -> f
+    void btnViewModeSource() -> g
+    com.teuskim.sbrowser.SbWebView access$0(com.teuskim.sbrowser.WebActivity$WebWrap) -> a
+    com.teuskim.sbrowser.HumanProgressBar access$1(com.teuskim.sbrowser.WebActivity$WebWrap) -> b
+    android.view.View access$2(com.teuskim.sbrowser.WebActivity$WebWrap) -> c
+    android.widget.RelativeLayout access$3(com.teuskim.sbrowser.WebActivity$WebWrap) -> d
+    void access$4(com.teuskim.sbrowser.WebActivity$WebWrap,android.view.View) -> a
+    void access$5(com.teuskim.sbrowser.WebActivity$WebWrap,android.webkit.WebChromeClient$CustomViewCallback) -> a
+    android.webkit.WebChromeClient$CustomViewCallback access$6(com.teuskim.sbrowser.WebActivity$WebWrap) -> e
+    com.teuskim.sbrowser.WebActivity access$16(com.teuskim.sbrowser.WebActivity$WebWrap) -> f
+com.teuskim.sbrowser.WebActivity$WebWrap$1 -> com.teuskim.sbrowser.dn:
+    com.teuskim.sbrowser.WebActivity$WebWrap this$1 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.teuskim.sbrowser.WebActivity$WebWrap$2 -> com.teuskim.sbrowser.do:
+    com.teuskim.sbrowser.WebActivity$WebWrap this$1 -> a
+    void onProgressChanged(android.webkit.WebView,int) -> onProgressChanged
+    void onShowCustomView(android.view.View,android.webkit.WebChromeClient$CustomViewCallback) -> onShowCustomView
+    void onHideCustomView() -> onHideCustomView
+com.teuskim.sbrowser.WebActivity$WebWrap$3 -> com.teuskim.sbrowser.dp:
+    com.teuskim.sbrowser.WebActivity$WebWrap this$1 -> a
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+com.teuskim.sbrowser.WebActivity$WebWrap$4 -> com.teuskim.sbrowser.dq:
+    com.teuskim.sbrowser.WebActivity$WebWrap this$1 -> a
+twitter4j.ExceptionDiagnosis -> a.a:
+    int stackLineHash -> a
+    int lineNumberHash -> b
+    java.lang.String hexString -> c
+    java.lang.Throwable th -> d
+    java.lang.String getStackLineHashAsHex() -> a
+    java.lang.String getLineNumberHashAsHex() -> b
+    java.lang.String toHexString(int) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.RateLimitStatus -> a.b:
+    int getSecondsUntilReset() -> a
+twitter4j.Twitter -> a.c:
+twitter4j.TwitterException -> a.d:
+    int statusCode -> b
+    twitter4j.ExceptionDiagnosis exceptionDiagnosis -> c
+    twitter4j.internal.http.HttpResponse response -> d
+    java.lang.String errorMessage -> e
+    java.lang.String requestPath -> f
+    java.lang.String[] FILTER -> g
+    boolean nested -> a
+    java.lang.String getMessage() -> getMessage
+    int getStatusCode() -> a
+    twitter4j.RateLimitStatus getRateLimitStatus() -> b
+    int getRetryAfter() -> c
+    twitter4j.ExceptionDiagnosis getExceptionDiagnosis() -> d
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.TwitterFactory -> a.e:
+    java.lang.reflect.Constructor TWITTER_CONSTRUCTOR -> d
+    twitter4j.auth.Authorization DEFAULT_AUTHORIZATION -> a
+    twitter4j.Twitter SINGLETON -> e
+    twitter4j.conf.Configuration conf -> f
+    java.lang.Class class$twitter4j$conf$Configuration -> b
+    java.lang.Class class$twitter4j$auth$Authorization -> c
+    twitter4j.Twitter getInstance(twitter4j.auth.AccessToken) -> a
+    twitter4j.Twitter getInstance(twitter4j.auth.Authorization) -> a
+    java.lang.Class class$(java.lang.String) -> a
+twitter4j.TwitterResponse -> a.f:
+twitter4j.auth.AccessToken -> a.a.a:
+    java.lang.String screenName -> b
+    long userId -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.lang.String getParameter(java.lang.String) -> a
+    java.lang.String getTokenSecret() -> a
+    java.lang.String getToken() -> b
+twitter4j.auth.Authorization -> a.a.b:
+    java.lang.String getAuthorizationHeader(twitter4j.internal.http.HttpRequest) -> a
+twitter4j.auth.BasicAuthorization -> a.a.c:
+    java.lang.String userId -> a
+    java.lang.String password -> b
+    java.lang.String basic -> c
+    java.lang.String getAuthorizationHeader(twitter4j.internal.http.HttpRequest) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.auth.NullAuthorization -> a.a.d:
+    twitter4j.auth.NullAuthorization SINGLETON -> a
+    twitter4j.auth.NullAuthorization getInstance() -> a
+    java.lang.String getAuthorizationHeader(twitter4j.internal.http.HttpRequest) -> a
+    boolean equals(java.lang.Object) -> equals
+    java.lang.String toString() -> toString
+twitter4j.auth.OAuthAuthorization -> a.a.e:
+    twitter4j.conf.Configuration conf -> b
+    twitter4j.internal.http.HttpClientWrapper http -> c
+    twitter4j.internal.http.HttpParameter OAUTH_SIGNATURE_METHOD -> d
+    twitter4j.internal.logging.Logger logger -> e
+    java.lang.String consumerKey -> f
+    java.lang.String consumerSecret -> g
+    java.lang.String realm -> h
+    twitter4j.auth.OAuthToken oauthToken -> i
+    java.util.Random RAND -> j
+    java.lang.Class class$twitter4j$auth$OAuthAuthorization -> a
+    java.lang.String getAuthorizationHeader(twitter4j.internal.http.HttpRequest) -> a
+    twitter4j.auth.AccessToken getOAuthAccessToken(java.lang.String,java.lang.String) -> a
+    void setOAuthAccessToken(twitter4j.auth.AccessToken) -> a
+    void parseGetParameters(java.lang.String,java.util.List) -> a
+    java.lang.String generateSignature(java.lang.String,twitter4j.auth.OAuthToken) -> a
+    java.lang.String encodeParameters(java.util.List,java.lang.String,boolean) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.lang.Class class$(java.lang.String) -> a
+twitter4j.auth.OAuthSupport -> a.a.f:
+twitter4j.auth.OAuthToken -> a.a.g:
+    java.lang.String token -> b
+    java.lang.String tokenSecret -> c
+    javax.crypto.spec.SecretKeySpec secretKeySpec -> d
+    java.lang.String[] responseStr -> a
+    java.lang.String getToken() -> b
+    java.lang.String getTokenSecret() -> a
+    void setSecretKeySpec(javax.crypto.spec.SecretKeySpec) -> a
+    javax.crypto.spec.SecretKeySpec getSecretKeySpec() -> c
+    java.lang.String getParameter(java.lang.String) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.conf.Configuration -> a.b.a:
+    boolean isDalvik() -> a
+    boolean isGAE() -> b
+    boolean isDebugEnabled() -> c
+    java.lang.String getUser() -> d
+    java.lang.String getPassword() -> e
+    java.lang.String getOAuthConsumerKey() -> f
+    java.lang.String getOAuthConsumerSecret() -> g
+    java.lang.String getOAuthAccessToken() -> h
+    java.lang.String getOAuthAccessTokenSecret() -> i
+    java.lang.String getOAuthAccessTokenURL() -> j
+twitter4j.conf.ConfigurationBase -> a.b.b:
+    boolean debug -> d
+    java.lang.String userAgent -> e
+    java.lang.String user -> f
+    java.lang.String password -> g
+    boolean useSSL -> h
+    boolean prettyDebug -> i
+    boolean gzipEnabled -> j
+    java.lang.String httpProxyHost -> k
+    java.lang.String httpProxyUser -> l
+    java.lang.String httpProxyPassword -> m
+    int httpProxyPort -> n
+    int httpConnectionTimeout -> o
+    int httpReadTimeout -> p
+    int httpStreamingReadTimeout -> q
+    int httpRetryCount -> r
+    int httpRetryIntervalSeconds -> s
+    int maxTotalConnections -> t
+    int defaultMaxPerRoute -> u
+    java.lang.String oAuthConsumerKey -> v
+    java.lang.String oAuthConsumerSecret -> w
+    java.lang.String oAuthAccessToken -> x
+    java.lang.String oAuthAccessTokenSecret -> y
+    java.lang.String oAuthRequestTokenURL -> z
+    java.lang.String oAuthAuthorizationURL -> A
+    java.lang.String oAuthAccessTokenURL -> B
+    java.lang.String oAuthAuthenticationURL -> C
+    java.lang.String restBaseURL -> D
+    java.lang.String searchBaseURL -> E
+    java.lang.String streamBaseURL -> F
+    java.lang.String userStreamBaseURL -> G
+    java.lang.String siteStreamBaseURL -> H
+    java.lang.String dispatcherImpl -> I
+    int asyncNumThreads -> J
+    boolean includeRTsEnabled -> K
+    boolean includeEntitiesEnabled -> L
+    boolean jsonStoreEnabled -> M
+    boolean mbeanEnabled -> N
+    boolean userStreamRepliesAllEnabled -> O
+    java.lang.String mediaProvider -> P
+    java.lang.String mediaProviderAPIKey -> Q
+    java.util.Properties mediaProviderParameters -> R
+    java.lang.String clientVersion -> S
+    java.lang.String clientURL -> T
+    boolean IS_DALVIK -> U
+    boolean IS_GAE -> V
+    java.lang.String dalvikDetected -> a
+    java.lang.String gaeDetected -> b
+    java.util.Map requestHeaders -> c
+    java.util.List instances -> W
+    boolean isDalvik() -> a
+    boolean isGAE() -> b
+    boolean isDebugEnabled() -> c
+    void setDebug(boolean) -> a
+    void setUserAgent(java.lang.String) -> a
+    java.lang.String getUser() -> d
+    void setUser(java.lang.String) -> b
+    java.lang.String getPassword() -> e
+    void setPassword(java.lang.String) -> c
+    void setUseSSL(boolean) -> b
+    void setPrettyDebugEnabled(boolean) -> c
+    void setGZIPEnabled(boolean) -> d
+    void initRequestHeaders() -> u
+    java.util.Map getRequestHeaders() -> k
+    java.lang.String getHttpProxyHost() -> l
+    void setHttpProxyHost(java.lang.String) -> d
+    java.lang.String getHttpProxyUser() -> m
+    void setHttpProxyUser(java.lang.String) -> e
+    java.lang.String getHttpProxyPassword() -> n
+    void setHttpProxyPassword(java.lang.String) -> f
+    int getHttpProxyPort() -> o
+    void setHttpProxyPort(int) -> a
+    int getHttpConnectionTimeout() -> p
+    void setHttpConnectionTimeout(int) -> b
+    int getHttpReadTimeout() -> q
+    void setHttpReadTimeout(int) -> c
+    void setHttpStreamingReadTimeout(int) -> d
+    int getHttpRetryCount() -> r
+    void setHttpRetryCount(int) -> e
+    int getHttpRetryIntervalSeconds() -> s
+    void setHttpRetryIntervalSeconds(int) -> f
+    void setHttpMaxTotalConnections(int) -> g
+    void setHttpDefaultMaxPerRoute(int) -> h
+    java.lang.String getOAuthConsumerKey() -> f
+    void setOAuthConsumerKey(java.lang.String) -> g
+    java.lang.String getOAuthConsumerSecret() -> g
+    void setOAuthConsumerSecret(java.lang.String) -> h
+    java.lang.String getOAuthAccessToken() -> h
+    void setOAuthAccessToken(java.lang.String) -> i
+    java.lang.String getOAuthAccessTokenSecret() -> i
+    void setOAuthAccessTokenSecret(java.lang.String) -> j
+    void setAsyncNumThreads(int) -> i
+    void setClientVersion(java.lang.String) -> k
+    void setClientURL(java.lang.String) -> l
+    void setRestBaseURL(java.lang.String) -> m
+    void fixRestBaseURL() -> v
+    void setSearchBaseURL(java.lang.String) -> n
+    void setStreamBaseURL(java.lang.String) -> o
+    void setUserStreamBaseURL(java.lang.String) -> p
+    void setSiteStreamBaseURL(java.lang.String) -> q
+    void setOAuthRequestTokenURL(java.lang.String) -> r
+    void setOAuthAuthorizationURL(java.lang.String) -> s
+    java.lang.String getOAuthAccessTokenURL() -> j
+    void setOAuthAccessTokenURL(java.lang.String) -> t
+    void setOAuthAuthenticationURL(java.lang.String) -> u
+    void setDispatcherImpl(java.lang.String) -> v
+    void setIncludeRTsEnbled(boolean) -> e
+    void setIncludeEntitiesEnbled(boolean) -> f
+    void setJSONStoreEnabled(boolean) -> g
+    void setMBeanEnabled(boolean) -> h
+    void setUserStreamRepliesAllEnabled(boolean) -> i
+    void setMediaProvider(java.lang.String) -> w
+    void setMediaProviderAPIKey(java.lang.String) -> x
+    void setMediaProviderParameters(java.util.Properties) -> a
+    java.lang.String fixURL(boolean,java.lang.String) -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+    java.lang.String toString() -> toString
+    void cacheInstance() -> t
+twitter4j.conf.ConfigurationBuilder -> a.b.c:
+    twitter4j.conf.ConfigurationBase configurationBean -> a
+    twitter4j.conf.ConfigurationBuilder setOAuthConsumerKey(java.lang.String) -> a
+    twitter4j.conf.ConfigurationBuilder setOAuthConsumerSecret(java.lang.String) -> b
+    twitter4j.conf.Configuration build() -> a
+    void checkNotBuilt() -> b
+twitter4j.conf.ConfigurationContext -> a.b.d:
+    twitter4j.conf.ConfigurationFactory factory -> a
+    twitter4j.conf.Configuration getInstance() -> a
+twitter4j.conf.ConfigurationFactory -> a.b.e:
+    twitter4j.conf.Configuration getInstance() -> a
+twitter4j.conf.PropertyConfiguration -> a.b.f:
+    java.lang.Class class$twitter4j$conf$Configuration -> d
+    boolean notNull(java.util.Properties,java.lang.String,java.lang.String) -> a
+    boolean loadProperties(java.util.Properties,java.lang.String) -> a
+    boolean loadProperties(java.util.Properties,java.io.InputStream) -> a
+    void normalize(java.util.Properties) -> b
+    void setFieldsWithTreePath(java.util.Properties,java.lang.String) -> b
+    void setFieldsWithPrefix(java.util.Properties,java.lang.String) -> c
+    boolean getBoolean(java.util.Properties,java.lang.String,java.lang.String) -> b
+    int getIntProperty(java.util.Properties,java.lang.String,java.lang.String) -> c
+    java.lang.String getString(java.util.Properties,java.lang.String,java.lang.String) -> d
+    java.lang.String toString() -> toString
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String getOAuthAccessTokenURL() -> j
+    java.lang.String getOAuthAccessTokenSecret() -> i
+    java.lang.String getOAuthAccessToken() -> h
+    java.util.Map getRequestHeaders() -> k
+    boolean isGAE() -> b
+    java.lang.Class class$(java.lang.String) -> y
+twitter4j.internal.http.BASE64Encoder -> a.c.a.a:
+    char last2byte -> a
+    char last4byte -> b
+    char last6byte -> c
+    char lead6byte -> d
+    char lead4byte -> e
+    char lead2byte -> f
+    char[] encodeTable -> g
+    java.lang.String encode(byte[]) -> a
+twitter4j.internal.http.HttpClient -> a.c.a.b:
+    twitter4j.internal.http.HttpResponse request(twitter4j.internal.http.HttpRequest) -> a
+twitter4j.internal.http.HttpClientBase -> a.c.a.c:
+    twitter4j.internal.logging.Logger logger -> c
+    twitter4j.internal.http.HttpClientConfiguration CONF -> a
+    java.lang.Class class$twitter4j$internal$http$HttpClientBase -> b
+    boolean isProxyConfigured() -> a
+    void write(java.io.DataOutputStream,java.lang.String) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    java.lang.Class class$(java.lang.String) -> a
+twitter4j.internal.http.HttpClientConfiguration -> a.c.a.d:
+    java.lang.String getHttpProxyHost() -> l
+    int getHttpProxyPort() -> o
+    java.lang.String getHttpProxyUser() -> m
+    java.lang.String getHttpProxyPassword() -> n
+    int getHttpConnectionTimeout() -> p
+    int getHttpReadTimeout() -> q
+    int getHttpRetryCount() -> r
+    int getHttpRetryIntervalSeconds() -> s
+twitter4j.internal.http.HttpClientFactory -> a.c.a.e:
+    java.lang.reflect.Constructor HTTP_CLIENT_CONSTRUCTOR -> b
+    java.lang.Class class$twitter4j$internal$http$HttpClientConfiguration -> a
+    twitter4j.internal.http.HttpClient getInstance(twitter4j.internal.http.HttpClientConfiguration) -> a
+    java.lang.Class class$(java.lang.String) -> a
+twitter4j.internal.http.HttpClientImpl -> a.c.a.f:
+    twitter4j.internal.logging.Logger logger -> d
+    boolean isJDK14orEarlier -> e
+    java.util.Map instanceMap -> f
+    java.lang.Class class$twitter4j$internal$http$HttpClientImpl -> c
+    twitter4j.internal.http.HttpResponse request(twitter4j.internal.http.HttpRequest) -> a
+    void setHeaders(twitter4j.internal.http.HttpRequest,java.net.HttpURLConnection) -> a
+    java.lang.Class class$(java.lang.String) -> a
+twitter4j.internal.http.HttpClientImpl$1 -> a.c.a.g:
+    twitter4j.internal.http.HttpClientImpl this$0 -> a
+    java.net.PasswordAuthentication getPasswordAuthentication() -> getPasswordAuthentication
+twitter4j.internal.http.HttpClientWrapper -> a.c.a.h:
+    twitter4j.internal.http.HttpClientWrapperConfiguration wrapperConf -> a
+    twitter4j.internal.http.HttpClient http -> b
+    java.util.Map requestHeaders -> c
+    twitter4j.internal.http.HttpResponseListener httpResponseListener -> d
+    twitter4j.internal.http.HttpResponse request(twitter4j.internal.http.HttpRequest) -> a
+    twitter4j.internal.http.HttpResponse post(java.lang.String,twitter4j.internal.http.HttpParameter[],twitter4j.auth.Authorization) -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.internal.http.HttpClientWrapperConfiguration -> a.c.a.i:
+    java.util.Map getRequestHeaders() -> k
+twitter4j.internal.http.HttpParameter -> a.c.a.j:
+    java.lang.String name -> a
+    java.lang.String value -> b
+    java.io.File file -> c
+    java.io.InputStream fileBody -> d
+    java.lang.String getName() -> a
+    java.lang.String getValue() -> b
+    java.io.File getFile() -> c
+    java.io.InputStream getFileBody() -> d
+    boolean isFile() -> e
+    boolean hasFileBody() -> f
+    java.lang.String getContentType() -> g
+    boolean equals(java.lang.Object) -> equals
+    boolean containsFile(twitter4j.internal.http.HttpParameter[]) -> a
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+    int compareTo(java.lang.Object) -> compareTo
+    java.lang.String encodeParameters(twitter4j.internal.http.HttpParameter[]) -> b
+    java.lang.String encode(java.lang.String) -> a
+twitter4j.internal.http.HttpRequest -> a.c.a.k:
+    twitter4j.internal.http.RequestMethod method -> a
+    java.lang.String url -> b
+    twitter4j.internal.http.HttpParameter[] parameters -> c
+    twitter4j.auth.Authorization authorization -> d
+    java.util.Map requestHeaders -> e
+    twitter4j.internal.http.HttpParameter[] NULL_PARAMETERS -> f
+    twitter4j.internal.http.RequestMethod getMethod() -> a
+    twitter4j.internal.http.HttpParameter[] getParameters() -> b
+    java.lang.String getURL() -> c
+    twitter4j.auth.Authorization getAuthorization() -> d
+    java.util.Map getRequestHeaders() -> e
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.internal.http.HttpResponse -> a.c.a.l:
+    twitter4j.internal.logging.Logger logger -> f
+    twitter4j.internal.http.HttpClientConfiguration CONF -> a
+    int statusCode -> b
+    java.lang.String responseAsString -> c
+    java.io.InputStream is -> d
+    boolean streamConsumed -> g
+    org.json.JSONObject json -> h
+    org.json.JSONArray jsonArray -> i
+    java.lang.Class class$twitter4j$internal$http$HttpResponseImpl -> e
+    int getStatusCode() -> a
+    java.lang.String getResponseHeader(java.lang.String) -> a
+    java.lang.String asString() -> b
+    void disconnectForcibly() -> d
+    void disconnect() -> c
+    java.lang.String toString() -> toString
+    java.lang.Class class$(java.lang.String) -> b
+twitter4j.internal.http.HttpResponseEvent -> a.c.a.m:
+    twitter4j.internal.http.HttpRequest request -> a
+    twitter4j.internal.http.HttpResponse response -> b
+    twitter4j.TwitterException twitterException -> c
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.internal.http.HttpResponseImpl -> a.c.a.n:
+    java.net.HttpURLConnection con -> f
+    java.lang.String getResponseHeader(java.lang.String) -> a
+    void disconnect() -> c
+twitter4j.internal.http.HttpResponseListener -> a.c.a.o:
+twitter4j.internal.http.RequestMethod -> a.c.a.p:
+    java.lang.String name -> f
+    java.util.Map instances -> g
+    twitter4j.internal.http.RequestMethod GET -> a
+    twitter4j.internal.http.RequestMethod POST -> b
+    twitter4j.internal.http.RequestMethod DELETE -> c
+    twitter4j.internal.http.RequestMethod HEAD -> d
+    twitter4j.internal.http.RequestMethod PUT -> e
+    java.lang.String name() -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.internal.json.RateLimitStatusJSONImpl -> a.c.b.a:
+    int remainingHits -> a
+    int hourlyLimit -> b
+    int resetTimeInSeconds -> c
+    int secondsUntilReset -> d
+    java.util.Date resetTime -> e
+    twitter4j.RateLimitStatus createFromResponseHeader(twitter4j.internal.http.HttpResponse) -> a
+    twitter4j.RateLimitStatus createFeatureSpecificRateLimitStatusFromResponseHeader(twitter4j.internal.http.HttpResponse) -> b
+    int getSecondsUntilReset() -> a
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.internal.json.z_T4JInternalFactory -> a.c.b.b:
+twitter4j.internal.json.z_T4JInternalJSONImplFactory -> a.c.b.c:
+    twitter4j.conf.Configuration conf -> a
+    twitter4j.RateLimitStatus createRateLimitStatusFromResponseHeader(twitter4j.internal.http.HttpResponse) -> a
+    twitter4j.RateLimitStatus createFeatureSpecificRateLimitStatusFromResponseHeader(twitter4j.internal.http.HttpResponse) -> b
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+    java.lang.String toString() -> toString
+twitter4j.internal.logging.Logger -> a.c.c.a:
+    twitter4j.internal.logging.LoggerFactory LOGGER_FACTORY -> a
+    twitter4j.internal.logging.LoggerFactory getLoggerFactoryIfAvailable(java.lang.String,java.lang.String) -> b
+    twitter4j.internal.logging.Logger getLogger(java.lang.Class) -> a
+    boolean isDebugEnabled() -> a
+    void debug(java.lang.String) -> a
+    void debug(java.lang.String,java.lang.String) -> a
+    void error(java.lang.String,java.lang.Throwable) -> a
+twitter4j.internal.logging.LoggerFactory -> a.c.c.b:
+    twitter4j.internal.logging.Logger getLogger$a6bd1b3() -> a
+twitter4j.internal.logging.StdOutLogger -> a.c.c.c:
+    boolean DEBUG -> a
+    boolean isDebugEnabled() -> a
+    void debug(java.lang.String) -> a
+    void debug(java.lang.String,java.lang.String) -> a
+    void error(java.lang.String,java.lang.Throwable) -> a
+twitter4j.internal.logging.StdOutLoggerFactory -> a.c.c.d:
+    twitter4j.internal.logging.Logger SINGLETON -> a
+    twitter4j.internal.logging.Logger getLogger$a6bd1b3() -> a
+twitter4j.internal.util.z_T4JInternalStringUtil -> a.c.d.a:
+    java.lang.String maskString(java.lang.String) -> a
+    java.lang.String[] split(java.lang.String,java.lang.String) -> a

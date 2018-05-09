@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/webview_layout"
+	android:layout_width="match_parent" 
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
+	<!-- 웹페이지 보기 {{ -->
+	<com.teuskim.sbrowser.SbWebView
+		android:id="@+id/webview"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" 
+		/>
+	<!-- }} 웹페이지 보기 -->
+	
+	<!-- 본문추출 보기 {{ -->
+	<com.teuskim.sbrowser.ContentView
+	    android:id="@+id/contentview"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:visibility="gone"
+		/>
+	<!-- }} 본문추출 보기 -->
+	
+	<!-- 소스 보기 {{ -->
+	<com.teuskim.sbrowser.SourceView
+	    android:id="@+id/sourceview"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:visibility="gone" 
+		/>
+	<!-- }} 소스 보기 -->
+	
+	<!-- 로딩바 {{ -->
+	<com.teuskim.sbrowser.HumanProgressBar
+	    android:id="@+id/progress"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="gone"
+		/>
+	<!-- }} 로딩바 -->
+	
+</RelativeLayout>

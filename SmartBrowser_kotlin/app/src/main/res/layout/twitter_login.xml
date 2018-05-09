@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#ffffff" >
+
+    <!-- 타이틀바 {{ -->
+	<LinearLayout
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dip"
+		android:gravity="center_vertical"
+		android:background="#d05031"
+		>
+		<TextView 
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dip"
+			android:text="@string/twitter_login"
+			android:textSize="21dip"
+			android:textColor="#ffffff"
+			android:textStyle="bold"
+		    />
+	</LinearLayout>
+	<!-- }} 타이틀바 -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:fadingEdge="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dip"
+            android:paddingRight="16dip" >
+
+            <EditText
+                android:id="@+id/setting_twitter_login_id_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:paddingLeft="5dip"
+                android:hint="@string/twitter_id"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dip" >
+
+                <EditText
+                    android:id="@+id/setting_twitter_login_password_text_first"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dip"
+                    android:hint="@string/twitter_pw"
+                    android:imeOptions="actionDone"
+                    android:inputType="textVisiblePassword"
+                    android:password="true" />
+
+                <EditText
+                    android:id="@+id/setting_twitter_login_password_text_second"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dip"
+                    android:hint="@string/twitter_pw"
+                    android:imeOptions="actionDone"
+                    android:inputType="textVisiblePassword"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dip" >
+
+                <CheckBox
+                    android:id="@+id/setting_twitter_login_password_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pw_open"
+                    android:textColor="#888888"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/setting_twitter_login_login_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="4dip"
+                android:padding="7dip"
+                android:background="@drawable/btn_settings_em"
+                android:text="@string/login"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

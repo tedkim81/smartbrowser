@@ -1,0 +1,607 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="@drawable/bg_settings"
+	android:padding="2dip"
+	>
+	<!-- 설정 타이틀바 {{ -->
+	<LinearLayout
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:background="@drawable/bg_settings_titlebar"
+		>
+		<TextView
+		    android:layout_width="0dip"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_marginLeft="12dip"
+			android:text="@string/settings_long"
+			android:textColor="#ffffff"
+			android:textSize="18sp"
+			/>
+		<ImageView
+		    android:id="@+id/btn_close_settings"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/btn_settings_close"
+		    />
+	</LinearLayout>
+	<!-- }} 설정 타이틀바 -->
+	
+	<!-- ===================================== -->
+	
+	<RelativeLayout
+	    android:id="@+id/settings_content_layout"
+	    android:layout_width="match_parent"
+		android:layout_height="0dip"
+		android:layout_weight="1" 
+	    >
+	    <!-- 설정 메인 {{ -->
+	    <ScrollView 
+	        android:id="@+id/settings_main_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			>
+			<LinearLayout
+			    android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical"
+				>
+				<!-- 공유하기 설정 {{ -->
+				
+				<!-- 타이틀 {{ -->
+				<TextView
+				    android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/share"
+					android:textColor="#606261"
+					android:textSize="12sp"
+					android:paddingLeft="12dip"
+					android:gravity="center_vertical"
+					android:background="@drawable/bg_settings_header"
+					/>
+				<!-- }} 타이틀 -->
+				
+				<!-- 아이콘 이미지들 {{ -->
+				<LinearLayout
+				    android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="10dip"
+					>
+				    <ImageView
+					    android:id="@+id/btn_facebook" 
+					    android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="12dip"
+						android:src="@drawable/btn_facebook"
+						/>
+				    <ImageView
+					    android:id="@+id/btn_kakao" 
+					    android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_marginLeft="12dip"
+						android:src="@drawable/btn_kakao"
+						/>
+				</LinearLayout>
+				<!-- }} 아이콘 이미지들 -->
+				
+				<!-- 페이지 URL {{ -->
+				<TextView
+				    android:id="@+id/text_page_url"
+				    android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginLeft="12dip"
+					android:layout_marginTop="10dip"
+					android:layout_marginBottom="10dip"
+					android:textSize="12sp"
+					android:textColor="#606261"
+					/>
+				<!-- }} 페이지 URL -->
+				
+				<!-- }} 공유하기 설정 -->
+				
+				<!-- ================================================ -->
+				
+				<!-- 리모콘 환경 설정 {{ -->
+				
+				<!-- 타이틀 {{ -->
+				<TextView
+				    android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/remocon_settings"
+					android:textColor="#606261"
+					android:textSize="12sp"
+					android:paddingLeft="12dip"
+					android:gravity="center_vertical"
+					android:background="@drawable/bg_settings_header"
+					/>
+				<!-- }} 타이틀 -->
+				
+				<!-- 투명도 조절 {{ -->
+				<LinearLayout
+				    android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="12dip"
+					android:orientation="vertical"
+				    >
+				    <TextView
+					    android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="@string/alpha_control"
+						android:textColor="#606261"
+						android:textSize="14sp"
+						/>
+				    <SeekBar 
+				        android:id="@+id/seekbar_remocon_alpha"
+				        android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="2dip"
+						android:max="265"
+						/>
+				    <LinearLayout 
+				        android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+				        >
+				        <TextView 
+				            android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginLeft="3dip"
+							android:textSize="10sp"
+							android:textColor="#606261"
+							android:textStyle="bold"
+							android:text="0"
+				            />
+				        <TextView
+				            android:id="@+id/remocon_alpha" 
+				            android:layout_width="0dip"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:textSize="10sp"
+							android:textColor="#606261"
+							android:textStyle="bold"
+							/>
+				        <TextView 
+				            android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="3dip"
+							android:textSize="10sp"
+							android:textColor="#606261"
+							android:textStyle="bold"
+							android:text="255"
+				            />
+				    </LinearLayout>
+				</LinearLayout>
+				<!-- }} 투명도 조절 -->
+				
+				<!-- }} 리모콘 환경 설정 -->
+				
+				<!-- ========================================= -->
+			    
+				<!-- 본문 읽기 환경 설정 {{ -->
+				
+				<!-- 타이틀 {{ -->
+				<TextView
+				    android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:text="@string/cont_settings"
+					android:textColor="#606261"
+					android:textSize="12sp"
+					android:paddingLeft="12dip"
+					android:gravity="center_vertical"
+					android:background="@drawable/bg_settings_header"
+					/>
+				<!-- }} 타이틀 -->
+				
+				<!-- 본문읽기 관련 설정들 ( 현재 본문 읽기 모드일때 ) {{ -->
+				<LinearLayout
+				    android:id="@+id/content_view_mode_settings"
+				    android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="10dip"
+					android:orientation="vertical"
+				    >
+					<!-- 배경 선택 항목 {{ -->
+					<LinearLayout
+					    android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="center_vertical"
+						>
+					    <TextView
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginLeft="2dip"
+							android:text="@string/select_bg"
+							android:textColor="#606261"
+							android:textSize="14sp"
+							/>
+					    <ImageView
+					        android:id="@+id/btn_color_bg"
+					        android:layout_width="33dip"
+							android:layout_height="33dip"
+							android:layout_marginRight="30dip"
+							android:background="@drawable/frame_settings_thumbnail"
+							/>
+					    <Button 
+					        android:id="@+id/btn_color_bg_choose"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:paddingTop="5dip"
+							android:paddingBottom="5dip"
+							android:text="@string/choose"
+							android:textSize="10sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					</LinearLayout>
+					<!-- }} 배경 선택 항목 -->
+					
+					<!-- 폰트 컬러 {{ -->
+					<LinearLayout
+					    android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip"
+						android:gravity="center_vertical"
+					    >
+					    <TextView
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginLeft="2dip"
+							android:text="@string/font_color"
+							android:textColor="#606261"
+							android:textSize="14sp"
+							/>
+					    <ImageView
+					        android:id="@+id/btn_color_font"
+					        android:layout_width="33dip"
+							android:layout_height="33dip"
+							android:layout_marginRight="30dip"
+							android:background="@drawable/frame_settings_thumbnail"
+							/>
+					    <Button 
+					        android:id="@+id/btn_color_font_choose"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:paddingTop="5dip"
+							android:paddingBottom="5dip"
+							android:text="@string/choose"
+							android:textSize="10sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					</LinearLayout>
+					<!-- }} 폰트 컬러 -->
+					
+					<!-- 폰트 크기 {{ -->
+					<LinearLayout
+					    android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip"
+						android:gravity="center_vertical"
+					    >
+					    <TextView
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginLeft="2dip"
+							android:text="@string/font_size"
+							android:textColor="#606261"
+							android:textSize="14sp"
+							/>
+					    <TextView
+					        android:id="@+id/text_font_size"
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="18dip"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							/>
+					    <Button 
+					        android:id="@+id/btn_plus_font_size"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="8dip"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:paddingTop="3dip"
+							android:paddingBottom="3dip"
+							android:text="+"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					    <Button 
+					        android:id="@+id/btn_minus_font_size"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:paddingTop="3dip"
+							android:paddingBottom="3dip"
+							android:text="-"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					</LinearLayout>
+					<!-- }} 폰트 크기 -->
+					
+					<!-- 줄 간격 {{ -->
+					<LinearLayout
+					    android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip"
+						android:gravity="center_vertical"
+					    >
+					    <TextView
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginLeft="2dip"
+							android:text="@string/line_space"
+							android:textColor="#606261"
+							android:textSize="14sp"
+							/>
+					    <TextView
+					        android:id="@+id/text_line_space"
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="18dip"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							/>
+					    <Button 
+					        android:id="@+id/btn_plus_line_space"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="8dip"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:paddingTop="3dip"
+							android:paddingBottom="3dip"
+							android:text="+"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					    <Button 
+					        android:id="@+id/btn_minus_line_space"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:paddingTop="3dip"
+							android:paddingBottom="3dip"
+							android:text="-"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					</LinearLayout>
+					<!-- }} 줄 간격 -->
+					
+					<!-- 여백 {{ {{ -->
+					<LinearLayout
+					    android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginTop="10dip"
+						android:gravity="center_vertical"
+					    >
+					    <TextView
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_weight="1"
+							android:layout_marginLeft="2dip"
+							android:text="@string/padding"
+							android:textColor="#606261"
+							android:textSize="14sp"
+							/>
+					    <TextView
+					        android:id="@+id/text_padding"
+						    android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="18dip"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							/>
+					    <Button 
+					        android:id="@+id/btn_plus_padding"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:layout_marginRight="8dip"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:text="+"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					    <Button 
+					        android:id="@+id/btn_minus_padding"
+					        android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:paddingLeft="10dip"
+							android:paddingRight="10dip"
+							android:text="-"
+							android:textSize="14sp"
+							android:textColor="#e24b2d"
+							android:textStyle="bold"
+							android:background="@drawable/btn_settings_basic"
+					        />
+					</LinearLayout>
+					<!-- }} 여백 -->
+					
+				</LinearLayout>
+				<!-- }} 본문읽기 관련 설정들 ( 현재 본문 읽기 모드일때 ) -->
+				
+				<!-- 본문읽기 가이드 ( 현재 본문 읽기 모드가 아닐때 ) {{ -->
+				<TextView
+				    android:id="@+id/no_content_view_mode"
+				    android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="12dip"
+					android:text="@string/guide_cont_mode"
+					android:textSize="14dip"
+					android:textColor="#606261"
+					android:lineSpacingExtra="5dip"
+					android:visibility="gone"
+					/>
+				<!-- }} 본문읽기 가이드 ( 현재 본문 읽기 모드가 아닐때 ) -->
+				
+				<!-- }} 본문 읽기 환경 설정 -->
+				
+			</LinearLayout>
+		</ScrollView>
+	    <!-- }} 설정 메인 -->
+	    
+	    <!-- 배경 선택 화면 {{ -->
+	    <LinearLayout
+	        android:id="@+id/select_bg_layout"
+	        android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:background="@drawable/bg_settings"
+			android:visibility="gone"
+			>
+			<!-- 타이틀 {{ -->
+			<TextView
+			    android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/select_pattern"
+				android:textColor="#606261"
+				android:textSize="12sp"
+				android:paddingLeft="12dip"
+				android:gravity="center_vertical"
+				android:background="@drawable/bg_settings_header"
+				/>
+			<!-- }} 타이틀 -->
+				
+			<!-- 추천 배경 레이아웃 {{ -->
+			<GridView
+		        android:id="@+id/recommend_bg_layout"
+		        android:layout_width="match_parent"
+				android:layout_height="0dip"
+				android:layout_weight="1"
+				android:layout_margin="5dip"
+				android:columnWidth="33dip"
+				android:horizontalSpacing="8dip"
+				android:verticalSpacing="8dip"
+				android:numColumns="auto_fit"
+				/>
+			<!-- }} 추천 배경 레이아웃 -->
+			
+			<!-- 타이틀 {{ -->
+			<TextView
+			    android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/select_color"
+				android:textColor="#606261"
+				android:textSize="12sp"
+				android:paddingLeft="12dip"
+				android:gravity="center_vertical"
+				android:background="@drawable/bg_settings_header"
+				/>
+			<!-- }} 타이틀 -->
+			
+			<!-- 배경색상 직접 지정 {{ -->
+			<LinearLayout
+		        android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dip"
+				android:gravity="center_vertical"
+				>
+				<ImageView
+			        android:id="@+id/btn_color_bg_2"
+			        android:layout_width="33dip"
+					android:layout_height="33dip"
+					android:layout_marginRight="30dip"
+					/>
+				<View
+				    android:layout_width="0dip"
+					android:layout_height="1dip"
+					android:layout_weight="1"
+					/>
+				<Button 
+			        android:id="@+id/btn_color_bg_choose"
+			        android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingLeft="10dip"
+					android:paddingRight="10dip"
+					android:paddingTop="5dip"
+					android:paddingBottom="5dip"
+					android:text="@string/choose"
+					android:textSize="10sp"
+					android:textColor="#e24b2d"
+					android:textStyle="bold"
+					android:background="@drawable/btn_settings_basic"
+			        />
+			</LinearLayout>
+			<!-- }} 배경색상 직접 지정 -->
+			
+			<!-- 확인 / 취소 버튼 {{ -->
+			<LinearLayout
+		        android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dip"
+				android:paddingBottom="10dip"
+				>
+				<Button
+				    android:id="@+id/btn_select_bg_ok"
+				    android:layout_width="0dip"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:text="@string/confirm"
+					android:textSize="11sp"
+					android:textColor="#ffffff"
+					android:background="@drawable/btn_settings_em"
+					/>
+				<Button
+				    android:id="@+id/btn_select_bg_cancel"
+				    android:layout_width="0dip"
+					android:layout_height="wrap_content"
+					android:layout_weight="1"
+					android:layout_marginLeft="5dip"
+					android:text="@string/cancel"
+					android:textSize="11sp"
+					android:textColor="#606261"
+					android:background="@drawable/btn_settings_default"
+					/>
+			</LinearLayout>
+			<!-- }} 확인 / 취소 버튼 -->
+			
+		</LinearLayout>
+	    <!-- }} 배경 선택 화면 -->
+	    
+	    <!-- 컬러 피커가 여기에 들어간다 {{ -->
+	    <LinearLayout
+	        android:id="@+id/color_picker_layout"
+	        android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:padding="3dip"
+			android:background="#000000"
+			android:visibility="invisible"
+			android:orientation="horizontal"
+			/>
+	    <!-- }} 컬러 피커가 여기에 들어간다 -->
+	    
+	</RelativeLayout>
+	
+</LinearLayout>

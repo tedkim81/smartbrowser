@@ -1,0 +1,31 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:padding="7dip"
+	android:gravity="center_vertical"
+	>
+	<!-- URL / 검색어 {{ -->
+	<TextView
+	    android:id="@+id/url" 
+	    android:layout_width="0dip"
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:layout_marginLeft="5dip"
+		android:textSize="14sp"
+		android:textColor="#606261"
+		android:singleLine="true"
+	    />
+	<!-- }} URL / 검색어 -->
+	
+	<!-- 삭제버튼 {{ -->
+	<ImageView 
+	    android:id="@+id/btn_delete" 
+	    android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/btn_settings_close_pressed"
+	    />
+	<!-- }} 삭제버튼 -->
+	
+</LinearLayout>

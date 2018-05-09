@@ -1,0 +1,92 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical" 
+	>
+	<!-- 타이틀바 {{ -->
+	<LinearLayout
+	    android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center_vertical"
+		android:background="#d05031"
+		>
+		<ImageView
+		    android:id="@+id/logo"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/logo"
+			/>
+		<TextView 
+		    android:id="@+id/title_main_1"
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/app_name_1"
+			android:textSize="21dip"
+			android:textColor="#ffffff"
+			android:textStyle="bold"
+		    />
+	    <TextView
+	        android:id="@+id/title_main_2" 
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="4dip"
+			android:text="@string/app_name_2"
+			android:textSize="21sp"
+			android:textColor="#ffffff"
+		    />
+	    <View
+	        android:layout_width="0dip"
+			android:layout_height="1dip"
+			android:layout_weight="1"
+			/>
+	    <ImageView
+	        android:id="@+id/btn_instructions" 
+	        android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/btn_actionbar_info"
+	        />
+	</LinearLayout>
+	<!-- }} 타이틀바 -->
+	
+	<!-- 내용영역 {{ -->
+	<RelativeLayout
+	    android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#ffffff"
+		>
+	    <!-- 내용이 없을때 보여줄 이미지 {{ -->
+	    <ImageView
+	        android:id="@+id/icon_default"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:src="@drawable/symbol"
+			/>
+	    <!-- }} 내용이 없을때 보여줄 이미지 -->
+	    
+	    <!-- 메인모드 : 홈 {{ -->
+	    <com.teuskim.sbrowser.MoveableListView
+		    android:id="@+id/list_home"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:divider="#ffffff"
+			android:visibility="gone"
+			/>
+		<!-- }} 메인모드 : 홈 -->
+		
+		<!-- 메인모드 : 저장내용 {{ -->
+		<com.teuskim.sbrowser.MoveableListView
+		    android:id="@+id/list_saved"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:divider="#ffffff"
+			android:visibility="gone"
+			/>
+		<!-- }} 메인모드 : 저장내용 -->
+		
+	</RelativeLayout>
+	<!-- }} 내용영역 -->
+	
+</LinearLayout>

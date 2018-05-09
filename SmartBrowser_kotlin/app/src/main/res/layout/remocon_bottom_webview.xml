@@ -1,0 +1,395 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/remocon_body_bottom_webview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- 웹뷰용 버튼 모음 ( 설정, 홈, 추가, 보기, 화면 ) {{ -->
+    <LinearLayout
+        android:id="@+id/btnset_webview_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_remote_expand_below1"
+        android:gravity="center_vertical" >
+
+        <!-- 설정 버튼 레이아웃 {{ -->
+        <com.teuskim.sbrowser.RemoconMenuView
+            android:id="@+id/btn_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+        <!-- }} 설정 버튼 레이아웃 -->
+
+
+        <!-- 홈 버튼 레이아웃 {{ -->
+        <com.teuskim.sbrowser.RemoconMenuView
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+        <!-- }} 홈 버튼 레이아웃 -->
+
+
+        <!-- 추가 버튼 레이아웃 {{ -->
+        <com.teuskim.sbrowser.RemoconMenuView
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+        <!-- }} 추가 버튼 레이아웃 -->
+
+
+        <!-- 보기 버튼 레이아웃 {{ -->
+        <com.teuskim.sbrowser.RemoconMenuView
+            android:id="@+id/btn_view_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+        <!-- }} 보기 버튼 레이아웃 -->
+
+
+        <!-- 화면 버튼 레이아웃 {{ -->
+        <com.teuskim.sbrowser.RemoconMenuView
+            android:id="@+id/btn_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center" />
+        <!-- }} 화면 버튼 레이아웃 -->
+        
+        <!-- 우측 여백 {{ -->
+        <View
+            android:layout_width="5dip"
+            android:layout_height="1dip"
+            />
+        <!-- }} 우측 여백 -->
+
+    </LinearLayout>
+    <!-- }} 웹뷰용 버튼 모음 ( 설정, 홈, 추가, 보기, 화면 ) -->
+
+
+    <!-- 웹뷰용 2depth 버튼 레이아웃 + 지시화살표 {{ -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <!-- 추가 ( 즐찾추가/조각추가 ) 버튼셋 {{ -->
+        <LinearLayout
+            android:id="@+id/btnset_webview_2_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f2f2f2"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+            <!-- 즐찾추가/조각추가 버튼 {{ -->
+            <LinearLayout
+                android:id="@+id/btnset_webview_2_add_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp" >
+
+                <Button
+                    android:id="@+id/btn_add_favor"
+                    android:layout_width="0dip"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_remote_expand_below2"
+                    android:text="@string/add_favorite"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_add_part"
+                    android:layout_width="0dip"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_remote_expand_below2"
+                    android:text="@string/add_favorite_part"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="0dip"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_remote_expand_below2"
+                    android:text="@string/save"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <!-- }} 즐찾추가/조각추가 버튼 -->
+
+
+            <!-- 조각추가모드 ( 영역을 선택하세요 ) {{ -->
+            <LinearLayout
+                android:id="@+id/btnset_webview_2_add_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:visibility="gone" >
+
+                <TextView
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/select_area_text"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_add_part_reset_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:background="@drawable/btn_remote_expand_below2"
+                    android:paddingLeft="15dip"
+                    android:paddingRight="15dip"
+                    android:text="@string/cancel"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <!-- }} 조각추가모드 ( 영역을 선택하세요 ) -->
+
+
+            <!-- 영역선택시 ( 확장/선택/취소 ) {{ -->
+            <LinearLayout
+                android:id="@+id/btnset_webview_2_add_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:visibility="gone" >
+
+                <Button
+                    android:id="@+id/btn_expand_part"
+                    android:layout_width="0dip"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_remote_expand_below2"
+                    android:text="@string/expand"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_add_part_complete"
+                    android:layout_width="0dip"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_remote_expand_below2"
+                    android:text="@string/select"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btn_add_part_reset_2"
+                    android:layout_width="0dip"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_remote_expand_below2"
+                    android:text="@string/cancel"
+                    android:textColor="#606261"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <!-- }} 영역선택시 ( 확장/선택/취소 ) -->
+
+
+            <!-- 추가 제목입력 및 버튼 {{ -->
+            <LinearLayout
+                android:id="@+id/btnset_webview_2_add_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <EditText
+                    android:id="@+id/input_add_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="23dip"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:background="@drawable/input_below2"
+                    android:paddingLeft="5dip"
+                    android:paddingRight="5dip"
+                    android:textColor="#606261"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:layout_marginTop="5dip"
+                    android:orientation="horizontal" >
+                    <Button
+                        android:id="@+id/btn_add_complete"
+                        android:layout_width="0dp"
+                        android:layout_height="23dip"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_remote_expand_below2"
+                        android:paddingLeft="15dip"
+                        android:paddingRight="15dip"
+                        android:text="@string/confirm"
+                        android:textColor="#606261"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_add_cancel"
+                        android:layout_width="0dp"
+                        android:layout_height="23dip"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="5dip"
+                        android:background="@drawable/btn_remote_expand_below2"
+                        android:paddingLeft="15dip"
+                        android:paddingRight="15dip"
+                        android:text="@string/cancel"
+                        android:textColor="#606261"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- }} 즐찾추가 제목입력 및 버튼 -->
+
+        </LinearLayout>
+        <!-- }} 추가 ( 즐찾추가/조각추가 ) 버튼셋 -->
+
+
+        <!-- 보기 ( 변경/편집/스크랩 ) 버튼셋 {{ -->
+        <LinearLayout
+            android:id="@+id/btnset_webview_2_view_mode"
+            android:layout_width="match_parent"
+            android:layout_height="34dip"
+            android:background="#f2f2f2"
+            android:gravity="center_vertical"
+            android:visibility="gone" >
+
+            <Button
+                android:id="@+id/btn_view_mode_web"
+                android:layout_width="0dip"
+                android:layout_height="23dip"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:background="@drawable/btn_remote_expand_below2"
+                android:text="@string/web"
+                android:textColor="#d05031"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_view_mode_cont"
+                android:layout_width="0dip"
+                android:layout_height="23dip"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:background="@drawable/btn_remote_expand_below2"
+                android:text="@string/cont"
+                android:textColor="#606261"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_view_mode_source"
+                android:layout_width="0dip"
+                android:layout_height="23dip"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:layout_weight="1"
+                android:background="@drawable/btn_remote_expand_below2"
+                android:text="@string/source"
+                android:textColor="#606261"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <!-- }} 보기 ( 변경/편집/스크랩 ) 버튼셋 -->
+
+
+        <!-- 화면 (페이지/추가) 버튼셋 {{ -->
+        <LinearLayout
+            android:id="@+id/btnset_webview_2_screen"
+            android:layout_width="match_parent"
+            android:layout_height="34dip"
+            android:background="#f2f2f2"
+            android:gravity="center_vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/screen_page_layout"
+                android:layout_width="0dip"
+                android:layout_height="23dip"
+                android:layout_marginLeft="5dip"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <!--
+       여기에 페이지 버튼들이 들어간다.{{
+       <Button
+        android:layout_width="0dip"
+        android:layout_height="23dip"
+        android:layout_weight="1"
+        android:layout_marginLeft="5dip"
+        android:background="@drawable/btn_remote_expand_below2"
+        android:text="1"
+        android:textSize="11sp"
+        android:textColor="#606261"
+        android:textStyle="bold"
+        />
+       }} 여기에 페이지 버튼들이 들어간다
+                -->
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_screen_add"
+                android:layout_width="50dip"
+                android:layout_height="23dip"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/btn_remote_expand_below2"
+                android:text="@string/add"
+                android:textColor="#606261"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <!-- }} 화면 (페이지/추가) 버튼셋 -->
+
+
+        <!-- 2depth 지시화살표 {{ -->
+        <ImageView
+            android:id="@+id/arrow_remocon"
+            android:layout_width="13dip"
+            android:layout_height="7dip"
+            android:src="@drawable/arrow_remote"
+            android:visibility="gone" />
+        <!-- }} 2depth 지시화살표 -->
+
+    </RelativeLayout>
+    <!-- }} 웹뷰용 2depth 버튼 레이아웃 + 지시화살표 -->
+
+</LinearLayout>

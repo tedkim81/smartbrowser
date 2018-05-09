@@ -1,0 +1,111 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical" 
+	>
+	<!-- 잠금화면 내용영역 {{ -->
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+		android:layout_height="0dip"
+		android:layout_weight="1"
+	    >
+	    <!-- 웹뷰 내용 영역 {{ -->
+		<com.teuskim.sbrowser.SbWebView
+			android:id="@+id/webview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			/>
+		<!-- }} 웹뷰 내용 영역 -->
+		
+		<!-- 본문추출 보기 {{ -->
+		<com.teuskim.sbrowser.ContentView
+		    android:id="@+id/contentview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:visibility="gone"
+			/>
+		<!-- }} 본문추출 보기 -->
+		
+		<!-- 소스 보기 {{ -->
+		<com.teuskim.sbrowser.SourceView
+		    android:id="@+id/sourceview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:visibility="gone" 
+			/>
+		<!-- }} 소스 보기 -->
+		
+	</RelativeLayout>
+	<!-- }} 잠금화면 내용영역 -->
+	
+	<!-- 시계와 잠금해제버튼 영역 {{ -->
+	<LinearLayout 
+	    android:layout_width="match_parent"
+		android:layout_height="60dip"
+		android:background="@drawable/bg_lockscreen_bottom_bar"
+	    >
+	    <!-- 왼쪽 잠금해제 버튼 {{ -->
+	    <RelativeLayout
+	        android:id="@+id/btnlayout_unlock_left"
+	        android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			>
+	        <Button 
+			    android:id="@+id/btn_unlock_left"
+			    android:layout_width="60dip"
+				android:layout_height="60dip"
+				android:layout_alignParentLeft="true"
+				android:background="@drawable/btn_lockscreen_unlock_01"
+			    />
+	    </RelativeLayout>
+	    
+	    <!-- }} 왼쪽 잠금해제 버튼 -->
+	    
+	    <!-- 시계/날짜 영역 {{ -->
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:gravity="center"
+	        >
+	        <TextView
+	            android:id="@+id/current_time"
+			    android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="25sp"
+				android:textColor="#ffffff"
+				/>
+	        <TextView
+	            android:id="@+id/current_date"
+			    android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textSize="16sp"
+				android:textColor="#ffffff"
+				/>
+	    </LinearLayout>
+	    <!-- }} 시계/날짜 영역 -->
+	    
+	    <!-- 오른쪽 잠금해제 버튼 {{ -->
+	    <RelativeLayout
+	        android:id="@+id/btnlayout_unlock_right"
+	        android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="1"
+			>
+	        <Button 
+			    android:id="@+id/btn_unlock_right"
+			    android:layout_width="60dip"
+				android:layout_height="60dip"
+				android:layout_alignParentRight="true"
+				android:background="@drawable/btn_lockscreen_unlock_01"
+			    />
+	    </RelativeLayout>
+	    <!-- }} 오른쪽 잠금해제 버튼 -->
+	    
+	</LinearLayout>
+	<!-- }} 시계와 잠금해제버튼 영역 -->
+		
+</LinearLayout>
