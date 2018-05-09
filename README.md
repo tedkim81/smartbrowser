@@ -4,13 +4,13 @@
 * SmartBrowser was developed in 2013.
 * SmartBrowser is special android browser.
 The special features are..
-    * 1) You can use the control tool layer instead of the address bar.
-    * 2) You can add favorite links and favorite web page pieces in the main activity.
-    * 3) You can set the desired background and font size, font color, line spacing, and margins for Easy Read View in Settings View.
-    * 4) You can search and translate easily in Easy Read View.
-    * 5) You can see the web page in custom lock screen.
-    * 6) You can see the html source of the web page.
-    * 7) You can store the web page and see the web page when network is unavailable.
+    * You can use the control tool layer instead of the address bar.
+    * You can add favorite links and favorite web page pieces in the main activity.
+    * You can set the desired background and font size, font color, line spacing, and margins for Easy Read View in Settings View.
+    * You can search and translate easily in Easy Read View.
+    * You can see the web page in custom lock screen.
+    * You can see the html source of the web page.
+    * You can store the web page and see the web page when network is unavailable.
 
 * Google Play: https://play.google.com/store/apps/details?id=com.teuskim.sbrowser
 
