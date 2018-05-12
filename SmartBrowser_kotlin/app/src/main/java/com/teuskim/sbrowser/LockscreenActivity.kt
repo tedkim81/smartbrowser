@@ -14,14 +14,16 @@ import android.view.View
 import android.view.View.OnTouchListener
 import android.view.WindowManager
 import android.webkit.WebView
-import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 
 class LockscreenActivity : Activity() {
 
     private val mHandler = Handler()
-    private var mBtnUnlockLeft: Button? = null
-    private var mBtnUnlockRight: Button? = null
+    private var mBtnUnlockLeft: ImageView? = null
+    private var mTextUnlockLeft: TextView? = null
+    private var mBtnUnlockRight: ImageView? = null
+    private var mTextUnlockRight: TextView? = null
     private var mIsTouchedLeft = false
     private var mIsTouchedRight = false
 
@@ -32,29 +34,41 @@ class LockscreenActivity : Activity() {
     private var mWebView: SbWebView? = null
     private var mContentView: ContentView? = null
     private var mSourceView: SourceView? = null
+    private var mViewMode: Int = 0
+    private var mScrollTop: Int = 0
+    private var mIsScrollable = false
+    private var mIsScrolled = false
 
     private val mOnTouchListener = OnTouchListener { v, event ->
         when (event.action) {
             MotionEvent.ACTION_DOWN -> when (v.id) {
                 R.id.btn_unlock_left, R.id.btnlayout_unlock_left -> if (mIsTouchedLeft) {
+                    mBtnUnlockLeft!!.setAlpha(70)
+                    mTextUnlockLeft!!.visibility = View.GONE
                     dismissKeyguard()
                 } else {
                     mIsTouchedLeft = true
-                    mBtnUnlockLeft!!.setBackgroundResource(R.drawable.btn_lockscreen_unlock_02)
+                    mBtnUnlockLeft!!.setImageResource(R.drawable.btn_lockscreen_unlock_02)
+                    mTextUnlockLeft!!.setText(R.string.lock_release_onemore)
                     mHandler.postDelayed({
                         mIsTouchedLeft = false
-                        mBtnUnlockLeft!!.setBackgroundResource(R.drawable.btn_lockscreen_unlock_01)
+                        mBtnUnlockLeft!!.setImageResource(R.drawable.btn_lockscreen_unlock_01)
+                        mTextUnlockLeft!!.setText(R.string.lock_release_double)
                     }, 2000)
                 }
 
                 R.id.btn_unlock_right, R.id.btnlayout_unlock_right -> if (mIsTouchedRight) {
+                    mBtnUnlockRight!!.setAlpha(70)
+                    mTextUnlockRight!!.visibility = View.GONE
                     dismissKeyguard()
                 } else {
                     mIsTouchedRight = true
-                    mBtnUnlockRight!!.setBackgroundResource(R.drawable.btn_lockscreen_unlock_02)
+                    mBtnUnlockRight!!.setImageResource(R.drawable.btn_lockscreen_unlock_02)
+                    mTextUnlockRight!!.setText(R.string.lock_release_onemore)
                     mHandler.postDelayed({
                         mIsTouchedRight = false
-                        mBtnUnlockRight!!.setBackgroundResource(R.drawable.btn_lockscreen_unlock_01)
+                        mBtnUnlockRight!!.setImageResource(R.drawable.btn_lockscreen_unlock_01)
+                        mTextUnlockRight!!.setText(R.string.lock_release_double)
                     }, 2000)
                 }
             }
@@ -105,8 +119,10 @@ class LockscreenActivity : Activity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_IGNORE_CHEEK_PRESSES or WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
 
         setContentView(R.layout.lockscreen)
-        mBtnUnlockLeft = findViewById<View>(R.id.btn_unlock_left) as Button
-        mBtnUnlockRight = findViewById<View>(R.id.btn_unlock_right) as Button
+        mBtnUnlockLeft = findViewById<View>(R.id.btn_unlock_left) as ImageView
+        mTextUnlockLeft = findViewById<View>(R.id.text_unlock_left) as TextView
+        mBtnUnlockRight = findViewById<View>(R.id.btn_unlock_right) as ImageView
+        mTextUnlockRight = findViewById<View>(R.id.text_unlock_right) as TextView
         mCurrentTime = findViewById<View>(R.id.current_time) as TextView
         mCurrentDate = findViewById<View>(R.id.current_date) as TextView
         mWebView = findViewById<View>(R.id.webview) as SbWebView
@@ -121,12 +137,12 @@ class LockscreenActivity : Activity() {
         mLocale = resources.configuration.locale
 
         val extras = intent.extras
-        val viewMode = extras!!.getInt("view_mode")
+        mViewMode = extras!!.getInt("view_mode")
+        mScrollTop = extras.getInt("scrolltop")
 
-        when (viewMode) {
-            WebActivity.VIEW_MODE_WEBVIEW -> viewWebView(extras.getString("url"))
+        when (mViewMode) {
+            WebActivity.VIEW_MODE_WEBVIEW, WebActivity.VIEW_MODE_SOURCE -> viewWebView(extras.getString("url"))
             WebActivity.VIEW_MODE_CONTENT -> viewContentView(extras.getString("content"))
-            WebActivity.VIEW_MODE_SOURCE -> viewSourceView(extras.getString("source"))
         }
     }
 
@@ -135,7 +151,7 @@ class LockscreenActivity : Activity() {
         mContentView!!.visibility = View.GONE
         mSourceView!!.visibility = View.GONE
 
-        mWebView!!.setClients(SbWebView.SbWebChromeClient(this), object : SbWebView.SbWebViewClient(this) {
+        mWebView!!.setClients(SbWebView.SbWebChromeClient(this), object : SbWebView.SbWebViewClient(this, mWebView!!) {
 
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
@@ -155,7 +171,7 @@ class LockscreenActivity : Activity() {
                         + "e.returnValue = false;"
                         + "}"
                         + "disableClickAll(document.getElementsByTagName('body')[0].childNodes);")
-                mWebView!!.injectJs(js)
+                mWebView.injectJs(js)
             }
 
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
@@ -163,9 +179,7 @@ class LockscreenActivity : Activity() {
             }
 
         })
-        if (url != null) {
-            mWebView!!.loadUrl(url)
-        }
+        mWebView!!.loadUrl(url)
     }
 
     private fun viewContentView(content: String?) {
@@ -178,18 +192,19 @@ class LockscreenActivity : Activity() {
         mContentView!!.content = content!!
     }
 
-    private fun viewSourceView(source: String?) {
-        mWebView!!.visibility = View.GONE
-        mContentView!!.visibility = View.GONE
-        mSourceView!!.visibility = View.VISIBLE
-
-        mSourceView!!.source = source!!
-    }
-
     override fun onResume() {
         super.onResume()
         mHandler.post(mTimeRunnable)
         setCurrentDate()
+
+        if (mIsScrollable && mIsScrolled == false) {
+            when (mViewMode) {
+                WebActivity.VIEW_MODE_WEBVIEW, WebActivity.VIEW_MODE_SOURCE -> mWebView!!.scrollTo(0, mScrollTop)
+                WebActivity.VIEW_MODE_CONTENT -> mContentView!!.scrollTop = mScrollTop
+            }
+            mIsScrolled = true
+        }
+        mIsScrollable = true
     }
 
     override fun onPause() {

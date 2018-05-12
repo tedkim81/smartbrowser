@@ -32,11 +32,11 @@ class FavoritePartView : LinearLayout {
 
     private fun init(context: Context) {
         LayoutInflater.from(context).inflate(R.layout.favorite_part_item, this)
-        mTitleView = findViewById<View>(R.id.favorite_part_title) as TextView
+        mTitleView = findViewById<TextView>(R.id.favorite_part_title)
         mBtnArticle = findViewById(R.id.btn_article)
-        mLoadingWebView = findViewById<View>(R.id.loading_webview) as TextView
-        webView = findViewById<View>(R.id.webview) as SbWebView
-        webView!!.setClients(SbWebView.SbWebChromeClient(context), object : SbWebView.SbWebViewClient(context) {
+        mLoadingWebView = findViewById<TextView>(R.id.loading_webview)
+        webView = findViewById<SbWebView>(R.id.webview)
+        webView!!.setClients(SbWebView.SbWebChromeClient(context), object : SbWebView.SbWebViewClient(context, webView!!) {
 
             override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                 mLoadingWebView!!.visibility = View.VISIBLE
@@ -53,9 +53,12 @@ class FavoritePartView : LinearLayout {
 
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 Log.i(TAG, "override url: " + url)
-                val i = Intent(mContext, WebActivity::class.java)
-                i.putExtra("url", url)
-                mContext.startActivity(i)
+                if (mLoadingWebView!!.visibility == View.GONE) {
+                    val i = Intent(mContext, WebActivity::class.java)
+                    i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    i.putExtra("url", url)
+                    mContext.startActivity(i)
+                }
                 return true
             }
 

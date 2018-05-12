@@ -25,7 +25,7 @@ import com.facebook.android.api.Util;
 
 public class FacebookApi {
 
-	private static final String APP_ID = "Your facebook app id";
+	private static final String APP_ID = "511166242228371";
 	private static final String[] PERMISSIONS = new String[] {"publish_stream"};
 	
 	private Facebook mFb;

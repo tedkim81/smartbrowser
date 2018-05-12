@@ -1,6 +1,5 @@
 package com.teuskim.sbrowser;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -151,7 +150,6 @@ public class ColorPickerView extends View {
 		}
 	}
 	
-	@SuppressLint("DrawAllocation")
 	@Override
 	protected void onDraw(Canvas canvas) {
 		int translatedHue = 255-(int)(mCurrentHue*255/360);

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.teuskim.sbrowser"
-    android:versionCode="1"
-    android:versionName="1.0">
+    android:versionCode="5"
+    android:versionName="1.4">
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="15" />
     
@@ -22,7 +22,7 @@
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="stateHidden"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,15 +34,9 @@
             android:name=".WebActivity"
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
+            android:exported="false"
             >
-            <intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="http" />
-				<data android:scheme="https" />
-			</intent-filter>
         </activity>
         
         <activity
@@ -73,6 +67,12 @@
         
         <activity
             android:name=".InstructionsActivity"
+            android:configChanges="orientation"
+            android:excludeFromRecents="true"
+            />
+        
+        <activity
+            android:name=".VideoActivity"
             android:configChanges="orientation"
             android:excludeFromRecents="true"
             />

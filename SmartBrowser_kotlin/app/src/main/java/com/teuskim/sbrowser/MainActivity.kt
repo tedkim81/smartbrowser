@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.Settings.Secure
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -17,18 +17,20 @@ import com.teuskim.sbrowser.SbDb.SavedCont
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.BasicResponseHandler
+import java.io.File
 import java.util.*
 
 class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
     private var mMainMode = MAIN_MODE_HOME
 
-    private var mIconDefault: ImageView? = null
+    private var mIconDefault: View? = null
     private var mTitleMain1: TextView? = null
     private var mTitleMain2: TextView? = null
     private var mListViewHome: MoveableListView? = null
     private var mListViewSaved: MoveableListView? = null
     private var mBtnSettings: RemoconMenuView? = null
     private var mBtnMainMode: RemoconMenuView? = null
+    private var mBtnExit: RemoconMenuView? = null
     private var mLogo: View? = null
 
     private var mListFavorite: List<Favorite>? = null
@@ -42,14 +44,12 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
     private var mIsDnd = false
     private var mPref: MiscPref? = null
 
-    protected override// 최초 의도는 스마트 브라우저의 홈화면을 웹으로도 구현하여, 자신이 꾸며놓은 것을 친구에게 공유할 수 있도록 하고자 했고,
-            // 구글 앱엔진을 이용해 appspot.com으로 공유하도록 개발도 했었으나, 개발 후 너무 오랜 시간이 지나 원복하는데에 상당한 시간이
-            // 걸릴 것으로 예상되어 일단 홈화면에서의 공유기능은 spec out 함.
-    val shareUrl: String?
-        get() = null
-
-    private val deviceId: String
-        get() = Secure.getString(contentResolver, Secure.ANDROID_ID)
+    /**
+     * 최초 의도는 스마트 브라우저의 홈화면을 웹으로도 구현하여, 자신이 꾸며놓은 것을 친구에게 공유할 수 있도록 하고자 했고,
+     * 구글 앱엔진을 이용해 appspot.com으로 공유하도록 개발도 했었으나, 개발 후 너무 오랜 시간이 지나 원복하는데에 상당한 시간이
+     * 걸릴 것으로 예상되어 일단 홈화면에서의 공유기능은 spec out 함.
+     */
+    override val shareUrl: String? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +78,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
     }
 
     protected fun findViews() {
-        mIconDefault = findViewById<View>(R.id.icon_default) as ImageView
+        mIconDefault = findViewById(R.id.icon_default)
         mTitleMain1 = findViewById<View>(R.id.title_main_1) as TextView
         mTitleMain2 = findViewById<View>(R.id.title_main_2) as TextView
         mListViewHome = findViewById<View>(R.id.list_home) as MoveableListView
@@ -90,14 +90,23 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
 
         mBtnSettings = remoconBottom.findViewById<View>(R.id.btn_settings) as RemoconMenuView
         mBtnMainMode = remoconBottom.findViewById<View>(R.id.btn_main_mode) as RemoconMenuView
+        mBtnExit = remoconBottom.findViewById<View>(R.id.btn_exit) as RemoconMenuView
 
         mBtnSettings!!.setIconAndTitle(R.drawable.ic_menu_settings, getString(R.string.settings_long))
         mBtnMainMode!!.setIconAndTitle(R.drawable.ic_menu_save, getString(R.string.saved_cont))
+        mBtnExit!!.setTitle(getString(R.string.exit))
 
         val remoconMenuListener = OnClickListener { v ->
             when (v.id) {
                 R.id.btn_settings -> btnSettings()
                 R.id.btn_main_mode -> btnMainMode()
+                R.id.btn_exit -> if (mBtnExit!!.isSelected) {
+                    val killIntent = Intent("sbrowser.kill")
+                    sendBroadcast(killIntent)
+                } else {
+                    Toast.makeText(applicationContext, R.string.exit_notice, Toast.LENGTH_SHORT).show()
+                    mBtnExit!!.isSelected = true
+                }
                 R.id.btn_instructions -> {
                     val i = Intent(applicationContext, InstructionsActivity::class.java)
                     i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -107,6 +116,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
         }
         mBtnSettings!!.setOnClickListener(remoconMenuListener)
         mBtnMainMode!!.setOnClickListener(remoconMenuListener)
+        mBtnExit!!.setOnClickListener(remoconMenuListener)
         findViewById<View>(R.id.btn_instructions).setOnClickListener(remoconMenuListener)
 
         mListViewHome!!.setForcedHeights(getPixelFromDip(43))
@@ -120,9 +130,6 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
         super.onWindowFocusChanged(hasFocus)
 
         if (hasFocus) {
-            // 리모콘 바운더리를 지정한다.
-            setBoundary()
-
             // TODO: 개연성 없지만 일단 급하니까 임시로..
             mListViewHome!!.setIconWidth(mLogo!!.width)
             mListViewSaved!!.setIconWidth(mLogo!!.width)
@@ -148,8 +155,9 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
             if (extras.containsKey("prev_url")) {
                 val prevUrl = extras.getString("prev_url")
                 setOnBackClickListener(object: OnClickListener {
-                    override fun onClick(p0: View?) {
+                    override fun onClick(v: View?) {
                         val i = Intent(applicationContext, WebActivity::class.java)
+                        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         i.putExtra("url", prevUrl)
                         startActivity(i)
                     }
@@ -161,8 +169,9 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
             if (extras.containsKey("next_url")) {
                 val nextUrl = extras.getString("next_url")
                 setOnFowardClickListener(object: OnClickListener {
-                    override fun onClick(p0: View?) {
+                    override fun onClick(v: View?) {
                         val i = Intent(applicationContext, WebActivity::class.java)
+                        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         i.putExtra("url", nextUrl)
                         startActivity(i)
                     }
@@ -174,8 +183,9 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
             val lastUrl = mPref!!.lastUrl
             if (lastUrl != null) {
                 setOnFowardClickListener(object: OnClickListener {
-                    override fun onClick(p0: View?) {
+                    override fun onClick(v: View?) {
                         val i = Intent(applicationContext, WebActivity::class.java)
+                        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         i.putExtra("url", lastUrl)
                         startActivity(i)
                     }
@@ -193,6 +203,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
             setMainModeHome()
 
         refreshList()
+        mBtnExit!!.isSelected = false
     }
 
     private fun btnDeleteFavorite(id: Int) {
@@ -208,12 +219,16 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
                 .show()
     }
 
-    private fun btnDeleteSaved(id: Int) {
+    private fun btnDeleteSaved(saved: SavedCont) {
         AlertDialog.Builder(this)
                 .setMessage(R.string.confirm_delete)
                 .setPositiveButton(R.string.confirm) { dialog, which ->
-                    Log.i(TAG, "delete saved cont id: " + id)
-                    mDb!!.deleteSavedCont(id)
+                    Log.i(TAG, "delete saved cont id: " + saved.mId + " , filename: " + saved.mFilename)
+                    mDb!!.deleteSavedCont(saved.mId)
+                    val file = File(Environment.getExternalStorageDirectory().toString() + "/sbrowser", saved.mFilename!!)
+                    if (file.exists())
+                        file.delete()
+
                     mListSavedCont = mDb!!.savedContList
                     mAdapterSaved!!.notifyDataSetChanged()
                 }
@@ -225,6 +240,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
         hideSettingsView()
 
         val i = Intent(applicationContext, WebActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         i.putExtra("url", "http://www.google.com")
         startActivity(i)
     }
@@ -284,7 +300,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
 
         showCVMSettings(false)
         settingsView!!.setOnCloseClickListener(object: OnClickListener {
-            override fun onClick(p0: View?) {
+            override fun onClick(v: View?) {
                 mBtnSettings!!.isSelected = false
             }
         })
@@ -411,7 +427,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
                 v.setOnClickListener { goWeb(favorite.mUrl) }
                 v.setWebViewLayoutParams(RelativeLayout.LayoutParams(favorite.mPartWidth, favorite.mPartHeight))
                 val wv = v.webView
-                wv!!.loadUrl(favorite.mUrl!!)
+                wv!!.loadUrl(favorite.mUrl)
                 v.setOnLoadRunnable(object: Runnable {
                     override fun run() {
                         wv.injectRedo(favorite.mIndexSet!!)
@@ -435,6 +451,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
 
         private fun goWeb(url: String?) {
             val i = Intent(applicationContext, WebActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             i.putExtra("url", url)
             startActivity(i)
         }
@@ -461,6 +478,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
             val v = mInflater!!.inflate(R.layout.saved_cont_item, null)
             v.findViewById<View>(R.id.btn_article).setOnClickListener {
                 val i = Intent(applicationContext, WebActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                 i.putExtra("saved_cont_id", saved.mId)
                 startActivity(i)
             }
@@ -479,7 +497,7 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
             val dateStr = getDateFromTime(java.lang.Long.valueOf(saved.mCrtDt)!!)
             savedContTitle.text = saved.mTitle + " (" + dateStr + ")"
 
-            (v.findViewById<View>(R.id.btn_delete_saved) as Button).setOnClickListener { btnDeleteSaved(saved.mId) }
+            (v.findViewById<View>(R.id.btn_delete_saved) as Button).setOnClickListener { btnDeleteSaved(saved) }
             return v
         }
 
@@ -495,13 +513,13 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
     }
 
     private fun callApi(url: String, params: String): String? {
-        Log.e(TAG, "callApi : $url $params")
+        Log.i(TAG, "callApi : $url $params")
         try {
             val post = HttpPost(url)
             post.setHeader("Content-type", "application/x-www-form-urlencoded")
             post.entity = StringEntity(params, "UTF-8")
             val result = HttpManager.execute(post, BasicResponseHandler()) as String
-            Log.e(TAG, "result : " + result)
+            Log.i(TAG, "result : " + result)
             return result
         } catch (e: Exception) {
             Log.e(TAG, url, e)
@@ -517,4 +535,5 @@ class MainActivity : BaseRemoconActivity(), DragListener, DropListener {
         private val MAIN_MODE_HOME = 0
         private val MAIN_MODE_SAVED = 1
     }
+
 }

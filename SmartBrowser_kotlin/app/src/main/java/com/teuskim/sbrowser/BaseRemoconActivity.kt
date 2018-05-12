@@ -1,7 +1,12 @@
 package com.teuskim.sbrowser
 
 import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.res.Configuration
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -13,7 +18,6 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-
 import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.widget.ShareDialog
 import com.kakao.kakaolink.v2.KakaoLinkResponse
@@ -34,6 +38,7 @@ abstract class BaseRemoconActivity : Activity() {
     private var mDisplayMetrics: DisplayMetrics? = null
     private var mPref: MiscPref? = null
     private var mShareDialog: ShareDialog? = null
+    private var mKillReceiver: KillReceiver? = null
 
     private val mListener = OnClickListener { v ->
         when (v.id) {
@@ -61,6 +66,15 @@ abstract class BaseRemoconActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         mPref = MiscPref.getInstance(applicationContext)
+        mKillReceiver = KillReceiver()
+        val ift = IntentFilter()
+        ift.addAction("sbrowser.kill")
+        registerReceiver(mKillReceiver, ift)
+    }
+
+    override fun onDestroy() {
+        unregisterReceiver(mKillReceiver)
+        super.onDestroy()
     }
 
     override fun setContentView(layoutResID: Int) {
@@ -72,7 +86,6 @@ abstract class BaseRemoconActivity : Activity() {
         mDisplayMetrics = resources.displayMetrics
 
         mRemocon = findViewById<View>(R.id.remocon_view) as RemoconView
-        mRemocon!!.setBaseLayout(findViewById(R.id.base_layout))
         findViewById<View>(R.id.input_query_form).setOnClickListener(mListener)
         findViewById<View>(R.id.btn_go).setOnClickListener(mListener)
         mBtnGoText = findViewById<View>(R.id.btn_go_text) as TextView
@@ -94,10 +107,6 @@ abstract class BaseRemoconActivity : Activity() {
         mRemocon!!.setBottomView(remoconBottom)
     }
 
-    protected fun setBoundary() {
-        mRemocon!!.setBoundary()
-    }
-
     protected fun setBtnGoImage(resId: Int) {
         mBtnGoImg!!.setImageResource(resId)
         mBtnGoImg!!.visibility = View.VISIBLE
@@ -113,8 +122,29 @@ abstract class BaseRemoconActivity : Activity() {
     override fun onStart() {
         super.onStart()
 
-        mRemocon!!.initAlphaAndPosition()
         setShareInfo()
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+
+        if (hasFocus) {
+            initRemocon()
+        }
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        initRemocon()
+    }
+
+    private fun initRemocon() {
+        // 리모콘 위치 초기화
+        val rectgle = Rect()
+        window.decorView.getWindowVisibleDisplayFrame(rectgle)
+        mRemocon!!.setWindowSize(windowWidth, windowHeight - rectgle.top)
+        mRemocon!!.initAlphaAndPosition()
     }
 
     protected fun btnInputQueryForm() {
@@ -158,7 +188,7 @@ abstract class BaseRemoconActivity : Activity() {
                 mRemocon!!.setRemoconAlpha(alpha)
                 mRemocon!!.hideRemocon()
             }
-        });
+        })
     }
 
     protected fun showRemocon() {
@@ -224,4 +254,13 @@ abstract class BaseRemoconActivity : Activity() {
             })
         })
     }
+
+    private inner class KillReceiver : BroadcastReceiver() {
+
+        override fun onReceive(context: Context, intent: Intent) {
+            finish()
+        }
+
+    }
+
 }

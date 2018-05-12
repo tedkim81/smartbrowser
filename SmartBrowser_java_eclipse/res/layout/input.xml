@@ -16,7 +16,7 @@
         >
         <EditText
 	        android:id="@+id/input_query"
-	        android:layout_width="0dip"
+	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:background="@drawable/input_remote"
@@ -24,6 +24,8 @@
 			android:textColor="#ee5128"
 			android:paddingLeft="10dip"
 			android:paddingRight="10dip"
+			android:inputType="text"
+			android:imeOptions="actionGo"
 	        />
        	<Button
        	    android:id="@+id/btn_go"
@@ -43,7 +45,7 @@
     <!-- 최근/추천 입력내용 목록 {{ -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dip"
+        android:layout_height="match_parent"
         android:layout_weight="1" 
         >
         <ListView

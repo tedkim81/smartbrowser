@@ -4,9 +4,11 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.IOException
 import java.io.InputStreamReader
+import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 import android.content.Context
+import android.content.res.Resources
 import android.os.Environment
 
 object MiscUtils {
@@ -34,9 +36,8 @@ object MiscUtils {
         val resource = context.resources
         val reader = BufferedReader(InputStreamReader(resource.openRawResource(rid)))
         val builder = StringBuilder()
-        var line: String
         try {
-            line = reader.readLine()
+            var line = reader.readLine()
             while (line != null) {
                 builder.append(line)
                 line = reader.readLine()
@@ -57,13 +58,15 @@ object MiscUtils {
      */
     fun getImageCacheDirectory(context: Context): File {
 
-        val cacheDir: File
-        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            cacheDir = File(Environment.getExternalStorageDirectory(), "/sbrowser/cache")
-        } else {
-            cacheDir = File(context.cacheDir, "/sbrowser/cache")
-        }
-        return cacheDir
+        //		File cacheDir;
+        //		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+        //			cacheDir = new File( Environment.getExternalStorageDirectory(),  "/sbrowser/cache" );
+        //		}else{
+        //			cacheDir = new File(context.getCacheDir(), "/sbrowser/cache");
+        //		}
+        //		return cacheDir;
+
+        return File(context.cacheDir, "/sbrowser/cache")
     }
 
     /**

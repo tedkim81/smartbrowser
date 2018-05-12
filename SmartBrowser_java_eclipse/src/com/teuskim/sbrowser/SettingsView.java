@@ -112,9 +112,9 @@ public class SettingsView extends LinearLayout {
 		mBtnKakao = findViewById(R.id.btn_kakao);
 		mMypageBtnLayout = findViewById(R.id.mypage_btn_layout);
 
-		mBtnFacebook.setVisibility(View.GONE);
-		mBtnTwitter.setVisibility(View.GONE);
-		mBtnKakao.setVisibility(View.GONE);
+		mBtnFacebook.setVisibility(GONE);
+		mBtnTwitter.setVisibility(GONE);
+		mBtnKakao.setVisibility(GONE);
 		
 		// 버그때문에 여기서 셋팅
 		mSeekBar.setProgressDrawable(getResources().getDrawable(R.drawable.progress));
@@ -192,13 +192,18 @@ public class SettingsView extends LinearLayout {
 	}
 	
 	public void open(){
-		startAnimation(mInAnimation);
-		setVisibility(VISIBLE);
+		if(getVisibility() != VISIBLE){
+			startAnimation(mInAnimation);
+			setVisibility(VISIBLE);
+		}
 	}
 	
 	public void close(){
-		startAnimation(mOutAnimation);
-		setVisibility(View.GONE);
+		if(getVisibility() != GONE){
+			startAnimation(mOutAnimation);
+			setVisibility(GONE);
+		}
+		
 		if(mOnCloseClickListener != null)
 			mOnCloseClickListener.onClick(null);
 	}
@@ -209,17 +214,17 @@ public class SettingsView extends LinearLayout {
 	
 	public void setFacebookClickListener(OnClickListener listener){
 		mBtnFacebook.setOnClickListener(listener);
-		mBtnFacebook.setVisibility(View.VISIBLE);
+		mBtnFacebook.setVisibility(VISIBLE);
 	}
 	
 	public void setTwitterClickListener(OnClickListener listener){
 		mBtnTwitter.setOnClickListener(listener);
-		mBtnTwitter.setVisibility(View.VISIBLE);
+		mBtnTwitter.setVisibility(VISIBLE);
 	}
 	
 	public void setKakaoClickListener(OnClickListener listener){
 		mBtnKakao.setOnClickListener(listener);
-		mBtnKakao.setVisibility(View.VISIBLE);
+		mBtnKakao.setVisibility(VISIBLE);
 	}
 	
 	public void showColorPickerView(int color, OnColorChangedListener listener){
@@ -230,18 +235,18 @@ public class SettingsView extends LinearLayout {
 			mColorPickerLayout.addView(new ColorPickerView(mContext, mColorPickerLayout.getWidth()-padding, mColorPickerLayout.getHeight()-padding));
 		}
 		((ColorPickerView)mColorPickerLayout.getChildAt(0)).init(color, listener);
-		mColorPickerLayout.setVisibility(View.VISIBLE);
+		mColorPickerLayout.setVisibility(VISIBLE);
 	}
 	
 	public void hideColorPickerView(){
 		if(mColorPickerLayout != null)
-			mColorPickerLayout.setVisibility(View.INVISIBLE);
+			mColorPickerLayout.setVisibility(INVISIBLE);
 	}
 	
 	public void hideSelectBgView(){
 		if(mSelectBgLayout != null)
-			mSelectBgLayout.setVisibility(View.GONE);
-		mSettingsMainLayout.setVisibility(View.VISIBLE);
+			mSelectBgLayout.setVisibility(GONE);
+		mSettingsMainLayout.setVisibility(VISIBLE);
 	}
 	
 	public void setOnAlphaChangedListener(OnAlphaChangedListener listener){
@@ -321,12 +326,12 @@ public class SettingsView extends LinearLayout {
 	
 	public void showCVMSettings(boolean isShow){
 		if(isShow){
-			mViewCVMSettings.setVisibility(View.VISIBLE);
-			mViewNoCVM.setVisibility(View.GONE);
+			mViewCVMSettings.setVisibility(VISIBLE);
+			mViewNoCVM.setVisibility(GONE);
 		}
 		else{
-			mViewCVMSettings.setVisibility(View.GONE);
-			mViewNoCVM.setVisibility(View.VISIBLE);
+			mViewCVMSettings.setVisibility(GONE);
+			mViewNoCVM.setVisibility(VISIBLE);
 		}
 	}
 	
@@ -335,7 +340,7 @@ public class SettingsView extends LinearLayout {
 	}
 	
 	public void showMypageBtnLayout(OnClickListener syncListener, OnClickListener initListener, OnClickListener goListener){
-		mMypageBtnLayout.setVisibility(View.VISIBLE);
+		mMypageBtnLayout.setVisibility(VISIBLE);
 		mMypageBtnLayout.findViewById(R.id.btn_mypage_sync).setOnClickListener(syncListener);
 		mMypageBtnLayout.findViewById(R.id.btn_mypage_init).setOnClickListener(initListener);
 		mMypageBtnLayout.findViewById(R.id.btn_mypage_go).setOnClickListener(goListener);
@@ -410,8 +415,8 @@ public class SettingsView extends LinearLayout {
 		else{
 			btnColorBg2.setBackgroundColor(mBgColor);
 		}
-		mSelectBgLayout.setVisibility(View.VISIBLE);
-		mSettingsMainLayout.setVisibility(View.GONE);
+		mSelectBgLayout.setVisibility(VISIBLE);
+		mSettingsMainLayout.setVisibility(GONE);
 	}
 	public static final int PATTERN_0 = 0x00000001;
 	public static final int PATTERN_1 = 0x00000002;

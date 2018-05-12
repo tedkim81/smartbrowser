@@ -16,6 +16,7 @@ import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebChromeClient.CustomViewCallback;
 import android.webkit.WebIconDatabase;
@@ -35,7 +37,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -93,6 +94,7 @@ public class WebActivity extends BaseRemoconActivity{
 	private LayoutInflater mInflater;
 	private MiscPref mPref;
 	private boolean mIsPageLoading;
+	private Handler mHandler = new Handler();
 	
 	private BroadcastReceiver mScreenReceiver = new BroadcastReceiver() {
 		
@@ -111,9 +113,11 @@ public class WebActivity extends BaseRemoconActivity{
 				case VIEW_MODE_WEBVIEW:
 				case VIEW_MODE_SOURCE:
 					i.putExtra("url", getCurrentWeb().getWebView().getOriginalUrl());
+					i.putExtra("scrolltop", getCurrentWeb().getWebView().getScrollY());
 					break;
 				case VIEW_MODE_CONTENT:
 					i.putExtra("content", getCurrentWeb().getContentView().getContent());
+					i.putExtra("scrolltop", getCurrentWeb().getContentView().getScrollTop());
 					break;
 				}
 				
@@ -139,7 +143,7 @@ public class WebActivity extends BaseRemoconActivity{
 		findViews();
 		
 		mWebWrapList = new ArrayList<WebActivity.WebWrap>();
-		addWebView();
+		addWebView(null);
 
 		WebIconDatabase.getInstance().open(getDir("icons", MODE_PRIVATE).getPath());
 		if(savedInstanceState != null)
@@ -147,6 +151,7 @@ public class WebActivity extends BaseRemoconActivity{
 		else
 			getCurrentWeb().loadByIntent(getIntent());
 		
+        CookieSyncManager.createInstance(this);
 	}
 	
 	protected void findViews(){
@@ -252,7 +257,7 @@ public class WebActivity extends BaseRemoconActivity{
 					btnViewModeSource();
 					break;
 				case R.id.btn_screen_add:
-					addWebView();
+					addWebView("http://www.google.com");
 					break;
 				}
 			}
@@ -345,7 +350,7 @@ public class WebActivity extends BaseRemoconActivity{
 		});
 	}
 	
-	private void addWebView(){
+	private void addWebView(final String startUrl){
 		WebWrap web = new WebWrap(this);
 		mWebLayout.addView(web);
 		mWebWrapList.add(web);
@@ -375,16 +380,16 @@ public class WebActivity extends BaseRemoconActivity{
 					}
 				}
 				else{
-					showWebView(webIndex);
+					showWebView(webIndex, startUrl);
 				}
 			}
 		});
 		
 		mScreenPageLayout.addView(btnPage);
-		showWebView(mCurrentWebIndex);
+		showWebView(mCurrentWebIndex, startUrl);
 	}
 	
-	private void showWebView(int webIndex){
+	private void showWebView(int webIndex, String startUrl){
 		mCurrentWebIndex = webIndex;
 		mIsDeletePage = false;
 		
@@ -395,8 +400,8 @@ public class WebActivity extends BaseRemoconActivity{
 		mWebLayout.getChildAt(mCurrentWebIndex).setVisibility(View.VISIBLE);
 		
 		String currentUrl = getCurrentWeb().getWebView().getOriginalUrl();
-		if(currentUrl == null)
-			getCurrentWeb().getWebView().loadUrl("http://www.google.com");
+		if(currentUrl == null && startUrl != null)
+			getCurrentWeb().getWebView().loadUrl(startUrl);
 		
 		int pageChildCount = mScreenPageLayout.getChildCount();
 		for(int i=0; i<pageChildCount; i++){
@@ -413,7 +418,7 @@ public class WebActivity extends BaseRemoconActivity{
 			mWebWrapList.remove(webIndex);
 			mWebLayout.removeViewAt(webIndex);
 			mScreenPageLayout.removeViewAt(webIndex);
-			showWebView(0);
+			showWebView(0, null);
 		}
 		else{
 			finish();
@@ -439,12 +444,14 @@ public class WebActivity extends BaseRemoconActivity{
 			@Override
 			public void onClick(View v) {
 				hideSettingsView();
+				getCurrentWeb().resetWebView();
 				WebView webView = getCurrentWeb().getWebView();
 				if(webView.canGoBack()){
 		    		webView.goBack();
 		    	}
 				else{
 					Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 					intent.putExtra("next_url", webView.getOriginalUrl());
 					startActivity(intent);
 				}
@@ -456,12 +463,14 @@ public class WebActivity extends BaseRemoconActivity{
 			@Override
 			public void onClick(View v) {
 				hideSettingsView();
+				getCurrentWeb().resetWebView();
 				WebView webView = getCurrentWeb().getWebView();
 				if(webView.canGoForward()){
 		    		webView.goForward();
 		    	}
 				else{
 					Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+					intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 					intent.putExtra("prev_url", webView.getOriginalUrl());
 					startActivity(intent);
 				}
@@ -469,17 +478,33 @@ public class WebActivity extends BaseRemoconActivity{
 		});
 		
 		// screen off 될때 lock screen 띄우기 위해
-        IntentFilter screenFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
-        registerReceiver(mScreenReceiver, screenFilter);
+		IntentFilter screenFilter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+	    registerReceiver(mScreenReceiver, screenFilter);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		CookieSyncManager.getInstance().startSync();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		CookieSyncManager.getInstance().stopSync();
 	}
 
 	@Override
 	protected void onStop() {
 		getCurrentWeb().getWebView().stopLoading();
-		unregisterReceiver(mScreenReceiver);
+		btnReset();
+		try{
+			unregisterReceiver(mScreenReceiver);
+		}catch(Exception e){}
+		
 		super.onStop();
 	}
-
+	
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
@@ -544,6 +569,7 @@ public class WebActivity extends BaseRemoconActivity{
 
 	private void goHome() {
 		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		intent.putExtra("prev_url", getCurrentWeb().getWebView().getOriginalUrl());
 		startActivity(intent);
 	}
@@ -655,7 +681,7 @@ public class WebActivity extends BaseRemoconActivity{
 		getCurrentWeb().btnViewModeWeb();
 	}
 
-	private void btnViewModeCont() {
+	public void btnViewModeCont() {
 		if(mViewMode != VIEW_MODE_CONTENT){
 			btnReset();
 			hideRemocon();
@@ -755,8 +781,6 @@ public class WebActivity extends BaseRemoconActivity{
 		private CustomViewCallback mCustomViewCallback;
 		private WebChromeClient mWebChromeClient;
 		
-		private Handler mHandler = new Handler();
-		
 		private String mIndexSet;
 		private int mWindowWidth;
 		private int mWindowHeight;
@@ -812,6 +836,7 @@ public class WebActivity extends BaseRemoconActivity{
 						mLayout.removeView(mCustomView);
 					}
 					mCustomView = view;
+					mCustomView.setBackgroundColor(Color.BLACK);
 					mCustomView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
 					mLayout.addView(mCustomView);
 					
@@ -831,12 +856,12 @@ public class WebActivity extends BaseRemoconActivity{
 			    
 			};
 			
-			mWebView.setClients(mWebChromeClient, new SbWebView.SbWebViewClient(context) {
+			mWebView.setClients(mWebChromeClient, new SbWebView.SbWebViewClient(context,mWebView) {
 				
 				@Override
 				public void onPageStarted(WebView view, String url, Bitmap favicon) {
 					super.onPageStarted(view, url, favicon);
-					mProgressBar.setVisibility(View.VISIBLE);
+					mProgressBar.show();
 					mProgressBar.setProgress(0);
 					hideRemocon();
 					setBtnGoImage(R.drawable.ic_remote_cancel);
@@ -846,7 +871,6 @@ public class WebActivity extends BaseRemoconActivity{
 				@Override
 				public void onPageFinished(WebView view, String url) {
 					super.onPageFinished(view, url);
-					mProgressBar.setVisibility(View.GONE);
 					setSettingsPageUrl(url);
 					setBtnGoImage(R.drawable.ic_remote_refresh);
 					mIsPageLoading = false;
@@ -898,6 +922,10 @@ public class WebActivity extends BaseRemoconActivity{
 								else{
 									html = source.replace("<head>", "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
 								}
+								
+								File dir = new File(Environment.getExternalStorageDirectory()+"/sbrowser");
+								if(dir.exists() == false)
+									dir.mkdirs();
 								
 								String filename = "sb_"+(new Date().getTime())+".html";
 								File file = new File(Environment.getExternalStorageDirectory()+"/sbrowser", filename);
@@ -961,7 +989,7 @@ public class WebActivity extends BaseRemoconActivity{
 						
 						int savedContId = extras.getInt("saved_cont_id");
 						SavedCont saved = SbDb.getInstance(getApplicationContext()).getSavedCont(savedContId);
-						mWebView.loadLocalfile(saved.mHtml);
+						mWebView.loadLocalfile(saved.mFilename);
 					}
 				}
 			}
@@ -981,7 +1009,7 @@ public class WebActivity extends BaseRemoconActivity{
 	    		return true;
 	    	}
 	    	if(mViewMode == VIEW_MODE_CONTENT || mViewMode == VIEW_MODE_SOURCE){
-	    		btnViewModeWeb();
+	    		WebActivity.this.btnViewModeWeb();
 	    		return true;
 	    	}
 	    	if(mWebView.canGoBack()){
@@ -989,6 +1017,18 @@ public class WebActivity extends BaseRemoconActivity{
 	    		return true;
 	    	}
 	    	return false;
+		}
+		
+		public void resetWebView(){
+			if(mContentView.isShowWebViewSearch()){
+	    		mContentView.hideWebViewSearch();
+	    	}
+	    	if(mCustomView != null && mCustomView.getVisibility() == View.VISIBLE){
+	    		mWebChromeClient.onHideCustomView();
+	    	}
+	    	if(mViewMode == VIEW_MODE_CONTENT || mViewMode == VIEW_MODE_SOURCE){
+	    		btnViewModeWeb();
+	    	}
 		}
 		
 		private byte[] getFaviconData(){
@@ -1016,14 +1056,15 @@ public class WebActivity extends BaseRemoconActivity{
 					float ratio = getWindowWidth() / (float)mWindowWidth;
 					int width = (int)(mSelectedWidth * ratio);
 					int height = (int)(mSelectedHeight * ratio);
+					String cookie = mWebView.getCookie();
 					Log.i(TAG, "indexSet: "+mIndexSet+" , width: "+width+" , height:"+height+" , windowWidth: "+mWindowWidth+" , windowHeight:"+mWindowHeight+" , selectedWidth: "+mSelectedWidth+" , selectedHeight:"+mSelectedHeight);
 					if(mIndexSet != null && width > 0 && height > 0){
-						SbDb.getInstance(getApplicationContext()).insertFavoritePart(url, title, mIndexSet, width, height, faviconData);
+						SbDb.getInstance(getApplicationContext()).insertFavoritePart(url, title, mIndexSet, width, height, faviconData, cookie);
 						goHome();
+						finish();
 					}
 				}
 				else{
-					// DB에 삽입 및 홈으로 이동
 					SbDb.getInstance(getApplicationContext()).insertFavoriteUrl(url, title, faviconData);
 					btnReset();
 				}

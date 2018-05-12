@@ -107,7 +107,7 @@ class SettingsView : LinearLayout {
         val listener = OnClickListener { v ->
             when (v.id) {
                 R.id.btn_close_settings -> close()
-                R.id.btn_color_bg, R.id.btn_color_bg_choose, R.id.btn_color_bg_choose_cont -> showSelectBgView(mOnBgColorChangedListener)
+                R.id.btn_color_bg, R.id.btn_color_bg_choose -> showSelectBgView(mOnBgColorChangedListener)
                 R.id.btn_color_font, R.id.btn_color_font_choose -> showColorPickerView(mFontColor, mOnFontColor1ChangedListener)
                 R.id.btn_plus_font_size -> setFontSize(mFontSize + 1)
                 R.id.btn_minus_font_size -> setFontSize(mFontSize - 1)
@@ -148,13 +148,18 @@ class SettingsView : LinearLayout {
     }
 
     fun open() {
-        startAnimation(mInAnimation)
-        visibility = View.VISIBLE
+        if (visibility != View.VISIBLE) {
+            startAnimation(mInAnimation)
+            visibility = View.VISIBLE
+        }
     }
 
     fun close() {
-        startAnimation(mOutAnimation)
-        visibility = View.GONE
+        if (visibility != View.GONE) {
+            startAnimation(mOutAnimation)
+            visibility = View.GONE
+        }
+
         if (mOnCloseClickListener != null)
             mOnCloseClickListener!!.onClick(null)
     }

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -95,7 +96,9 @@ public class InputActivity extends Activity {
 			
 			@Override
 			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-				if(event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
+				if(actionId == EditorInfo.IME_ACTION_GO
+						|| (event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER)){
+					
 					goWeb(v.getText().toString());
 					return true;
 				}
@@ -124,8 +127,9 @@ public class InputActivity extends Activity {
 		}
 		else{
 			Intent i = new Intent(getApplicationContext(), WebActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			String url;
-			if(query.contains("://")){
+			if(query.contains("://") || query.startsWith("sms:") || query.startsWith("tel:") || query.startsWith("mailto:")){
 				url = query;
 				saveInputHistory(true, url);
 			}

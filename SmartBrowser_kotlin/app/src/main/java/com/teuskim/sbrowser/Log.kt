@@ -2,7 +2,7 @@ package com.teuskim.sbrowser
 
 object Log {
 
-    private val IS_LOGGING = true
+    private val IS_LOGGING = false
 
     fun d(tag: String, msg: String) {
         if (IS_LOGGING) {

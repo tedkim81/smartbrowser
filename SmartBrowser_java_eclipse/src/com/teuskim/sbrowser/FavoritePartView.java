@@ -39,11 +39,11 @@ public class FavoritePartView extends LinearLayout {
 		mBtnArticle = findViewById(R.id.btn_article);
 		mLoadingWebView = (TextView) findViewById(R.id.loading_webview);
 		mWebView = (SbWebView) findViewById(R.id.webview);
-		mWebView.setClients(new SbWebView.SbWebChromeClient(context), new SbWebView.SbWebViewClient(context){
+		mWebView.setClients(new SbWebView.SbWebChromeClient(context), new SbWebView.SbWebViewClient(context,mWebView){
 			
 			@Override
 			public void onPageStarted(WebView view, String url, Bitmap favicon) {
-				mLoadingWebView.setVisibility(View.VISIBLE);
+				mLoadingWebView.setVisibility(VISIBLE);
 				super.onPageStarted(view, url, favicon);
 			}
 	
@@ -57,7 +57,7 @@ public class FavoritePartView extends LinearLayout {
 					
 					@Override
 					public void run() {
-						mLoadingWebView.setVisibility(View.GONE);
+						mLoadingWebView.setVisibility(GONE);
 					}
 				}, 1000);
 			}
@@ -65,9 +65,12 @@ public class FavoritePartView extends LinearLayout {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
 				Log.i(TAG, "override url: "+url);
-				Intent i = new Intent(mContext, WebActivity.class);
-				i.putExtra("url", url);
-				mContext.startActivity(i);
+				if(mLoadingWebView.getVisibility() == GONE){
+					Intent i = new Intent(mContext, WebActivity.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					i.putExtra("url", url);
+					mContext.startActivity(i);
+				}
 				return true;
 			}
 			

@@ -19,7 +19,6 @@ import android.widget.TextView
 
 class RemoconView : RelativeLayout {
 
-    private var mBaseLayout: View? = null
     private var mRemoconView: View? = null
     private var mIcDrag: View? = null
     private var mRemoconBody: View? = null
@@ -33,8 +32,12 @@ class RemoconView : RelativeLayout {
     private var mMaxLeft: Int = 0
     private var mMinBottom: Int = 0
     private var mMaxBottom: Int = 0
+    private var mWindowWidth: Int = 0
+    private var mWindowHeight: Int = 0
     private var mCurrentLeft: Int = 0
     private var mCurrentBottom: Int = 0
+    private var mTouchMoveX: Int = 0
+    private var mTouchMoveY: Int = 0
 
     private var mPref: MiscPref? = null
     private var mShowAnimation: AnimationSet? = null
@@ -90,7 +93,7 @@ class RemoconView : RelativeLayout {
             private var mDidShow: Boolean = false
 
             override fun onTouch(v: View, event: MotionEvent): Boolean {
-                if (mBaseLayout == null)
+                if (mWindowWidth == 0 || mWindowHeight == 0)
                     return false
 
                 val x = event.x.toInt()
@@ -104,6 +107,8 @@ class RemoconView : RelativeLayout {
                 val action = event.action
                 when (action) {
                     MotionEvent.ACTION_DOWN -> {
+                        mTouchMoveX = 0
+                        mTouchMoveY = 0
                         mTouchedX = x
                         mTouchedY = y
                         mTouchedLeft = left
@@ -116,14 +121,18 @@ class RemoconView : RelativeLayout {
                             mDidShow = false
                         }
                     }
-                    MotionEvent.ACTION_MOVE -> setRemoconPosition(left, bottom)
+                    MotionEvent.ACTION_MOVE -> {
+                        mTouchMoveX += left - mCurrentLeft
+                        mTouchMoveY += bottom - mCurrentBottom
+                        setRemoconPosition(left, bottom)
+                    }
                     MotionEvent.ACTION_UP -> {
                         // 마지막 위치 저장
                         mPref!!.remoconLeft = left
                         mPref!!.remoconBottom = bottom
 
                         // 클릭이었다면(별로 움직이지 않았다면) 리모콘 toggle
-                        if (Math.abs(left - mTouchedLeft) < v.width && Math.abs(bottom - mTouchedBottom) < v.width) {
+                        if (Math.abs(mTouchMoveX) + Math.abs(mTouchMoveY) < v.width/2) {
                             if (mDidShow) {
                                 mRemoconBody!!.startAnimation(mHideAnimation)
                                 hideRemocon()
@@ -147,15 +156,18 @@ class RemoconView : RelativeLayout {
         (mRemoconBody as ViewGroup).addView(v)
     }
 
-    fun setBoundary() {
+    private fun setBoundary() {
         mMinLeft = 0
-        mMinBottom = -1 * mRemoconBottom!!.height
-        mMaxLeft = mBaseLayout!!.width - mIcDrag!!.width
-        mMaxBottom = mBaseLayout!!.height - mRemoconBody!!.height
+        mMinBottom = 0
+        mMaxLeft = (mWindowWidth - mRemoconBody!!.width * 0.6).toInt()
+        mMaxBottom = mWindowHeight - mRemoconBody!!.height
     }
 
-    fun setBaseLayout(baseLayout: View) {
-        mBaseLayout = baseLayout
+    fun setWindowSize(width: Int, height: Int) {
+        mWindowWidth = width
+        mWindowHeight = height
+
+        setBoundary()
     }
 
     fun initAlphaAndPosition() {
@@ -188,17 +200,23 @@ class RemoconView : RelativeLayout {
         var bottom = bottom
         if (left == Integer.MIN_VALUE)
             left = 50
+        else if (left < mMinLeft)
+            left = mMinLeft
+        else if (left > mMaxLeft) left = mMaxLeft
+
         if (bottom == Integer.MIN_VALUE)
             bottom = 50
+        else if (bottom < mMinBottom)
+            bottom = mMinBottom
+        else if (bottom > mMaxBottom) bottom = mMaxBottom
 
-        if (left >= mMinLeft && left <= mMaxLeft && bottom >= mMinBottom && bottom <= mMaxBottom) {
-            val lp = mRemoconView!!.layoutParams as RelativeLayout.LayoutParams
-            lp.setMargins(left, 0, 0, bottom)
-            mRemoconView!!.layoutParams = lp
-            mRemoconView!!.invalidate()
-            mCurrentLeft = left
-            mCurrentBottom = bottom
-        }
+        val lp = mRemoconView!!.layoutParams as RelativeLayout.LayoutParams
+        lp.setMargins(left, 0, 0, bottom)
+        mRemoconView!!.layoutParams = lp
+        mRemoconView!!.invalidate()
+
+        mCurrentLeft = left
+        mCurrentBottom = bottom
     }
 
     fun setRemoconAlpha(alpha: Int) {

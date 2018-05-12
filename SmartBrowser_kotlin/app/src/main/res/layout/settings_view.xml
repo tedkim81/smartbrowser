@@ -1,5 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
@@ -14,7 +15,7 @@
 		android:background="@drawable/bg_settings_titlebar"
 		>
 		<TextView
-		    android:layout_width="0dip"
+		    android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:layout_marginLeft="12dip"
@@ -36,7 +37,7 @@
 	<RelativeLayout
 	    android:id="@+id/settings_content_layout"
 	    android:layout_width="match_parent"
-		android:layout_height="0dip"
+		android:layout_height="match_parent"
 		android:layout_weight="1" 
 	    >
 	    <!-- 설정 메인 {{ -->
@@ -156,7 +157,7 @@
 				            />
 				        <TextView
 				            android:id="@+id/remocon_alpha" 
-				            android:layout_width="0dip"
+				            android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:layout_weight="1"
 							android:textSize="10sp"
@@ -226,7 +227,7 @@
 							android:background="@drawable/frame_settings_thumbnail"
 							/>
 					    <Button 
-					        android:id="@+id/btn_color_bg_choose_cont"
+					        android:id="@+id/btn_color_bg_choose"
 					        android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
 							android:paddingLeft="10dip"
@@ -498,7 +499,7 @@
 			<GridView
 		        android:id="@+id/recommend_bg_layout"
 		        android:layout_width="match_parent"
-				android:layout_height="0dip"
+				android:layout_height="match_parent"
 				android:layout_weight="1"
 				android:layout_margin="5dip"
 				android:columnWidth="33dip"
@@ -535,7 +536,7 @@
 					android:layout_marginRight="30dip"
 					/>
 				<View
-				    android:layout_width="0dip"
+				    android:layout_width="match_parent"
 					android:layout_height="1dip"
 					android:layout_weight="1"
 					/>
@@ -565,7 +566,7 @@
 				>
 				<Button
 				    android:id="@+id/btn_select_bg_ok"
-				    android:layout_width="0dip"
+				    android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
 					android:text="@string/confirm"
@@ -575,7 +576,7 @@
 					/>
 				<Button
 				    android:id="@+id/btn_select_bg_cancel"
-				    android:layout_width="0dip"
+				    android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_weight="1"
 					android:layout_marginLeft="5dip"
@@ -599,7 +600,8 @@
 			android:background="#000000"
 			android:visibility="invisible"
 			android:orientation="horizontal"
-			/>
+			>
+		</LinearLayout>
 	    <!-- }} 컬러 피커가 여기에 들어간다 -->
 	    
 	</RelativeLayout>

@@ -17,8 +17,8 @@
 	<!-- }} 설정 버튼 레이아웃 -->
 	
 	<View
-		android:layout_width="0dip"
-		android:layout_height="0dip"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:layout_weight="1"
 		/>
 	
@@ -30,5 +30,20 @@
 		android:layout_marginRight="13dip"
 		/>
 	<!-- }} 저장내용/홈 버튼 레이아웃 -->
+	
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_weight="1"
+		/>
+	
+	<!-- 종료 버튼 레이아웃 {{ -->
+	<com.teuskim.sbrowser.RemoconMenuView
+		android:id="@+id/btn_exit"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="13dip"
+		/>
+	<!-- }} 종료 버튼 레이아웃 -->
     
 </LinearLayout>

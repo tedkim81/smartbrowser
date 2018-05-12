@@ -1,5 +1,7 @@
 package com.teuskim.sbrowser;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,7 +17,9 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings.Secure;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,13 +49,14 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 	
 	public static final String URL_SB = "http://smart-browser.appspot.com";
 	
-	private ImageView mIconDefault;
+	private View mIconDefault;
 	private TextView mTitleMain1;
 	private TextView mTitleMain2;
 	private MoveableListView mListViewHome;
 	private MoveableListView mListViewSaved;
 	private RemoconMenuView mBtnSettings;
 	private RemoconMenuView mBtnMainMode;
+	private RemoconMenuView mBtnExit;
 	private View mLogo;
 	
 	private List<Favorite> mListFavorite;
@@ -93,7 +98,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 	}
 	
 	protected void findViews(){
-		mIconDefault = (ImageView) findViewById(R.id.icon_default);
+		mIconDefault = findViewById(R.id.icon_default);
 		mTitleMain1 = (TextView) findViewById(R.id.title_main_1);
 		mTitleMain2 = (TextView) findViewById(R.id.title_main_2);
 		mListViewHome = (MoveableListView) findViewById(R.id.list_home);
@@ -105,9 +110,11 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 		
 		mBtnSettings = (RemoconMenuView) remoconBottom.findViewById(R.id.btn_settings);
 		mBtnMainMode = (RemoconMenuView) remoconBottom.findViewById(R.id.btn_main_mode);
+		mBtnExit = (RemoconMenuView) remoconBottom.findViewById(R.id.btn_exit);
 		
 		mBtnSettings.setIconAndTitle(R.drawable.ic_menu_settings, getString(R.string.settings_long));
 		mBtnMainMode.setIconAndTitle(R.drawable.ic_menu_save, getString(R.string.saved_cont));
+		mBtnExit.setTitle(getString(R.string.exit));
 		
 		OnClickListener remoconMenuListener = new OnClickListener() {
 			
@@ -120,6 +127,16 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 				case R.id.btn_main_mode:
 					btnMainMode();
 					break;
+				case R.id.btn_exit:
+					if(mBtnExit.isSelected()){
+						Intent killIntent = new Intent("sbrowser.kill");
+						sendBroadcast(killIntent);
+					}
+					else{
+						showToast(R.string.exit_notice);
+						mBtnExit.setSelected(true);
+					}
+					break;
 				case R.id.btn_instructions:
 					Intent i = new Intent(getApplicationContext(), InstructionsActivity.class);
 					i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -130,6 +147,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 		};
 		mBtnSettings.setOnClickListener(remoconMenuListener);
 		mBtnMainMode.setOnClickListener(remoconMenuListener);
+		mBtnExit.setOnClickListener(remoconMenuListener);
 		findViewById(R.id.btn_instructions).setOnClickListener(remoconMenuListener);
 		
 		mListViewHome.setForcedHeights(getPixelFromDip(43));
@@ -144,9 +162,6 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 		super.onWindowFocusChanged(hasFocus);
 		
 		if(hasFocus){
-			// 리모콘 바운더리를 지정한다.
-			setBoundary();
-			
 			// TODO: 개연성 없지만 일단 급하니까 임시로..
 			mListViewHome.setIconWidth(mLogo.getWidth());
 			mListViewSaved.setIconWidth(mLogo.getWidth());
@@ -178,6 +193,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 					@Override
 					public void onClick(View v) {
 						Intent i = new Intent(getApplicationContext(), WebActivity.class);
+						i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						i.putExtra("url", prevUrl);
 						startActivity(i);
 					}
@@ -194,6 +210,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 					@Override
 					public void onClick(View v) {
 						Intent i = new Intent(getApplicationContext(), WebActivity.class);
+						i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						i.putExtra("url", nextUrl);
 						startActivity(i);
 					}
@@ -211,6 +228,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 					@Override
 					public void onClick(View v) {
 						Intent i = new Intent(getApplicationContext(), WebActivity.class);
+						i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 						i.putExtra("url", lastUrl);
 						startActivity(i);
 					}
@@ -229,6 +247,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 			setMainModeHome();
 		
 		refreshList();
+		mBtnExit.setSelected(false);
 	}
 
 	private void btnDeleteFavorite(final int id){
@@ -248,15 +267,19 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 			.show();
 	}
 	
-	private void btnDeleteSaved(final int id){
+	private void btnDeleteSaved(final SavedCont saved){
 		new AlertDialog.Builder(this)
 		.setMessage(R.string.confirm_delete)
 		.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				Log.i(TAG, "delete saved cont id: "+id);
-				mDb.deleteSavedCont(id);
+				Log.i(TAG, "delete saved cont id: "+saved.mId+" , filename: "+saved.mFilename);
+				mDb.deleteSavedCont(saved.mId);
+				File file = new File(Environment.getExternalStorageDirectory()+"/sbrowser", saved.mFilename);
+				if(file.exists())
+					file.delete();
+				
 				mListSavedCont = mDb.getSavedContList();
 				mAdapterSaved.notifyDataSetChanged();
 			}
@@ -270,6 +293,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 		hideSettingsView();
 		
 		Intent i = new Intent(getApplicationContext(), WebActivity.class);
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		i.putExtra("url", "http://www.google.com");
 		startActivity(i);
 	}
@@ -362,6 +386,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 				@Override
 				public void onClick(View v) {
 					Intent i = new Intent(getApplicationContext(), WebActivity.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					i.putExtra("url", getShareUrl());
 					startActivity(i);
 				}
@@ -574,6 +599,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 		
 		private void goWeb(String url){
 			Intent i = new Intent(getApplicationContext(), WebActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			i.putExtra("url", url);
 			startActivity(i);
 		}
@@ -607,6 +633,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 				@Override
 				public void onClick(View v) {
 					Intent i = new Intent(getApplicationContext(), WebActivity.class);
+					i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 					i.putExtra("saved_cont_id", saved.mId);
 					startActivity(i);
 				}
@@ -634,7 +661,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 				
 				@Override
 				public void onClick(View v) {
-					btnDeleteSaved(saved.mId);
+					btnDeleteSaved(saved);
 				}
 			});
 			return v;
@@ -657,19 +684,27 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 	}
 	
 	private String callApi(String url, String params){
-		Log.e(TAG, "callApi : "+url+" "+params);
+		Log.i(TAG, "callApi : "+url+" "+params);
 		try{
 			HttpPost post = new HttpPost(url);
 			post.setHeader("Content-type","application/x-www-form-urlencoded");
 			post.setEntity(new StringEntity(params, "UTF-8"));
 			String result = (String) HttpManager.execute(post, new BasicResponseHandler());
-			Log.e(TAG, "result : "+result);
+			Log.i(TAG, "result : "+result);
 			return result;
 		}catch(Exception e){
 			Log.e(TAG, url, e);
 		}
 		
 		return null;
+	}
+	
+	private void setMypageFromResult(String result){
+		if(result != null && result.replaceAll("[+-]?\\d+", "").equals("")){
+			String mypage = URL_SB+"/user/mypage/"+result;
+			setSettingsPageUrl(mypage);
+			mPref.setMypage(mypage);
+		}
 	}
 	
 	private class MyidTask extends AsyncTask<String, Integer, String> {
@@ -681,13 +716,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 
 		@Override
 		protected void onPostExecute(String result) {
-			if(result != null && result.replaceAll("[+-]?\\d+", "").equals("")){
-				String mypage = URL_SB+"/user/mypage/"+result;
-				setSettingsPageUrl(mypage);
-				mPref.setMypage(mypage);
-				
-				new FavoriteTask().execute();
-			}
+			setMypageFromResult(result);
 		}
 		
 	}
@@ -718,6 +747,7 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 					}catch(Exception e){}
 				}
 				favoriteParam = jarr.toString();
+				try{ favoriteParam = URLEncoder.encode(favoriteParam, "UTF-8"); }catch(Exception e){}
 			}
 			String apiparams = "device_id="+getDeviceId()+"&favorite="+favoriteParam;
 			return callApi(URL_SB+"/user/favorite", apiparams);
@@ -725,9 +755,16 @@ public class MainActivity extends BaseRemoconActivity implements DragListener,Dr
 
 		@Override
 		protected void onPostExecute(String result) {
-			Toast.makeText(getApplicationContext(), R.string.favorite_sync_ok, Toast.LENGTH_SHORT).show();
+			setMypageFromResult(result);
+			showToast(R.string.favorite_sync_ok);
 		}
 		
+	}
+	
+	private void showToast(int resId){
+		Toast toast = Toast.makeText(getApplicationContext(), resId, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER, 0, 0);
+		toast.show();
 	}
 
 }

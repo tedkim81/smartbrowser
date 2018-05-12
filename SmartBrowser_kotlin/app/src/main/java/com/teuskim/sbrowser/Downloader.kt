@@ -1,24 +1,18 @@
 package com.teuskim.sbrowser
 
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.InputStream
-import java.net.URLEncoder
-import java.util.Date
-
+import android.content.Context
 import org.apache.http.HttpEntity
 import org.apache.http.HttpStatus
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.client.methods.HttpUriRequest
-
-import android.content.Context
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.util.*
 
 /**
- *
  * HTTP로 파일을 다운로드 한다.
- *
- * @author jonathan
  */
 class Downloader(context: Context) {
 
@@ -114,7 +108,7 @@ class Downloader(context: Context) {
 
                 entity = response.entity
 
-                var ins: InputStream? = null
+                var `in`: InputStream? = null
                 var out: FileOutputStream? = null
 
                 var contentLength: Long = 0
@@ -124,19 +118,19 @@ class Downloader(context: Context) {
 
                 try {
 
-                    ins = entity!!.content
+                    `in` = entity!!.content
                     contentLength = entity.contentLength
 
                     //받다가 중간에 끊어지면 이미 받아놓은 cache파일이 못쓰게 되므로 tmp파일에 작성하고 바꿔치기 한다.
                     val tmpFile = File(downFile.absolutePath + ".tmp")
                     out = FileOutputStream(tmpFile)
 
-                    read = ins!!.read(b)
+                    read = `in`.read(b)
                     while (read != -1) {
 
                         if (mIsStop) { //받고 있는 중에 중단 한다.
 
-                            ins!!.close()
+                            `in`.close()
                             out.close()
                             tmpFile.delete()
 
@@ -150,7 +144,7 @@ class Downloader(context: Context) {
                             mListener!!.onProgress(current, contentLength)
                         }
 
-                        read = ins!!.read(b)
+                        read = `in`.read(b)
                     }
 
                     out.flush()
@@ -166,7 +160,7 @@ class Downloader(context: Context) {
                     Log.e(TAG, "Could not save file from " + request.uri.toString(), e)
 
                 } finally {
-                    IOUtils.closeStream(ins)
+                    IOUtils.closeStream(`in`)
                     IOUtils.closeStream(out)
                 }
 
@@ -212,7 +206,7 @@ class Downloader(context: Context) {
         private val BUFFER_SIZE = 8 * 1024
 
         fun getDefaultFile(dir: File, strUrl: String): File {
-            return File(dir, URLEncoder.encode(strUrl).replace(".", "_"))
+            return File(dir, "file_" + MD5.encode(strUrl))
         }
     }
 }

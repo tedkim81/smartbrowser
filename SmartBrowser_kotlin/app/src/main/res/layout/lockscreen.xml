@@ -8,7 +8,7 @@
 	<!-- 잠금화면 내용영역 {{ -->
 	<RelativeLayout 
 	    android:layout_width="match_parent"
-		android:layout_height="0dip"
+		android:layout_height="match_parent"
 		android:layout_weight="1"
 	    >
 	    <!-- 웹뷰 내용 영역 {{ -->
@@ -49,17 +49,31 @@
 	    <!-- 왼쪽 잠금해제 버튼 {{ -->
 	    <RelativeLayout
 	        android:id="@+id/btnlayout_unlock_left"
-	        android:layout_width="0dip"
+	        android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			>
-	        <Button 
+	        <ImageView 
 			    android:id="@+id/btn_unlock_left"
 			    android:layout_width="60dip"
 				android:layout_height="60dip"
 				android:layout_alignParentLeft="true"
-				android:background="@drawable/btn_lockscreen_unlock_01"
+				android:src="@drawable/btn_lockscreen_unlock_01"
+				android:scaleType="fitXY"
 			    />
+	        <TextView
+	            android:id="@+id/text_unlock_left"
+			    android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				android:layout_alignParentLeft="true"
+				android:layout_alignBottom="@id/btn_unlock_left"
+				android:layout_marginBottom="12dip"
+				android:gravity="center_horizontal"
+				android:text="@string/lock_release_double"
+				android:textColor="#ffffff"
+				android:textSize="9sp"
+				android:textStyle="bold"
+				/>
 	    </RelativeLayout>
 	    
 	    <!-- }} 왼쪽 잠금해제 버튼 -->
@@ -91,17 +105,31 @@
 	    <!-- 오른쪽 잠금해제 버튼 {{ -->
 	    <RelativeLayout
 	        android:id="@+id/btnlayout_unlock_right"
-	        android:layout_width="0dip"
+	        android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_weight="1"
 			>
-	        <Button 
+	        <ImageView 
 			    android:id="@+id/btn_unlock_right"
 			    android:layout_width="60dip"
 				android:layout_height="60dip"
 				android:layout_alignParentRight="true"
-				android:background="@drawable/btn_lockscreen_unlock_01"
+				android:src="@drawable/btn_lockscreen_unlock_01"
+				android:scaleType="fitXY"
 			    />
+	        <TextView
+	            android:id="@+id/text_unlock_right"
+			    android:layout_width="60dip"
+				android:layout_height="wrap_content"
+				android:layout_alignParentRight="true"
+				android:layout_alignBottom="@id/btn_unlock_right"
+				android:layout_marginBottom="12dip"
+				android:gravity="center_horizontal"
+				android:text="@string/lock_release_double"
+				android:textColor="#ffffff"
+				android:textSize="9sp"
+				android:textStyle="bold"
+				/>
 	    </RelativeLayout>
 	    <!-- }} 오른쪽 잠금해제 버튼 -->
 	    

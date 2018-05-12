@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 public class RemoconView extends RelativeLayout {
 	
-	private View mBaseLayout;
 	private View mRemoconView;
 	private View mIcDrag;
 	private View mRemoconBody;
@@ -33,6 +32,8 @@ public class RemoconView extends RelativeLayout {
 	private int mMaxLeft;
 	private int mMinBottom;
 	private int mMaxBottom;
+	private int mWindowWidth;
+	private int mWindowHeight;
 	
 	private MiscPref mPref;
 	
@@ -92,7 +93,7 @@ public class RemoconView extends RelativeLayout {
 			
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				if(mBaseLayout == null)
+				if(mWindowWidth == 0 || mWindowHeight == 0)
 					return false;
 				
 				int x = (int)event.getX();
@@ -101,7 +102,7 @@ public class RemoconView extends RelativeLayout {
 				if(mTouchedY == Integer.MIN_VALUE) mTouchedY = x;
 				
 				int left = mRemoconView.getLeft() + x - mTouchedX;
-				int bottom = mBaseLayout.getHeight() - mRemoconView.getTop() - mRemoconView.getHeight() - y + mTouchedY;
+				int bottom = mWindowHeight - mRemoconView.getTop() - mRemoconView.getHeight() - y + mTouchedY;
 				
 				int action = event.getAction();
 				switch(action){
@@ -159,15 +160,18 @@ public class RemoconView extends RelativeLayout {
 		((ViewGroup)mRemoconBody).addView(v);
 	}
 	
-	public void setBoundary(){
+	private void setBoundary(){
 		mMinLeft = 0;
-		mMinBottom = -1 * mRemoconBottom.getHeight();
-		mMaxLeft = mBaseLayout.getWidth() - mIcDrag.getWidth();
-		mMaxBottom = mBaseLayout.getHeight() - mRemoconBody.getHeight();
+		mMinBottom = 0;
+		mMaxLeft = (int)(mWindowWidth - (mRemoconBody.getWidth()*0.6));
+		mMaxBottom = mWindowHeight - mRemoconBody.getHeight();
 	}
 	
-	public void setBaseLayout(View baseLayout){
-		mBaseLayout = baseLayout;
+	public void setWindowSize(int width, int height){
+		mWindowWidth = width;
+		mWindowHeight = height;
+		
+		setBoundary();
 	}
 	
 	public void initAlphaAndPosition(){
@@ -196,17 +200,18 @@ public class RemoconView extends RelativeLayout {
 	}
 	
 	private void setRemoconPosition(int left, int bottom){
-		if(left == Integer.MIN_VALUE)
-			left = 50;
-		if(bottom == Integer.MIN_VALUE)
-			bottom = 50;
+		if(left == Integer.MIN_VALUE) left = 50;
+		else if(left < mMinLeft) left = mMinLeft;
+		else if(left > mMaxLeft) left = mMaxLeft;
 		
-		if(left >= mMinLeft && left <= mMaxLeft && bottom >= mMinBottom && bottom <= mMaxBottom){
-			RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mRemoconView.getLayoutParams();
-			lp.setMargins(left, 0, 0, bottom);
-			mRemoconView.setLayoutParams(lp);
-			mRemoconView.invalidate();
-		}
+		if(bottom == Integer.MIN_VALUE) bottom = 50;
+		else if(bottom < mMinBottom) bottom = mMinBottom;
+		else if(bottom > mMaxBottom) bottom = mMaxBottom;
+		
+		RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mRemoconView.getLayoutParams();
+		lp.setMargins(left, 0, 0, bottom);
+		mRemoconView.setLayoutParams(lp);
+		mRemoconView.invalidate();
 	}
 	
 	public void setRemoconAlpha(int alpha){

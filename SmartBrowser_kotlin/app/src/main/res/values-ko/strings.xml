@@ -6,6 +6,7 @@
     <string name="cancel">취소</string>
     <string name="search">검색</string>
     <string name="translate">번역</string>
+    <string name="copy">복사</string>
     <string name="sns_sbrowser_caption">즐겨찾는 페이지가 모여있어요.</string>
     <string name="fb_login_ok">페이스북에 로그인 했습니다.</string>
     <string name="twitter_login_ok">트위터에 로그인 했습니다.</string>
@@ -16,6 +17,8 @@
     <string name="settings_short">설정</string>
     <string name="settings_long">환경설정</string>
     <string name="saved_cont">저장내용</string>
+    <string name="exit">종료</string>
+    <string name="exit_notice">종료 버튼을 한번더 누르면 앱이 종료됩니다.</string>
     <string name="home">홈</string>
     <string name="add">추가</string>
     <string name="view">보기</string>
@@ -32,6 +35,9 @@
     <string name="notice">알림</string>
     <string name="share">공유하기</string>
     <string name="share_home_text">보고 계신 페이지를 페이스북이나 카카오톡으로 친구에게 공유하실 수 있습니다.</string>
+    <string name="share_fb_title">페이스북 공유하기</string>
+    <string name="share_twitter_title">트위터 공유하기</string>
+    <string name="share_kakao_title">카카오톡 공유하기</string>
     <string name="share_web_text">웹페이지를 공유합니다.</string>
     <string name="share_fb_ok">페이스북에 공유 했습니다.</string>
     <string name="share_fb_fail">페이스북에 공유하지 못했습니다.</string>
@@ -76,6 +82,11 @@
     <string name="twitter_pw">트위터 비밀번호</string>
     <string name="pw_open">비밀번호를 표시합니다.</string>
     <string name="login">로그인</string>
+    <string name="icon_text">스마트\n브라우저</string>
+    <string name="lock_release_double">더블터치</string>
+    <string name="lock_release_onemore">한번더!</string>
+    <string name="toast_copy_clipboard">클립보드에 복사했습니다.</string>
+    
     
     <string name="instructions">사용 설명서</string>
     <string name="inst_num_1">(1)</string>

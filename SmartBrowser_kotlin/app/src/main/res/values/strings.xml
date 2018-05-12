@@ -5,7 +5,8 @@
     <string name="confirm">OK</string>
     <string name="cancel">Cancel</string>
     <string name="search">Search</string>
-    <string name="translate">Translate</string>
+    <string name="translate">Trans</string>
+    <string name="copy">Copy</string>
     <string name="sns_sbrowser_caption">Here are my favorites.</string>
     <string name="fb_login_ok">You logged in to Facebook.</string>
     <string name="twitter_login_ok">You logged in to Twitter.</string>
@@ -16,6 +17,8 @@
     <string name="settings_short">Set</string>
     <string name="settings_long">Settings</string>
     <string name="saved_cont">Saved</string>
+    <string name="exit">Exit</string>
+    <string name="exit_notice">Press the exit button one more.</string>
     <string name="home">Home</string>
     <string name="add">Add</string>
     <string name="view">View</string>
@@ -32,6 +35,9 @@
     <string name="notice">Notice</string>
     <string name="share">Share</string>
     <string name="share_home_text">You can share your current page with friends on Facebook or Kakaotalk.</string>
+    <string name="share_fb_title">Share on Facebook</string>
+    <string name="share_twitter_title">Share on Twitter</string>
+    <string name="share_kakao_title">Share on KakaoTalk</string>
     <string name="share_web_text">I share this web page.</string>
     <string name="share_fb_ok">Share on Facebook.</string>
     <string name="share_fb_fail">Share on Facebook failed.</string>
@@ -76,6 +82,10 @@
     <string name="twitter_pw">Twitter Password</string>
     <string name="pw_open">Show password</string>
     <string name="login">Login</string>
+    <string name="icon_text">Smart\nBrowser</string>
+    <string name="lock_release_double">Touch!</string>
+    <string name="lock_release_onemore">OneMore!</string>
+    <string name="toast_copy_clipboard">copied to clipboard.</string>
     
     <string name="instructions">Instructions</string>
     <string name="inst_num_1">(1)</string>

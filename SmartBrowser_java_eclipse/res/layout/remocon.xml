@@ -46,7 +46,7 @@
 	        
 	       	<!-- 입력 및 이동버튼 레이아웃 {{ -->
 	       	<LinearLayout
-		        android:layout_width="0dip"
+		        android:layout_width="match_parent"
 		        android:layout_height="match_parent"
 		        android:layout_weight="1"
 		        android:gravity="center_vertical"
@@ -54,7 +54,7 @@
 		        >
 		        <!-- 입력영역(터치하면 실제입력영역으로 대치된다.) {{ -->
 		        <LinearLayout
-		            android:layout_width="0dip"
+		            android:layout_width="match_parent"
 			        android:layout_height="32dip"
 			        android:layout_weight="1"
 			        android:layout_marginLeft="5dip"
@@ -74,7 +74,7 @@
 		            <!-- 입력하세요 텍스트 {{ -->
 		            <TextView
 		                android:id="@+id/input_query_form"
-		                android:layout_width="0dip"
+		                android:layout_width="match_parent"
 			        	android:layout_height="wrap_content"
 			        	android:layout_weight="1"
 			        	android:layout_marginLeft="2dip"

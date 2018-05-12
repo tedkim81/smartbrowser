@@ -61,13 +61,15 @@ public class MiscUtils {
 	 */
 	public static File getImageCacheDirectory(Context context){
 		
-		File cacheDir;
-		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-			cacheDir = new File( Environment.getExternalStorageDirectory(),  "/sbrowser/cache" );
-		}else{
-			cacheDir = new File(context.getCacheDir(), "/sbrowser/cache");
-		}
-		return cacheDir;
+//		File cacheDir;
+//		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+//			cacheDir = new File( Environment.getExternalStorageDirectory(),  "/sbrowser/cache" );
+//		}else{
+//			cacheDir = new File(context.getCacheDir(), "/sbrowser/cache");
+//		}
+//		return cacheDir;
+		
+		return new File(context.getCacheDir(), "/sbrowser/cache");
 	}
 	
 	/**

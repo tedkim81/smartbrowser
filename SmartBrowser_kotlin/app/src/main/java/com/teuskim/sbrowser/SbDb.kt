@@ -1,8 +1,5 @@
 package com.teuskim.sbrowser
 
-import java.util.ArrayList
-import java.util.Date
-
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -10,6 +7,7 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteDatabase.CursorFactory
 import android.database.sqlite.SQLiteOpenHelper
+import java.util.*
 
 class SbDb private constructor(context: Context)//mContext = context;
 {
@@ -29,7 +27,7 @@ class SbDb private constructor(context: Context)//mContext = context;
     val favoriteList: List<Favorite>
         get() {
             val list = ArrayList<Favorite>()
-            val cursor = mDb!!.query(Favorite.TABLE_NAME, arrayOf(Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM), null, null, null, null, Favorite.ORDER_NUM)
+            val cursor = mDb!!.query(Favorite.TABLE_NAME, arrayOf(Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM, Favorite.COOKIE), null, null, null, null, Favorite.ORDER_NUM)
             if (cursor.moveToFirst()) {
                 do {
                     val favorite = getFavorite(cursor)
@@ -51,16 +49,17 @@ class SbDb private constructor(context: Context)//mContext = context;
     val savedContList: List<SavedCont>
         get() {
             val list = ArrayList<SavedCont>()
-            val cursor = mDb!!.query(SavedCont.TABLE_NAME, arrayOf(SavedCont._ID, SavedCont.TITLE, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM), null, null, null, null, SavedCont.ORDER_NUM)
+            val cursor = mDb!!.query(SavedCont.TABLE_NAME, arrayOf(SavedCont._ID, SavedCont.TITLE, SavedCont.FILENAME, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM), null, null, null, null, SavedCont.ORDER_NUM)
             if (cursor.moveToFirst()) {
                 do {
                     val savedCont = SavedCont()
                     savedCont.mId = cursor.getInt(0)
                     savedCont.mTitle = cursor.getString(1)
-                    savedCont.mSize = cursor.getInt(2)
-                    savedCont.mThumb = cursor.getBlob(3)
-                    savedCont.mCrtDt = cursor.getString(4)
-                    savedCont.mOrderNum = cursor.getInt(5)
+                    savedCont.mFilename = cursor.getString(2)
+                    savedCont.mSize = cursor.getInt(3)
+                    savedCont.mThumb = cursor.getBlob(4)
+                    savedCont.mCrtDt = cursor.getString(5)
+                    savedCont.mOrderNum = cursor.getInt(6)
                     list.add(savedCont)
                 } while (cursor.moveToNext())
             }
@@ -95,7 +94,7 @@ class SbDb private constructor(context: Context)//mContext = context;
         return true
     }
 
-    fun insertFavoritePart(url: String, title: String, indexSet: String, width: Int, height: Int, thumb: ByteArray): Boolean {
+    fun insertFavoritePart(url: String, title: String, indexSet: String, width: Int, height: Int, thumb: ByteArray, cookie: String): Boolean {
 
         val values = ContentValues()
         values.put(Favorite.URL, url)
@@ -105,6 +104,7 @@ class SbDb private constructor(context: Context)//mContext = context;
         values.put(Favorite.PART_WIDTH, width)
         values.put(Favorite.PART_HEIGHT, height)
         values.put(Favorite.THUMB, thumb)
+        values.put(Favorite.COOKIE, cookie)
         values.put(Favorite.CRT_DT, Date().time)
         values.put(Favorite.ORDER_NUM, favoriteNextOrderNum)
 
@@ -137,13 +137,14 @@ class SbDb private constructor(context: Context)//mContext = context;
         favorite.mPartHeight = cursor.getInt(7)
         favorite.mCrtDt = cursor.getString(8)
         favorite.mOrderNum = cursor.getInt(9)
+        favorite.mCookie = cursor.getString(10)
         return favorite
     }
 
     fun getFavorite(id: Int): Favorite? {
         var favorite: Favorite? = null
         try {
-            val cursor = mDb!!.query(Favorite.TABLE_NAME, arrayOf(Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM), Favorite._ID + "=?", arrayOf("" + id), null, null, null)
+            val cursor = mDb!!.query(Favorite.TABLE_NAME, arrayOf(Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM, Favorite.COOKIE), Favorite._ID + "=?", arrayOf("" + id), null, null, null)
 
             if (cursor.moveToFirst()) {
                 favorite = getFavorite(cursor)
@@ -155,12 +156,12 @@ class SbDb private constructor(context: Context)//mContext = context;
         return favorite
     }
 
-    fun insertSavedCont(title: String, html: String, thumb: ByteArray): Boolean {
+    fun insertSavedCont(title: String, filename: String, thumb: ByteArray): Boolean {
 
         val values = ContentValues()
         values.put(SavedCont.TITLE, title)
-        values.put(SavedCont.HTML, html)
-        values.put(SavedCont.SIZE, html.toByteArray().size)
+        values.put(SavedCont.FILENAME, filename)
+        values.put(SavedCont.SIZE, 0)
         values.put(SavedCont.THUMB, thumb)
         values.put(SavedCont.CRT_DT, Date().time)
         values.put(SavedCont.ORDER_NUM, savedContNextOrderNum)
@@ -185,13 +186,13 @@ class SbDb private constructor(context: Context)//mContext = context;
     fun getSavedCont(id: Int): SavedCont? {
         var saved: SavedCont? = null
         try {
-            val cursor = mDb!!.query(SavedCont.TABLE_NAME, arrayOf(SavedCont._ID, SavedCont.TITLE, SavedCont.HTML, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM), SavedCont._ID + "=?", arrayOf("" + id), null, null, null)
+            val cursor = mDb!!.query(SavedCont.TABLE_NAME, arrayOf(SavedCont._ID, SavedCont.TITLE, SavedCont.FILENAME, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM), SavedCont._ID + "=?", arrayOf("" + id), null, null, null)
 
             if (cursor.moveToFirst()) {
                 saved = SavedCont()
                 saved.mId = cursor.getInt(0)
                 saved.mTitle = cursor.getString(1)
-                saved.mHtml = cursor.getString(2)
+                saved.mFilename = cursor.getString(2)
                 saved.mSize = cursor.getInt(3)
                 saved.mThumb = cursor.getBlob(4)
                 saved.mCrtDt = cursor.getString(5)
@@ -313,6 +314,9 @@ class SbDb private constructor(context: Context)//mContext = context;
 
         override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
             // 버전 업그레이드 할때 필요한 동작은 여기에 추가.
+            if (oldVersion == 1 && newVersion == 2) {
+                db.execSQL("ALTER TABLE " + Favorite.TABLE_NAME + " ADD COLUMN " + Favorite.COOKIE + " TEXT")
+            }
         }
     }
 
@@ -332,6 +336,7 @@ class SbDb private constructor(context: Context)//mContext = context;
         var mPartHeight: Int = 0
         var mCrtDt: String? = null
         var mOrderNum: Int = 0
+        var mCookie: String? = null
 
         companion object {
 
@@ -346,6 +351,7 @@ class SbDb private constructor(context: Context)//mContext = context;
             val PART_HEIGHT = "part_height"
             val CRT_DT = "crt_dt"
             val ORDER_NUM = "order_num"
+            val COOKIE = "cookie"
 
             val TYPE_URL = 0
             val TYPE_PART = 1
@@ -361,7 +367,8 @@ class SbDb private constructor(context: Context)//mContext = context;
                             + PART_WIDTH + " INTEGER, "
                             + PART_HEIGHT + " INTEGER, "
                             + CRT_DT + " TEXT, "
-                            + ORDER_NUM + " INTEGER"
+                            + ORDER_NUM + " INTEGER, "
+                            + COOKIE + " TEXT"
                             + ");")
 
             fun onCreate(db: SQLiteDatabase) {
@@ -377,7 +384,7 @@ class SbDb private constructor(context: Context)//mContext = context;
 
         var mId: Int = 0
         var mTitle: String? = null
-        var mHtml: String? = null
+        var mFilename: String? = null
         var mSize: Int = 0
         var mThumb: ByteArray? = null
         var mCrtDt: String? = null
@@ -388,8 +395,8 @@ class SbDb private constructor(context: Context)//mContext = context;
             val TABLE_NAME = "saved_cont"
             val _ID = "_id"
             val TITLE = "title"
-            val HTML = "html"
-            val SIZE = "size"
+            val FILENAME = "html"  // 실제로는 파일명으로 사용. 최초 설계시 실수
+            val SIZE = "size"  // 실제로는 사용하지 않는다.
             val THUMB = "thumb"
             val CRT_DT = "crt_dt"
             val ORDER_NUM = "order_num"
@@ -398,7 +405,7 @@ class SbDb private constructor(context: Context)//mContext = context;
                     "CREATE TABLE " + TABLE_NAME + "( "
                             + _ID + " INTEGER primary key autoincrement, "
                             + TITLE + " TEXT, "
-                            + HTML + " TEXT, "
+                            + FILENAME + " TEXT, "
                             + SIZE + " INTEGER, "
                             + THUMB + " BLOB, "
                             + CRT_DT + " TEXT, "
@@ -469,7 +476,7 @@ class SbDb private constructor(context: Context)//mContext = context;
         private val TAG = "SbDb"
         private val DATABASE_NAME = "sbrowser.db"
 
-        private val DATABASE_VERSION = 1
+        private val DATABASE_VERSION = 2
         private var sInstance: SbDb? = null
 
         fun getInstance(context: Context): SbDb? {

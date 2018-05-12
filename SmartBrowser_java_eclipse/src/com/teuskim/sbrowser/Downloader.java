@@ -73,7 +73,7 @@ public class Downloader {
 	}
 	
 	public static File getDefaultFile(File dir, String strUrl){
-		return new File(dir,  URLEncoder.encode(strUrl).replace(".", "_"));
+		return new File(dir,  "file_"+MD5.encode(strUrl));
 	}
 	
 	public void stop(){

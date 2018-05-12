@@ -1,11 +1,5 @@
 package com.teuskim.sbrowser
 
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileWriter
-import java.util.ArrayList
-import java.util.Date
-
 import android.app.PendingIntent
 import android.app.PendingIntent.CanceledException
 import android.content.BroadcastReceiver
@@ -15,32 +9,23 @@ import android.content.IntentFilter
 import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Bitmap.CompressFormat
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
+import android.view.*
 import android.view.View.OnClickListener
-import android.view.Window
-import android.webkit.JavascriptInterface
-import android.webkit.WebChromeClient
+import android.webkit.*
 import android.webkit.WebChromeClient.CustomViewCallback
-import android.webkit.WebIconDatabase
-import android.webkit.WebView
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
-
+import android.widget.*
 import com.teuskim.sbrowser.ColorPickerView.ColorChange
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileWriter
+import java.util.*
 
 class WebActivity : BaseRemoconActivity() {
     protected var mViewMode = VIEW_MODE_WEBVIEW
@@ -83,6 +68,7 @@ class WebActivity : BaseRemoconActivity() {
     private var mInflater: LayoutInflater? = null
     private var mPref: MiscPref? = null
     private var mIsPageLoading: Boolean = false
+    private val mHandler = Handler()
 
     private val mScreenReceiver = object : BroadcastReceiver() {
 
@@ -97,8 +83,14 @@ class WebActivity : BaseRemoconActivity() {
                     i.putExtra("view_mode", mViewMode)
 
                 when (mViewMode) {
-                    VIEW_MODE_WEBVIEW, VIEW_MODE_SOURCE -> i.putExtra("url", currentWeb.webView!!.originalUrl)
-                    VIEW_MODE_CONTENT -> i.putExtra("content", currentWeb.contentView!!.content)
+                    VIEW_MODE_WEBVIEW, VIEW_MODE_SOURCE -> {
+                        i.putExtra("url", currentWeb.webView!!.originalUrl)
+                        i.putExtra("scrolltop", currentWeb.webView!!.scrollY)
+                    }
+                    VIEW_MODE_CONTENT -> {
+                        i.putExtra("content", currentWeb.contentView!!.content)
+                        i.putExtra("scrolltop", currentWeb.contentView!!.scrollTop)
+                    }
                 }
 
                 val pi = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -118,7 +110,7 @@ class WebActivity : BaseRemoconActivity() {
     protected val addTitle: String
         get() = mInputAddTitle!!.text.toString()
 
-    protected override val shareUrl: String?
+    protected override val shareUrl: String
         get() = currentWeb.webView!!.originalUrl
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -132,7 +124,7 @@ class WebActivity : BaseRemoconActivity() {
         findViews()
 
         mWebWrapList = ArrayList()
-        addWebView()
+        addWebView(null)
 
         WebIconDatabase.getInstance().open(getDir("icons", Context.MODE_PRIVATE).path)
         if (savedInstanceState != null)
@@ -140,6 +132,7 @@ class WebActivity : BaseRemoconActivity() {
         else
             currentWeb.loadByIntent(intent)
 
+        CookieSyncManager.createInstance(this)
     }
 
     protected fun findViews() {
@@ -217,7 +210,7 @@ class WebActivity : BaseRemoconActivity() {
                 R.id.btn_view_mode_web -> btnViewModeWeb()
                 R.id.btn_view_mode_cont -> btnViewModeCont()
                 R.id.btn_view_mode_source -> btnViewModeSource()
-                R.id.btn_screen_add -> addWebView()
+                R.id.btn_screen_add -> addWebView("http://www.google.com")
             }
         }
         mBtnSettings!!.setOnClickListener(remoconMenuListener)
@@ -291,13 +284,13 @@ class WebActivity : BaseRemoconActivity() {
         }
 
         settingsView.setOnCloseClickListener(object: OnClickListener {
-            override fun onClick(p0: View?) {
+            override fun onClick(v: View?) {
                 mBtnSettings!!.isSelected = false
             }
         })
     }
 
-    private fun addWebView() {
+    private fun addWebView(startUrl: String?) {
         val web = WebWrap(this)
         mWebLayout!!.addView(web)
         mWebWrapList!!.add(web)
@@ -323,15 +316,15 @@ class WebActivity : BaseRemoconActivity() {
                     (v as TextView).text = "X"
                 }
             } else {
-                showWebView(webIndex)
+                showWebView(webIndex, startUrl)
             }
         }
 
         mScreenPageLayout!!.addView(btnPage)
-        showWebView(mCurrentWebIndex)
+        showWebView(mCurrentWebIndex, startUrl)
     }
 
-    private fun showWebView(webIndex: Int) {
+    private fun showWebView(webIndex: Int, startUrl: String?) {
         mCurrentWebIndex = webIndex
         mIsDeletePage = false
 
@@ -342,8 +335,8 @@ class WebActivity : BaseRemoconActivity() {
         mWebLayout!!.getChildAt(mCurrentWebIndex).visibility = View.VISIBLE
 
         val currentUrl = currentWeb.webView!!.originalUrl
-        if (currentUrl == null)
-            currentWeb.webView!!.loadUrl("http://www.google.com")
+        if (currentUrl == null && startUrl != null)
+            currentWeb.webView!!.loadUrl(startUrl)
 
         val pageChildCount = mScreenPageLayout!!.childCount
         for (i in 0 until pageChildCount) {
@@ -360,7 +353,7 @@ class WebActivity : BaseRemoconActivity() {
             mWebWrapList!!.removeAt(webIndex)
             mWebLayout!!.removeViewAt(webIndex)
             mScreenPageLayout!!.removeViewAt(webIndex)
-            showWebView(0)
+            showWebView(0, null)
         } else {
             finish()
         }
@@ -375,13 +368,15 @@ class WebActivity : BaseRemoconActivity() {
         super.onStart()
 
         setOnBackClickListener(object: OnClickListener {
-            override fun onClick(p0: View?) {
+            override fun onClick(v: View?) {
                 hideSettingsView()
+                currentWeb.resetWebView()
                 val webView = currentWeb.webView
                 if (webView!!.canGoBack()) {
                     webView.goBack()
                 } else {
                     val intent = Intent(applicationContext, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                     intent.putExtra("next_url", webView.originalUrl)
                     startActivity(intent)
                 }
@@ -389,13 +384,15 @@ class WebActivity : BaseRemoconActivity() {
         })
 
         setOnFowardClickListener(object: OnClickListener {
-            override fun onClick(p0: View?) {
+            override fun onClick(v: View?) {
                 hideSettingsView()
+                currentWeb.resetWebView()
                 val webView = currentWeb.webView
                 if (webView!!.canGoForward()) {
                     webView.goForward()
                 } else {
                     val intent = Intent(applicationContext, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
                     intent.putExtra("prev_url", webView.originalUrl)
                     startActivity(intent)
                 }
@@ -407,9 +404,24 @@ class WebActivity : BaseRemoconActivity() {
         registerReceiver(mScreenReceiver, screenFilter)
     }
 
+    override fun onResume() {
+        super.onResume()
+        CookieSyncManager.getInstance().startSync()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        CookieSyncManager.getInstance().stopSync()
+    }
+
     override fun onStop() {
         currentWeb.webView!!.stopLoading()
-        unregisterReceiver(mScreenReceiver)
+        btnReset()
+        try {
+            unregisterReceiver(mScreenReceiver)
+        } catch (e: Exception) {
+        }
+
         super.onStop()
     }
 
@@ -471,6 +483,7 @@ class WebActivity : BaseRemoconActivity() {
 
     private fun goHome() {
         val intent = Intent(applicationContext, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
         intent.putExtra("prev_url", currentWeb.webView!!.originalUrl)
         startActivity(intent)
     }
@@ -576,7 +589,7 @@ class WebActivity : BaseRemoconActivity() {
         currentWeb.btnViewModeWeb()
     }
 
-    private fun btnViewModeCont() {
+    fun btnViewModeCont() {
         if (mViewMode != VIEW_MODE_CONTENT) {
             btnReset()
             hideRemocon()
@@ -673,8 +686,6 @@ class WebActivity : BaseRemoconActivity() {
         private var mCustomViewCallback: CustomViewCallback? = null
         private var mWebChromeClient: WebChromeClient? = null
 
-        private val mHandler = Handler()
-
         private var mIndexSet: String? = null
         private var mWindowWidth: Int = 0
         private var mWindowHeight: Int = 0
@@ -715,7 +726,7 @@ class WebActivity : BaseRemoconActivity() {
             mLayout = findViewById<View>(R.id.webview_layout) as RelativeLayout
 
             mProgressBar!!.setStopListener(object: OnTouchListener {
-                override fun onTouch(view: View?, event: MotionEvent?): Boolean {
+                override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                     if (event!!.action == MotionEvent.ACTION_DOWN) {
                         webView!!.stopLoading()
                     }
@@ -735,6 +746,7 @@ class WebActivity : BaseRemoconActivity() {
                         mLayout!!.removeView(mCustomView)
                     }
                     mCustomView = view
+                    mCustomView!!.setBackgroundColor(Color.BLACK)
                     mCustomView!!.layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT)
                     mLayout!!.addView(mCustomView)
 
@@ -753,11 +765,11 @@ class WebActivity : BaseRemoconActivity() {
 
             }
 
-            webView!!.setClients(mWebChromeClient!!, object : SbWebView.SbWebViewClient(context) {
+            webView!!.setClients(mWebChromeClient!!, object : SbWebView.SbWebViewClient(context, webView!!) {
 
                 override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
                     super.onPageStarted(view, url, favicon)
-                    mProgressBar!!.visibility = View.VISIBLE
+                    mProgressBar!!.show()
                     mProgressBar!!.setProgress(0)
                     hideRemocon()
                     setBtnGoImage(R.drawable.ic_remote_cancel)
@@ -766,7 +778,6 @@ class WebActivity : BaseRemoconActivity() {
 
                 override fun onPageFinished(view: WebView, url: String) {
                     super.onPageFinished(view, url)
-                    mProgressBar!!.visibility = View.GONE
                     setSettingsPageUrl(url)
                     setBtnGoImage(R.drawable.ic_remote_refresh)
                     mIsPageLoading = false
@@ -805,6 +816,10 @@ class WebActivity : BaseRemoconActivity() {
                             } else {
                                 html = source.replace("<head>", "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />")
                             }
+
+                            val dir = File(Environment.getExternalStorageDirectory().toString() + "/sbrowser")
+                            if (dir.exists() == false)
+                                dir.mkdirs()
 
                             val filename = "sb_" + Date().time + ".html"
                             val file = File(Environment.getExternalStorageDirectory().toString() + "/sbrowser", filename)
@@ -848,7 +863,7 @@ class WebActivity : BaseRemoconActivity() {
 
                         val savedContId = extras.getInt("saved_cont_id")
                         val saved = SbDb.getInstance(applicationContext)!!.getSavedCont(savedContId)
-                        webView!!.loadLocalfile(saved!!.mHtml!!)
+                        webView!!.loadLocalfile(saved!!.mFilename!!)
                     }
                 }
             }
@@ -868,7 +883,7 @@ class WebActivity : BaseRemoconActivity() {
                 return true
             }
             if (mViewMode == VIEW_MODE_CONTENT || mViewMode == VIEW_MODE_SOURCE) {
-                btnViewModeWeb()
+                this@WebActivity.btnViewModeWeb()
                 return true
             }
             if (webView!!.canGoBack()) {
@@ -876,6 +891,18 @@ class WebActivity : BaseRemoconActivity() {
                 return true
             }
             return false
+        }
+
+        fun resetWebView() {
+            if (contentView!!.isShowWebViewSearch) {
+                contentView!!.hideWebViewSearch()
+            }
+            if (mCustomView != null && mCustomView!!.visibility == View.VISIBLE) {
+                mWebChromeClient!!.onHideCustomView()
+            }
+            if (mViewMode == VIEW_MODE_CONTENT || mViewMode == VIEW_MODE_SOURCE) {
+                btnViewModeWeb()
+            }
         }
 
         fun btnAddComplete(addType: Int) {
@@ -891,13 +918,14 @@ class WebActivity : BaseRemoconActivity() {
                     val ratio = windowWidth / mWindowWidth.toFloat()
                     val width = (mSelectedWidth * ratio).toInt()
                     val height = (mSelectedHeight * ratio).toInt()
+                    val cookie = webView!!.cookie
                     Log.i(TAG, "indexSet: $mIndexSet , width: $width , height:$height , windowWidth: $mWindowWidth , windowHeight:$mWindowHeight , selectedWidth: $mSelectedWidth , selectedHeight:$mSelectedHeight")
                     if (mIndexSet != null && width > 0 && height > 0) {
-                        SbDb.getInstance(applicationContext)!!.insertFavoritePart(url, title, mIndexSet!!, width, height, faviconData!!)
+                        SbDb.getInstance(applicationContext)!!.insertFavoritePart(url, title, mIndexSet!!, width, height, faviconData!!, cookie!!)
                         goHome()
+                        finish()
                     }
                 } else {
-                    // DB에 삽입 및 홈으로 이동
                     SbDb.getInstance(applicationContext)!!.insertFavoriteUrl(url, title, faviconData!!)
                     btnReset()
                 }

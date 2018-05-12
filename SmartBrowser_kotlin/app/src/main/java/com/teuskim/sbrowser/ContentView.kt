@@ -1,22 +1,25 @@
 package com.teuskim.sbrowser
 
-import java.io.UnsupportedEncodingException
-import java.net.URLEncoder
-
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
+import android.os.AsyncTask
 import android.os.Handler
-import android.text.Selection
-import android.text.Spannable
+import android.text.*
 import android.text.style.BackgroundColorSpan
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.ScrollView
-import android.widget.TextView
+import android.view.View.OnClickListener
+import android.webkit.WebView
+import android.widget.*
 import android.widget.TextView.BufferType
+import java.io.UnsupportedEncodingException
+import java.net.URLEncoder
+import java.util.*
 
 class ContentView : RelativeLayout {
 
@@ -28,22 +31,98 @@ class ContentView : RelativeLayout {
     private var mLayoutWord: View? = null
     private var mBtnSearch: TextButton? = null
     private var mBtnTranslate: TextButton? = null
+    private var mBtnCopy: TextButton? = null
     private var mLayoutWebViewSearch: View? = null
     private var mTextWebViewSearchTitle: TextView? = null
     private var mBtnCloseWebViewSearch: View? = null
     private var mWebView: SbWebView? = null
+    private var mWebViewLoading: View? = null
 
     private var mSelectedX: Int = 0
     private var mSelectedY: Int = 0
     private var mSelectedWord: String? = null
     private var mSpannable: Spannable? = null
     private var mBackgroundColorSpan: BackgroundColorSpan? = null
+    private var mDidSetBackground = false
+    private var mContext: Context? = null
 
     private val mHandler = Handler()
+    private val mImageMap = HashMap<String, Drawable>()
 
     var content: String
         get() = mTextContent!!.text.toString()
-        set(content) = mTextContent!!.setText(content, BufferType.SPANNABLE)
+        set(content) {
+            mTextContent!!.text = ""
+
+            object : AsyncTask<String, Void, Spanned>() {
+
+                private var mContent: String? = null
+
+                override fun doInBackground(vararg params: String): Spanned {
+                    mContent = params[0].replace("<img", ">img")
+                            .replace("\\s".toRegex(), " ")
+                            .replace("(<!--)[^>]*(-->)".toRegex(), "")
+                            .replace("<script.*>.*</script>".toRegex(), "")
+                            .replace("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>".toRegex(), "<br/>")
+                            .replace("((\\s)*<br/>){6}".toRegex(), "<br/><br/>")
+                            .replace("((\\s)*<br/>){5}".toRegex(), "<br/><br/>")
+                            .replace("((\\s)*<br/>){4}".toRegex(), "<br/><br/>")
+                            .replace("((\\s)*<br/>){3}".toRegex(), "<br/><br/>")
+                            .replace(">img", "<img")
+                    return Html.fromHtml(mContent)
+                }
+
+                override fun onPostExecute(result: Spanned) {
+                    mTextContent!!.setText(result, BufferType.SPANNABLE)
+                    object : AsyncTask<String, Void, Spanned>() {
+
+                        override fun doInBackground(vararg params: String): Spanned {
+                            val minSize = width / 2
+
+                            return Html.fromHtml(mContent, Html.ImageGetter { source ->
+                                val downloader = Downloader(mContext!!)
+                                val imgFile = Downloader.getDefaultFile(MiscUtils.getImageCacheDirectory(mContext!!), source)
+                                if (downloader.get(source, imgFile)) {
+                                    val bm = BitmapFactory.decodeFile(imgFile.path)
+                                    if (bm != null) {
+                                        val img = BitmapDrawable(bm)
+                                        val w: Int
+                                        val h: Int
+                                        if (img.intrinsicWidth < img.intrinsicHeight) {
+                                            if (img.intrinsicWidth >= minSize)
+                                                w = img.intrinsicWidth
+                                            else
+                                                w = minSize
+                                            h = w * img.intrinsicHeight / img.intrinsicWidth
+                                        } else {
+                                            if (img.intrinsicHeight >= minSize)
+                                                h = img.intrinsicHeight
+                                            else
+                                                h = minSize
+                                            w = h * img.intrinsicWidth / img.intrinsicHeight
+                                        }
+                                        img.setBounds(0, 0, w, h)
+                                        return@ImageGetter img
+                                    }
+                                }
+                                null
+                            }, null)
+                        }
+
+                        override fun onPostExecute(result: Spanned) {
+                            mTextContent!!.setText(result, BufferType.SPANNABLE)
+
+                            if (mDidSetBackground == false) {
+                                val handler = Handler()
+                                handler.postDelayed({ setBackground(MiscPref.getInstance(context).contBgColor) }, 100)
+                            }
+                        }
+
+                    }.execute()
+                }
+
+            }.execute(content)
+        }
 
     val isShowWebViewSearch: Boolean
         get() = mLayoutWebViewSearch!!.visibility == View.VISIBLE
@@ -69,6 +148,16 @@ class ContentView : RelativeLayout {
         }
     }
 
+    var scrollTop: Int
+        get() = mLayoutScroll!!.scrollY
+        set(scrollTop) = mLayoutScroll!!.scrollTo(0, scrollTop)
+
+    override fun setVisibility(visibility: Int) {
+        super.setVisibility(visibility)
+
+        if (visibility == View.GONE) mImageMap.clear()
+    }
+
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         init(context)
     }
@@ -82,6 +171,7 @@ class ContentView : RelativeLayout {
     }
 
     private fun init(context: Context) {
+        mContext = context
         LayoutInflater.from(context).inflate(R.layout.content_view, this)
         mLayoutScroll = findViewById<View>(R.id.layout_scroll) as ScrollView
         mLayoutContent = findViewById(R.id.layout_content_body)
@@ -92,11 +182,25 @@ class ContentView : RelativeLayout {
         TextButton.setTextColor(-0x1000000, -0x16b7e0)
         mBtnSearch = findViewById<View>(R.id.btn_search) as TextButton
         mBtnTranslate = findViewById<View>(R.id.btn_translate) as TextButton
+        mBtnCopy = findViewById<View>(R.id.btn_copy) as TextButton
         mLayoutWebViewSearch = findViewById(R.id.layout_webview_search)
         mTextWebViewSearchTitle = findViewById<View>(R.id.text_webview_search_title) as TextView
         mBtnCloseWebViewSearch = findViewById(R.id.btn_close_webview_search)
         mWebView = findViewById<View>(R.id.webview_search) as SbWebView
-        mWebView!!.setDefaultClients()
+        mWebViewLoading = findViewById(R.id.webview_search_loading)
+        mWebView!!.setClients(SbWebView.SbWebChromeClient(context), object : SbWebView.SbWebViewClient(context, mWebView!!) {
+
+            override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                mWebViewLoading!!.visibility = View.VISIBLE
+            }
+
+            override fun onPageFinished(view: WebView, url: String) {
+                super.onPageFinished(view, url)
+                mWebViewLoading!!.visibility = View.GONE
+            }
+
+        })
         mBackgroundColorSpan = BackgroundColorSpan(-0x7f00baf2)
 
         mTextContent!!.setOnTouchListener { v, event ->
@@ -112,6 +216,7 @@ class ContentView : RelativeLayout {
             when (v.id) {
                 R.id.btn_search -> btnSearch()
                 R.id.btn_translate -> btnTranslate()
+                R.id.btn_copy -> btnCopy()
                 R.id.btn_close_webview_search -> hideWebViewSearch()
                 R.id.btn_close_layout_bottom -> hideLayoutBottom()
                 R.id.btn_span_left -> btnSpanLeft()
@@ -122,6 +227,7 @@ class ContentView : RelativeLayout {
         }
         mBtnSearch!!.setOnClickListener(clistener)
         mBtnTranslate!!.setOnClickListener(clistener)
+        mBtnCopy!!.setOnClickListener(clistener)
         mBtnCloseWebViewSearch!!.setOnClickListener(clistener)
         mBtnCloseLayoutBottom!!.setOnClickListener(clistener)
         findViewById<View>(R.id.btn_span_left).setOnClickListener(clistener)
@@ -170,11 +276,14 @@ class ContentView : RelativeLayout {
         else if (mSelectedX < 0)
             mSelectedX = 0
         mSelectedWord = cont.subSequence(start, end).toString()
-
-        val lp = mLayoutWord!!.layoutParams as RelativeLayout.LayoutParams
-        lp.setMargins(mSelectedX, mSelectedY, 0, 0)
-        mLayoutWord!!.layoutParams = lp
-        mLayoutWord!!.visibility = View.VISIBLE
+        if (TextUtils.isEmpty(mSelectedWord)) {
+            mLayoutWord!!.visibility = View.GONE
+        } else {
+            val lp = mLayoutWord!!.layoutParams as RelativeLayout.LayoutParams
+            lp.setMargins(mSelectedX, mSelectedY, 0, 0)
+            mLayoutWord!!.layoutParams = lp
+            mLayoutWord!!.visibility = View.VISIBLE
+        }
     }
 
     private fun isChar(ch: Char): Boolean {
@@ -234,6 +343,12 @@ class ContentView : RelativeLayout {
         mHandler.postDelayed(mTranslateRunnable, 1000)
     }
 
+    private fun btnCopy() {
+        val cm = mContext!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        cm.text = mSelectedWord
+        Toast.makeText(mContext, R.string.toast_copy_clipboard, Toast.LENGTH_SHORT).show()
+    }
+
     private fun btnSpanLeft() {
         val cont = mTextContent!!.text
         val start = mSpannable!!.getSpanStart(mBackgroundColorSpan)
@@ -254,14 +369,18 @@ class ContentView : RelativeLayout {
     }
 
     private fun btnSpanBelow() {
-        val cont = mTextContent!!.text
-        val start = mSpannable!!.getSpanStart(mBackgroundColorSpan)
-        var end = mSpannable!!.getSpanEnd(mBackgroundColorSpan)
-        val layout = mTextContent!!.layout
-        val line = layout.getLineForOffset(end)
-        end = layout.getLineEnd(line + 1)
-        mSpannable!!.setSpan(mBackgroundColorSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        mSelectedWord = cont.subSequence(start, end).toString()
+        try {
+            val cont = mTextContent!!.text
+            val start = mSpannable!!.getSpanStart(mBackgroundColorSpan)
+            var end = mSpannable!!.getSpanEnd(mBackgroundColorSpan)
+            val layout = mTextContent!!.layout
+            val line = layout.getLineForOffset(end)
+            end = layout.getLineEnd(line + 1)
+            mSpannable!!.setSpan(mBackgroundColorSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            mSelectedWord = cont.subSequence(start, end).toString()
+        } catch (e: Exception) {
+        }
+
     }
 
     private fun btnSpanRight() {
@@ -289,6 +408,7 @@ class ContentView : RelativeLayout {
     }
 
     fun setBackground(bg: Int) {
+        mDidSetBackground = true
         if (SettingsView.sRepeatMap.containsKey(bg)) {
             mLayoutContent!!.setBackgroundResource(SettingsView.sRepeatMap[bg]!!)
         } else {
@@ -307,12 +427,12 @@ class ContentView : RelativeLayout {
 
         fun adjustPref(context: Context, contentView: ContentView) {
             val pref = MiscPref.getInstance(context)
-            contentView.setBackground(pref.contBgColor)
             contentView.setFontColor(pref.contFontColor)
             contentView.setFontSize(pref.contFontSize)
             contentView.setLineSpace(pref.contLineSpace)
             val padding = pref.contPadding
             contentView.setPadding(padding, padding, padding, padding)
+            // background는 text 셋팅후에 셋팅
         }
     }
 

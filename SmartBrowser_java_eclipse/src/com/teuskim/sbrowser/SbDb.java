@@ -17,7 +17,7 @@ public class SbDb {
 	private static final String TAG = "SbDb";
 	private static final String DATABASE_NAME = "sbrowser.db";
 	
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	private static SbDb sInstance;
 	//private Context mContext;
 	
@@ -70,7 +70,7 @@ public class SbDb {
 		return true;
 	}
 	
-	public boolean insertFavoritePart(String url, String title, String indexSet, int width, int height, byte[] thumb){
+	public boolean insertFavoritePart(String url, String title, String indexSet, int width, int height, byte[] thumb, String cookie){
 		
 		ContentValues values = new ContentValues();
 		values.put(Favorite.URL, url);
@@ -80,6 +80,7 @@ public class SbDb {
 		values.put(Favorite.PART_WIDTH, width);
 		values.put(Favorite.PART_HEIGHT, height);
 		values.put(Favorite.THUMB, thumb);
+		values.put(Favorite.COOKIE, cookie);
 		values.put(Favorite.CRT_DT, new Date().getTime());
 		values.put(Favorite.ORDER_NUM, getFavoriteNextOrderNum());
 		
@@ -112,7 +113,7 @@ public class SbDb {
 	public List<Favorite> getFavoriteList(){
 		List<Favorite> list = new ArrayList<Favorite>();
 		Cursor cursor = mDb.query(Favorite.TABLE_NAME
-								, new String[]{Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM}
+								, new String[]{Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM, Favorite.COOKIE}
 								, null, null, null, null, Favorite.ORDER_NUM);
 		if(cursor.moveToFirst()){
 			do{
@@ -135,6 +136,7 @@ public class SbDb {
 		favorite.mPartHeight = cursor.getInt(7);
 		favorite.mCrtDt = cursor.getString(8);
 		favorite.mOrderNum = cursor.getInt(9);
+		favorite.mCookie = cursor.getString(10);
 		return favorite;
 	}
 	
@@ -142,7 +144,7 @@ public class SbDb {
 		Favorite favorite = null;
 		try{
 			Cursor cursor = mDb.query(Favorite.TABLE_NAME
-							, new String[]{Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM}
+							, new String[]{Favorite._ID, Favorite.URL, Favorite.TITLE, Favorite.TYPE, Favorite.THUMB, Favorite.INDEX_SET, Favorite.PART_WIDTH, Favorite.PART_HEIGHT, Favorite.CRT_DT, Favorite.ORDER_NUM, Favorite.COOKIE}
 							, Favorite._ID+"=?"
 							, new String[]{""+id}
 							, null, null, null);
@@ -156,12 +158,12 @@ public class SbDb {
 		return favorite;
 	}
 	
-	public boolean insertSavedCont(String title, String html, byte[] thumb){
+	public boolean insertSavedCont(String title, String filename, byte[] thumb){
 		
 		ContentValues values = new ContentValues();
 		values.put(SavedCont.TITLE, title);
-		values.put(SavedCont.HTML, html);
-		values.put(SavedCont.SIZE, html.getBytes().length);
+		values.put(SavedCont.FILENAME, filename);
+		values.put(SavedCont.SIZE, 0);
 		values.put(SavedCont.THUMB, thumb);
 		values.put(SavedCont.CRT_DT, new Date().getTime());
 		values.put(SavedCont.ORDER_NUM, getSavedContNextOrderNum());
@@ -195,17 +197,18 @@ public class SbDb {
 	public List<SavedCont> getSavedContList(){
 		List<SavedCont> list = new ArrayList<SavedCont>();
 		Cursor cursor = mDb.query(SavedCont.TABLE_NAME
-								, new String[]{SavedCont._ID, SavedCont.TITLE, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM}
+								, new String[]{SavedCont._ID, SavedCont.TITLE, SavedCont.FILENAME, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM}
 								, null, null, null, null, SavedCont.ORDER_NUM);
 		if(cursor.moveToFirst()){
 			do{
 				SavedCont savedCont = new SavedCont();
 				savedCont.mId = cursor.getInt(0);
 				savedCont.mTitle = cursor.getString(1);
-				savedCont.mSize = cursor.getInt(2);
-				savedCont.mThumb = cursor.getBlob(3);
-				savedCont.mCrtDt = cursor.getString(4);
-				savedCont.mOrderNum = cursor.getInt(5);
+				savedCont.mFilename = cursor.getString(2);
+				savedCont.mSize = cursor.getInt(3);
+				savedCont.mThumb = cursor.getBlob(4);
+				savedCont.mCrtDt = cursor.getString(5);
+				savedCont.mOrderNum = cursor.getInt(6);
 				list.add(savedCont);
 			}while(cursor.moveToNext());
 		}
@@ -216,7 +219,7 @@ public class SbDb {
 		SavedCont saved = null;
 		try{
 			Cursor cursor = mDb.query(SavedCont.TABLE_NAME
-					, new String[]{SavedCont._ID, SavedCont.TITLE, SavedCont.HTML, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM}
+					, new String[]{SavedCont._ID, SavedCont.TITLE, SavedCont.FILENAME, SavedCont.SIZE, SavedCont.THUMB, SavedCont.CRT_DT, SavedCont.ORDER_NUM}
 							, SavedCont._ID+"=?"
 							, new String[]{""+id}
 							, null, null, null);
@@ -225,7 +228,7 @@ public class SbDb {
 				saved = new SavedCont();
 				saved.mId = cursor.getInt(0);
 				saved.mTitle = cursor.getString(1);
-				saved.mHtml = cursor.getString(2);
+				saved.mFilename = cursor.getString(2);
 				saved.mSize = cursor.getInt(3);
 				saved.mThumb = cursor.getBlob(4);
 				saved.mCrtDt = cursor.getString(5);
@@ -363,6 +366,9 @@ public class SbDb {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// 버전 업그레이드 할때 필요한 동작은 여기에 추가.
+			if(oldVersion == 1 && newVersion == 2){
+				db.execSQL("ALTER TABLE " + Favorite.TABLE_NAME + " ADD COLUMN " + Favorite.COOKIE + " TEXT");
+			}
 		}
 	}
 	
@@ -383,6 +389,7 @@ public class SbDb {
 		public static final String PART_HEIGHT = "part_height";
 		public static final String CRT_DT = "crt_dt";
 		public static final String ORDER_NUM = "order_num";
+		public static final String COOKIE = "cookie";
 		
 		public static final int TYPE_URL = 0;
 		public static final int TYPE_PART = 1;
@@ -397,6 +404,7 @@ public class SbDb {
 		public int mPartHeight;
 		public String mCrtDt;
 		public int mOrderNum;
+		public String mCookie;
 		
 		public static final String CREATE = 
 			"CREATE TABLE " + TABLE_NAME +"( "
@@ -409,7 +417,8 @@ public class SbDb {
 			+ PART_WIDTH + " INTEGER, "
 			+ PART_HEIGHT + " INTEGER, "
 			+ CRT_DT + " TEXT, "
-			+ ORDER_NUM + " INTEGER"
+			+ ORDER_NUM + " INTEGER, "
+			+ COOKIE + " TEXT"
 			+ ");";
 		
 		public static void onCreate(SQLiteDatabase db){
@@ -425,15 +434,15 @@ public class SbDb {
 		public static final String TABLE_NAME = "saved_cont";
 		public static final String _ID = "_id";
 		public static final String TITLE = "title";
-		public static final String HTML = "html";
-		public static final String SIZE = "size";
+		public static final String FILENAME = "html";  // 실제로는 파일명으로 사용. 최초 설계시 실수
+		public static final String SIZE = "size";  // 실제로는 사용하지 않는다.
 		public static final String THUMB = "thumb";
 		public static final String CRT_DT = "crt_dt";
 		public static final String ORDER_NUM = "order_num";
 		
 		public int mId;
 		public String mTitle;
-		public String mHtml;
+		public String mFilename;
 		public int mSize;
 		public byte[] mThumb;
 		public String mCrtDt;
@@ -443,7 +452,7 @@ public class SbDb {
 			"CREATE TABLE " + TABLE_NAME +"( "
 			+ _ID + " INTEGER primary key autoincrement, "
 			+ TITLE + " TEXT, "
-			+ HTML + " TEXT, "
+			+ FILENAME + " TEXT, "
 			+ SIZE + " INTEGER, "
 			+ THUMB + " BLOB, "
 			+ CRT_DT + " TEXT, "

@@ -3,9 +3,14 @@ package com.teuskim.sbrowser;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.res.Configuration;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -29,6 +34,7 @@ public abstract class BaseRemoconActivity extends Activity {
 	private DisplayMetrics mDisplayMetrics;
 	private MiscPref mPref;
 	private FacebookApi mFacebookApi;
+	private KillReceiver mKillReceiver;
 	
 	private OnClickListener mListener = new OnClickListener() {
 		
@@ -53,8 +59,17 @@ public abstract class BaseRemoconActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		mPref = MiscPref.getInstance(getApplicationContext());
+		mKillReceiver = new KillReceiver();
+		IntentFilter ift = new IntentFilter();
+		ift.addAction("sbrowser.kill");
+		registerReceiver(mKillReceiver, ift);
 	}
 
+	@Override
+	protected void onDestroy() {
+		unregisterReceiver(mKillReceiver);
+		super.onDestroy();
+	}
 	@Override
 	public void setContentView(int layoutResID) {
 		LayoutInflater inflater = LayoutInflater.from(this);
@@ -65,7 +80,6 @@ public abstract class BaseRemoconActivity extends Activity {
 		mDisplayMetrics = getResources().getDisplayMetrics();
 		
 		mRemocon = (RemoconView) findViewById(R.id.remocon_view);
-		mRemocon.setBaseLayout(findViewById(R.id.base_layout));
 		findViewById(R.id.input_query_form).setOnClickListener(mListener);
 		findViewById(R.id.btn_go).setOnClickListener(mListener);
 		mBtnGoText = (TextView) findViewById(R.id.btn_go_text);
@@ -88,10 +102,6 @@ public abstract class BaseRemoconActivity extends Activity {
 		mRemocon.setBottomView(remoconBottom);
 	}
 	
-	protected void setBoundary(){
-		mRemocon.setBoundary();
-	}
-	
 	protected void setBtnGoImage(int resId){
 		mBtnGoImg.setImageResource(resId);
 		mBtnGoImg.setVisibility(View.VISIBLE);
@@ -108,8 +118,31 @@ public abstract class BaseRemoconActivity extends Activity {
 	protected void onStart() {
 		super.onStart();
 		
-		mRemocon.initAlphaAndPosition();
 		setShareInfo();
+	}
+	
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		
+		if(hasFocus){
+			initRemocon();
+		}
+	}
+	
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		
+		initRemocon();
+	}
+	
+	private void initRemocon(){
+		// 리모콘 위치 초기화
+		Rect rectgle= new Rect();
+		getWindow().getDecorView().getWindowVisibleDisplayFrame(rectgle);
+		mRemocon.setWindowSize(getWindowWidth(), getWindowHeight()-rectgle.top);
+		mRemocon.initAlphaAndPosition();
 	}
 	
 	protected void btnInputQueryForm(){
@@ -277,6 +310,15 @@ public abstract class BaseRemoconActivity extends Activity {
 	    	return true;
 	    
 	    return false;
+	}
+	
+	private class KillReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			finish();
+		}
+		
 	}
 	
 }

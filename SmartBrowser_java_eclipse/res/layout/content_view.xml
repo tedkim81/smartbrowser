@@ -14,7 +14,7 @@
 		<ScrollView
 		    android:id="@+id/layout_scroll" 
 			android:layout_width="match_parent"
-			android:layout_height="0dip"
+			android:layout_height="0dp"
 			android:layout_weight="1"
 			>
 			<LinearLayout
@@ -27,7 +27,7 @@
 			        android:id="@+id/text_content"
 			        android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:textSize="20dip"
+					android:textSize="20sp"
 					android:bufferType="spannable"
 					/>
 			</LinearLayout>
@@ -66,7 +66,7 @@
 		        android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="20dip"
-				android:textSize="20dip"
+				android:textSize="20sp"
 		        />
 		    <!-- }} 번역 내용 -->
 		    
@@ -83,37 +83,54 @@
 		android:layout_height="87dip"
 		android:background="@drawable/bg_tooltip"
 		android:visibility="invisible"
+		android:clickable="true"
 		>
 	    <!-- 검색 버튼 {{ -->
         <com.teuskim.sbrowser.TextButton
             android:id="@+id/btn_search"
-            android:layout_width="93dip"
+            android:layout_width="60dip"
 			android:layout_height="34dip"
 			android:layout_marginTop="7dip"
-			android:paddingLeft="30dip"
+			android:layout_marginLeft="10dip"
 			android:gravity="center_vertical"
 			android:text="@string/search"
-			android:textSize="11sp"
+			android:textSize="12sp"
 			android:textColor="#000000"
 			android:textStyle="bold"
+			android:drawableLeft="@drawable/btn_tooltip_search"
 			/>
         <!-- }} 검색 버튼 -->
         
         <!-- 번역 버튼 {{ -->
         <com.teuskim.sbrowser.TextButton
             android:id="@+id/btn_translate"
-            android:layout_width="93dip"
+            android:layout_width="60dip"
 			android:layout_height="34dip"
 			android:layout_marginTop="7dip"
-			android:layout_marginLeft="94dip"
-			android:paddingLeft="22dip"
+			android:layout_marginLeft="70dip"
 			android:gravity="center_vertical"
 			android:text="@string/translate"
-			android:textSize="11sp"
+			android:textSize="12sp"
+			android:textColor="#000000"
+			android:textStyle="bold"
+			android:drawableLeft="@drawable/btn_tooltip_translate"
+			/>
+        <!-- }} 번역 버튼 -->
+        
+        <!-- 복사 버튼 {{ -->
+        <com.teuskim.sbrowser.TextButton
+            android:id="@+id/btn_copy"
+            android:layout_width="70dip"
+			android:layout_height="34dip"
+			android:layout_marginTop="7dip"
+			android:layout_marginLeft="150dip"
+			android:gravity="center_vertical"
+			android:text="@string/copy"
+			android:textSize="12sp"
 			android:textColor="#000000"
 			android:textStyle="bold"
 			/>
-        <!-- }} 번역 버튼 -->
+        <!-- }} 복사 버튼 -->
         
         <!-- 영역선택 타이틀 {{ -->
         <TextView
@@ -211,7 +228,7 @@
 			>
 			<TextView
 			    android:id="@+id/text_webview_search_title"
-			    android:layout_width="0dip"
+			    android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_weight="1"
 				android:layout_marginLeft="12dip"
@@ -229,14 +246,33 @@
 		</LinearLayout>
         <!-- }} 검색 웹뷰 타이틀바 -->
         
-		<!-- 웹뷰 {{ -->
-		<com.teuskim.sbrowser.SbWebView
-			android:id="@+id/webview_search"
-			android:layout_width="match_parent"
-			android:layout_height="0dip"
+		<!-- 웹뷰 영역 {{ -->
+		<RelativeLayout
+		    android:layout_width="match_parent"
+			android:layout_height="match_parent"
 			android:layout_weight="1"
-			/>
-		<!-- }} 웹뷰 -->
+			>
+		    <com.teuskim.sbrowser.SbWebView
+				android:id="@+id/webview_search"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				/>
+		    <RelativeLayout 
+		        android:id="@+id/webview_search_loading"
+		        android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="#44000000"
+				android:visibility="gone"
+		        >
+				<ProgressBar 
+					android:id="@+android:id/progress"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_centerInParent="true" 
+					/>
+		    </RelativeLayout>
+		</RelativeLayout>
+		<!-- }} 웹뷰 영역 -->
 		
 	</LinearLayout>
 	<!-- }} 검색 웹뷰 레이아웃 -->

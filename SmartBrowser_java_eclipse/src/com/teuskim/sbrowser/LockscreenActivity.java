@@ -14,14 +14,16 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.webkit.WebView;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class LockscreenActivity extends Activity {
 	
 	private Handler mHandler = new Handler();
-	private Button mBtnUnlockLeft;
-	private Button mBtnUnlockRight;
+	private ImageView mBtnUnlockLeft;
+	private TextView mTextUnlockLeft;
+	private ImageView mBtnUnlockRight;
+	private TextView mTextUnlockRight;
 	private boolean mIsTouchedLeft = false;
 	private boolean mIsTouchedRight = false;
 	
@@ -32,6 +34,10 @@ public class LockscreenActivity extends Activity {
 	private SbWebView mWebView;
 	private ContentView mContentView;
 	private SourceView mSourceView;
+	private int mViewMode;
+	private int mScrollTop;
+	private boolean mIsScrollable = false;
+	private boolean mIsScrolled = false;
 	
 	private OnTouchListener mOnTouchListener = new OnTouchListener() {
 		
@@ -43,17 +49,21 @@ public class LockscreenActivity extends Activity {
 				case R.id.btn_unlock_left:
 				case R.id.btnlayout_unlock_left:
 					if(mIsTouchedLeft){
+						mBtnUnlockLeft.setAlpha(70);
+						mTextUnlockLeft.setVisibility(View.GONE);
 						dismissKeyguard();
 					}
 					else{
 						mIsTouchedLeft = true;
-						mBtnUnlockLeft.setBackgroundResource(R.drawable.btn_lockscreen_unlock_02);
+						mBtnUnlockLeft.setImageResource(R.drawable.btn_lockscreen_unlock_02);
+						mTextUnlockLeft.setText(R.string.lock_release_onemore);
 						mHandler.postDelayed(new Runnable() {
 							
 							@Override
 							public void run() {
 								mIsTouchedLeft = false;
-								mBtnUnlockLeft.setBackgroundResource(R.drawable.btn_lockscreen_unlock_01);
+								mBtnUnlockLeft.setImageResource(R.drawable.btn_lockscreen_unlock_01);
+								mTextUnlockLeft.setText(R.string.lock_release_double);
 							}
 						}, 2000);
 					}
@@ -62,17 +72,21 @@ public class LockscreenActivity extends Activity {
 				case R.id.btn_unlock_right:
 				case R.id.btnlayout_unlock_right:
 					if(mIsTouchedRight){
+						mBtnUnlockRight.setAlpha(70);
+						mTextUnlockRight.setVisibility(View.GONE);
 						dismissKeyguard();
 					}
 					else{
 						mIsTouchedRight = true;
-						mBtnUnlockRight.setBackgroundResource(R.drawable.btn_lockscreen_unlock_02);
+						mBtnUnlockRight.setImageResource(R.drawable.btn_lockscreen_unlock_02);
+						mTextUnlockRight.setText(R.string.lock_release_onemore);
 						mHandler.postDelayed(new Runnable() {
 							
 							@Override
 							public void run() {
 								mIsTouchedRight = false;
-								mBtnUnlockRight.setBackgroundResource(R.drawable.btn_lockscreen_unlock_01);
+								mBtnUnlockRight.setImageResource(R.drawable.btn_lockscreen_unlock_01);
+								mTextUnlockRight.setText(R.string.lock_release_double);
 							}
 						}, 2000);
 					}
@@ -94,8 +108,10 @@ public class LockscreenActivity extends Activity {
 							WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 		
 		setContentView(R.layout.lockscreen);
-		mBtnUnlockLeft = (Button) findViewById(R.id.btn_unlock_left);
-		mBtnUnlockRight = (Button) findViewById(R.id.btn_unlock_right);
+		mBtnUnlockLeft = (ImageView) findViewById(R.id.btn_unlock_left);
+		mTextUnlockLeft = (TextView) findViewById(R.id.text_unlock_left);
+		mBtnUnlockRight = (ImageView) findViewById(R.id.btn_unlock_right);
+		mTextUnlockRight = (TextView) findViewById(R.id.text_unlock_right);
 		mCurrentTime = (TextView) findViewById(R.id.current_time);
 		mCurrentDate = (TextView) findViewById(R.id.current_date);
 		mWebView = (SbWebView) findViewById(R.id.webview);
@@ -110,17 +126,16 @@ public class LockscreenActivity extends Activity {
 		mLocale = getResources().getConfiguration().locale;
 		
 		Bundle extras = getIntent().getExtras();
-		int viewMode = extras.getInt("view_mode");
+		mViewMode = extras.getInt("view_mode");
+		mScrollTop = extras.getInt("scrolltop");
 		
-		switch(viewMode){
+		switch(mViewMode){
 		case WebActivity.VIEW_MODE_WEBVIEW:
+		case WebActivity.VIEW_MODE_SOURCE:
 			viewWebView(extras.getString("url"));
 			break;
 		case WebActivity.VIEW_MODE_CONTENT:
 			viewContentView(extras.getString("content"));
-			break;
-		case WebActivity.VIEW_MODE_SOURCE:
-			viewSourceView(extras.getString("source"));
 			break;
 		}
 	}
@@ -130,7 +145,7 @@ public class LockscreenActivity extends Activity {
 		mContentView.setVisibility(View.GONE);
 		mSourceView.setVisibility(View.GONE);
 		
-		mWebView.setClients(new SbWebView.SbWebChromeClient(this), new SbWebView.SbWebViewClient(this){
+		mWebView.setClients(new SbWebView.SbWebChromeClient(this), new SbWebView.SbWebViewClient(this,mWebView){
 
 			@Override
 			public void onPageFinished(WebView view, String url) {
@@ -173,19 +188,25 @@ public class LockscreenActivity extends Activity {
 		mContentView.setContent(content);
 	}
 	
-	private void viewSourceView(String source){
-		mWebView.setVisibility(View.GONE);
-		mContentView.setVisibility(View.GONE);
-		mSourceView.setVisibility(View.VISIBLE);
-		
-		mSourceView.setSource(source);
-	}
-
 	@Override
 	protected void onResume() {
 		super.onResume();
 		mHandler.post(mTimeRunnable);
 		setCurrentDate();
+		
+		if(mIsScrollable && mIsScrolled == false){
+			switch(mViewMode){
+			case WebActivity.VIEW_MODE_WEBVIEW:
+			case WebActivity.VIEW_MODE_SOURCE:
+				mWebView.scrollTo(0, mScrollTop);
+				break;
+			case WebActivity.VIEW_MODE_CONTENT:
+				mContentView.setScrollTop(mScrollTop);
+				break;
+			}
+			mIsScrolled = true;
+		}
+		mIsScrollable = true;
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package com.teuskim.sbrowser;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,37 @@ public class HumanProgressBar extends RelativeLayout {
 	private static final int MAX_PROGRESS = 100;
 	private ImageView mPushman;
 	private View mBtnCloseProgress;
-	private boolean mIsHurry;
+	
+	private int mDestProgress;
+	private int mCurrProgress;
+	private Handler mHandler = new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			
+			if(mCurrProgress < mDestProgress){
+				mCurrProgress++;
+				LayoutParams lp = (LayoutParams) mPushman.getLayoutParams();
+				lp.leftMargin = (int)((getWidth() - mPushman.getWidth()) * mCurrProgress / MAX_PROGRESS);
+				mPushman.setLayoutParams(lp);
+			}
+			
+			if(mCurrProgress < MAX_PROGRESS-5){
+				mHandler.sendEmptyMessage(0);
+			}
+			else{
+				hide();
+			}
+			
+			if(mCurrProgress % 20 >= 10)
+				mPushman.setImageResource(R.drawable.img_loading_pushman02);
+			else
+				mPushman.setImageResource(R.drawable.img_loading_pushman01);
+			
+		}
+		
+	};
 
 	public HumanProgressBar(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
@@ -36,18 +68,22 @@ public class HumanProgressBar extends RelativeLayout {
 	}
 	
 	public void setProgress(int progress){
-		LayoutParams lp = (LayoutParams) mPushman.getLayoutParams();
-		lp.leftMargin = (int)((getWidth() - mPushman.getWidth()) * progress / MAX_PROGRESS);
-		mPushman.setLayoutParams(lp);
 		
-		if(mIsHurry)
-			mPushman.setImageResource(R.drawable.img_loading_pushman02);
-		else
-			mPushman.setImageResource(R.drawable.img_loading_pushman01);
-		mIsHurry = !mIsHurry;
+		mDestProgress = progress;
 	}
 	
 	public void setStopListener(OnTouchListener listener){
 		mBtnCloseProgress.setOnTouchListener(listener);
+	}
+	
+	public void show(){
+		setVisibility(VISIBLE);
+		mDestProgress = 0;
+		mCurrProgress = 0;
+		mHandler.sendEmptyMessage(0);
+	}
+	
+	public void hide(){
+		setVisibility(GONE);
 	}
 }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
+import android.support.v4.widget.SimpleCursorAdapter
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
@@ -13,13 +14,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ListView
-import android.widget.SimpleCursorAdapter
 import android.widget.TextView
 import android.widget.TextView.OnEditorActionListener
 
@@ -74,7 +75,8 @@ class InputActivity : Activity() {
         }
 
         mInputQuery!!.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
-            if (event.keyCode == KeyEvent.KEYCODE_ENTER) {
+            if (actionId == EditorInfo.IME_ACTION_GO || event != null && event.keyCode == KeyEvent.KEYCODE_ENTER) {
+
                 goWeb(v.text.toString())
                 return@OnEditorActionListener true
             }
@@ -98,8 +100,9 @@ class InputActivity : Activity() {
             finish()
         } else {
             val i = Intent(applicationContext, WebActivity::class.java)
+            i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             val url: String
-            if (query.contains("://")) {
+            if (query.contains("://") || query.startsWith("sms:") || query.startsWith("tel:") || query.startsWith("mailto:")) {
                 url = query
                 saveInputHistory(true, url)
             } else if (query.contains(".")) {
@@ -169,7 +172,7 @@ class InputActivity : Activity() {
             mInflater = LayoutInflater.from(context)
         }
 
-        override fun bindView(v: View, context: Context, cursor: Cursor) {
+        override fun bindView(v: View, context: Context?, cursor: Cursor) {
             val inputHistory = mDb!!.getInputHistory(cursor)
             (v.findViewById<View>(R.id.url) as TextView).text = inputHistory.mInput
 
@@ -180,7 +183,7 @@ class InputActivity : Activity() {
             v.tag = inputHistory.mInput
         }
 
-        override fun newView(context: Context, cursor: Cursor, parent: ViewGroup): View {
+        override fun newView(context: Context?, cursor: Cursor?, parent: ViewGroup): View {
             return mInflater.inflate(R.layout.input_history_item, null)
         }
 

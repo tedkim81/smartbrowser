@@ -28,7 +28,7 @@
 			android:textStyle="bold"
 		    />
 	    <View
-	        android:layout_width="0dip"
+	        android:layout_width="match_parent"
 			android:layout_height="1dip"
 			android:layout_weight="1"
 			/>
@@ -44,7 +44,7 @@
 	<!-- 내용영역 {{ -->
 	<ScrollView
 	    android:layout_width="match_parent"
-		android:layout_height="0dip"
+		android:layout_height="match_parent"
 		android:layout_weight="1" 
 	    >
 	    <LinearLayout

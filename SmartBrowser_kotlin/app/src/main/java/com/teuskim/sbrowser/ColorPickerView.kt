@@ -1,6 +1,5 @@
 package com.teuskim.sbrowser
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -184,7 +183,6 @@ class ColorPickerView(c: Context, private val mWidth: Int, private val mHeight: 
         }
     }
 
-    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         val translatedHue = 255 - (mCurrentHue * 255 / 360).toInt()
         // Display all the colors of the hue bar with lines

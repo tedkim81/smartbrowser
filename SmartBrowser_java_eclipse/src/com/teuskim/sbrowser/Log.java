@@ -2,7 +2,7 @@ package com.teuskim.sbrowser;
 
 public class Log {
 	
-	private static final boolean IS_LOGGING = true;
+	private static final boolean IS_LOGGING = false;
 
 	public static void d(String tag, String msg){
 		if(IS_LOGGING){

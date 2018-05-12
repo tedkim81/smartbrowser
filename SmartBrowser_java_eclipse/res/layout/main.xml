@@ -37,7 +37,7 @@
 			android:textColor="#ffffff"
 		    />
 	    <View
-	        android:layout_width="0dip"
+	        android:layout_width="match_parent"
 			android:layout_height="1dip"
 			android:layout_weight="1"
 			/>
@@ -57,13 +57,27 @@
 		android:background="#ffffff"
 		>
 	    <!-- 내용이 없을때 보여줄 이미지 {{ -->
-	    <ImageView
+	    <RelativeLayout
 	        android:id="@+id/icon_default"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="155dip"
+			android:layout_height="105dip"
 			android:layout_centerInParent="true"
-			android:src="@drawable/symbol"
-			/>
+			android:background="@drawable/symbol"
+			>
+	        <TextView
+	            android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+				android:layout_alignParentBottom="true"
+				android:layout_marginBottom="10dip"
+				android:gravity="center"
+				android:lineSpacingExtra="-3dip"
+				android:text="@string/icon_text"
+				android:textColor="#e94820"
+				android:textSize="20sp"
+				android:textStyle="bold"
+				/>
+	    </RelativeLayout>
 	    <!-- }} 내용이 없을때 보여줄 이미지 -->
 	    
 	    <!-- 메인모드 : 홈 {{ -->
